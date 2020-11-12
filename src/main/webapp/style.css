@@ -36,7 +36,7 @@ top: calc(50% - 284px/2 - 45px);
 
 position: absolute;
 width: 707px;
-height: 278px;
+height: 328px;
 left: 5px;
 top: 6px;
 
@@ -112,4 +112,24 @@ left: 461px;
 top: 181px;
     
     
+}
+
+#errorMsgContainer{
+    position: absolute;
+    bottom: 20px;
+    color: red;
+    width: 90%;
+    margin-left: 5%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    
+    border: 1px solid red;
+    background-color: #ffb8b0;
+    border-radius: 10px;
+}
+
+#errorMsg{
+    width: 100%;
+    text-align: center;
 }
