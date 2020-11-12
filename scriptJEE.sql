@@ -91,7 +91,7 @@ CREATE TABLE IsKeyWord(
 
 	PRIMARY KEY(key_word,internship_id),
 	FOREIGN KEY(key_word) REFERENCES KeyWord(key_word),
-	FOREIGN KEY(internship_id) REFERENCES Assign(internship_id)
+	FOREIGN KEY(internship_id) REFERENCES InternshipInfo(internship_id)
 );
 
 
