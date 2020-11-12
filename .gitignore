@@ -3,6 +3,7 @@
 build/
 bin/
 libs/
+target/
 tmp/
 node_modules/
 
@@ -93,3 +94,4 @@ local.properties
 
 # Testing environment specific
 derby.log
+/target/
