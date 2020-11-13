@@ -15,6 +15,12 @@ Test different Branch
       - username = root
       - password = root
       
+3) implement the database
+      - still in service and database
+      - right click on "jdbc/derby://localhost:1527/jeedb
+      - click on execute command
+      - copy all the create and insert from scriptjee.sql and execute it
+      
 2) inside the java code you can use the model BD. To create a new connection just have to do
       - import Model.DB
       - import java.sql.connection
