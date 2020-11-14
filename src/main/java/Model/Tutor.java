@@ -16,7 +16,7 @@ public class Tutor {
     private int _id;
     private String _login;
     private String _password;
-    
+
     public Tutor() {
     }
 
@@ -59,7 +59,5 @@ public class Tutor {
     public void setPassword(String _password) {
         this._password = _password;
     }
-    
-    
-    
+
 }

@@ -5,7 +5,6 @@ package Controllers;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import Model.Tutor;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -27,33 +26,29 @@ import Model.BD;
  * @author natha
  */
 public class LoginController extends HttpServlet {
-    
+
     private Connection conn;
     private Statement stmt;
     private ResultSet rs;
     private Tutor TutorUser = new Tutor();
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        /*if(request.getMethod().equals("POST")){
-            this.doGet(request, response);
-        }*/
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
+        //Redirect to index.jsp when GET Method
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        //processRequest(request, response); : DEFAULT CODE
-        
+
+        //POST METHOD
         //Retrieve what the user has entered
         String userLoginInput = request.getParameter("UsernameForm");
         String userPasswordInput = request.getParameter("PassForm");
@@ -64,11 +59,11 @@ public class LoginController extends HttpServlet {
             conn = BD.getCo();
             stmt = conn.createStatement();
             //TODO Eviter l'exception
-            String queryCount = "SELECT * FROM TUTOR WHERE LOGIN = '"+userLoginInput+"' and PASSWORD = '"+userPasswordInput+"'";
+            String queryCount = "SELECT * FROM TUTOR WHERE LOGIN = '" + userLoginInput + "' and PASSWORD = '" + userPasswordInput + "'";
             rs = stmt.executeQuery(queryCount);
 
             //Si le nombre de rows est supérieur à 0, alors ça signifie que l'input est bon
-            if(rs.next()){
+            if (rs.next()) {
                 //User est logged
 
                 TutorUser.setId(rs.getInt("TUTOR_ID"));
@@ -80,16 +75,14 @@ public class LoginController extends HttpServlet {
                 request.setAttribute("keyTutorUser", TutorUser);
 
                 request.getRequestDispatcher("Welcome.jsp").forward(request, response);
+            } else { //Invalid Login : Redirect to index.jsp and set KeyErrMess in order to display it
+                request.setAttribute("KeyErrMess", "Invalid Login or Password");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
             }
-            else { //Login Invalid
-                    request.setAttribute("KeyErrMess", "Invalid Login or password");
-                    request.getRequestDispatcher("index.jsp").forward(request, response);
-            }
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        catch (SQLException ex) {
-                    Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+
     }
 
     @Override

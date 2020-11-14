@@ -16,6 +16,7 @@
     </head>
     <body>
         <%
+            //Gets the Meeting Info
             InternshipInfo info = (InternshipInfo) request.getAttribute("info");
             out.println(info.getMeetingInfo());
         %>

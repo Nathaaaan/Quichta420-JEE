@@ -18,16 +18,16 @@ import Model.InternshipInfo;
  *
  * @author Gohu
  */
-@WebServlet(name="ViewStudentInfo", urlPatterns={"/ViewStudentInfo"})
+@WebServlet(name = "ViewStudentInfo", urlPatterns = {"/ViewStudentInfo"})
 public class ViewStudentInfo extends HttpServlet {
-   
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response){
-        
-    } 
+
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) {
+
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         //On est censé recuperer les infos dans la database grace a cet ID
         int internshipId = Integer.parseInt(request.getParameter("internshipId"));
 //Pour Andriatiana
@@ -38,24 +38,23 @@ public class ViewStudentInfo extends HttpServlet {
         // -Le Intern en quesiton
         // -Le InternshipInfo en question
         // -La company en question dont l'id est specifié dans internshipInfo
-        
+
         //Je cree donc en offline ce Intern et ce InternshipInfo avec une Company (pas besoin de keywords ici il me semble)
-        InternshipInfo info = new InternshipInfo(1, new Company(1,"google","1 rue de google"), new ArrayList<String>(), "la description",
- "les meeting infos", "intern comments", "tutor comments", "profil linkedin");
-        Intern intern = new Intern(1,"robert","dupond","M1");
-        
+        InternshipInfo info = new InternshipInfo(1, new Company(1, "google", "1 rue de google"), new ArrayList<String>(), "la description",
+                "les meeting infos", "intern comments", "tutor comments", "profil linkedin");
+        Intern intern = new Intern(1, "robert", "dupond", "M1");
+
         //Ici le code ne devrait pas etre change par contre normalement
         request.setAttribute("intern", intern);
         request.setAttribute("info", info);
         request.getRequestDispatcher("StudentInfo.jsp").forward(request, response);
-    } 
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
-
 
     @Override
     public String getServletInfo() {
