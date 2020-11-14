@@ -1,0 +1,196 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 28 oct. 2020, 11:51:37
+    Author     : natha
+*/
+
+body{
+    /* Login Page Frame */
+
+    background-image: url(images/background.png);
+    background-size: cover;
+}
+
+#FramePanel{
+    
+    position: absolute;
+    width: 1000px;
+    height: 400px;
+    left: calc(50% - 1000px/2);
+    top: calc(50% - 400px/2 - 45px);
+
+}
+
+#FrameBorder{  
+    /* Frame Border */
+
+    position: absolute;
+    width: 1000px;
+    height: 400px;
+
+    background: #FFFFFF;
+    box-shadow: 4px 4px 4px 2px rgba(0, 0, 0, 0.4);
+    
+}
+
+#AuthentificationBar{
+    /* Authentification Bar */
+    
+    position: relative;
+    width: 1000px;
+    height: 103px;
+    background: #007BC1;
+    
+}
+
+#EFREILOGO{
+    
+    position: absolute;
+    width: 233px;
+    height: 79px;
+
+    left: 18px;
+    top: 12px;
+
+}
+
+#AuthentificationText{
+    /* Authentification */
+
+    position: absolute;
+    width: 733px;
+    height: 103px;
+    left: 267px;
+
+    font-family: Roboto;
+    font-size: 50px;
+
+    margin: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #FFFFFF;
+
+}
+
+#FORM{
+    
+    width: 1000px;
+    height: 297px;
+    
+}
+
+#username{
+    
+    position: absolute;
+    width: 230px;
+    height: 65px;
+    left: 83px;
+    bottom: 206px;
+    
+    
+    font-size: 50px;
+    color: #007BC1;
+    
+    margin: 0;
+}
+
+#password{
+    
+    position: absolute;
+    width: 220px;
+    height: 65px;
+    left: 93px;
+    bottom: 122px;
+    
+    
+    font-size: 50px;
+    color: #007BC1;
+    
+    margin: 0;
+}
+
+#TextBoxUsername{
+    /* TextBoxUsername */
+
+
+    position: absolute;
+    width: 584px;
+    height: 65px;
+    left: 320px;
+    bottom: 205px;
+
+    background: #E0E0E0;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+
+}
+
+#TextBoxPassword{
+    /* TextBoxPassword */
+
+    position: absolute;
+    width: 584px;
+    height: 65px;
+    left: 320px;
+    bottom: 121px;
+
+    background: #E0E0E0;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    
+}
+
+#SendButton{
+    /* SendButton */
+
+    position: absolute;
+    width: 277px;
+    height: 65px;
+    left: 627px;
+    bottom: 29px;
+
+    background: #007BC1;
+    border-radius: 25px;
+    
+}
+
+input[type="submit"]{
+    
+    cursor:pointer;
+    color: #FFFFFF;
+    font-size: 36px;
+    
+}
+
+#errorMsgContainer{
+    
+    position: absolute;
+    bottom: 40px;
+    color: red;
+    width: 500px;
+    margin-left: 5%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    
+    border: 1px solid red;
+    background-color: #ffb8b0;
+    border-radius: 10px;
+    
+}
+
+#errorMsg{
+    
+    width: 100%;
+    text-align: center;
+    
+}
+
+
