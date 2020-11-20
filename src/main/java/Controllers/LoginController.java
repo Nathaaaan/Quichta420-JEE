@@ -5,21 +5,17 @@ package Controllers;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import Model.Tutor;
+import Database.DB;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import Model.BD;
+import Model.Services.UserService;
+import static Utils.Constants.*;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -27,67 +23,61 @@ import Model.BD;
  */
 public class LoginController extends HttpServlet {
 
-    private Connection conn;
-    private Statement stmt;
-    private ResultSet rs;
-    private Tutor TutorUser = new Tutor();
-
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    /*protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+    }*/
+    
+    @Override
+    public void init() {
+        
+        try{
+            DB.loadCredentials(getServletContext().getResourceAsStream(DB_CRED));
+        }catch(IOException ex){
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //Redirect to index.jsp when GET Method
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        request.getRequestDispatcher(LOGIN_PAGE).forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        try{
 
-        //POST METHOD
-        //Retrieve what the user has entered
-        String userLoginInput = request.getParameter("UsernameForm");
-        String userPasswordInput = request.getParameter("PassForm");
+            //POST METHOD
+            //Retrieve what the user has entered
+            String userLoginInput = request.getParameter(LOGIN_USER);
+            String userPasswordInput = request.getParameter(LOGIN_PWD);
+            
+            // TODO: implement session management
+            //Now let's check the validity of the credentials on the database
+            if(UserService.isGoodCredentials(userLoginInput, userPasswordInput)){
+                //User is logged
+                request.setAttribute("keyTutorUser", UserService.getByCredentials(userLoginInput, userPasswordInput));
+                request.getRequestDispatcher(WELCOME_PAGE).forward(request, response);
 
-        //Now, we need to connect on the database and checks if a couple for this login
-        //login/password exists
-        try {
-            conn = BD.getCo();
-            stmt = conn.createStatement();
-            //TODO Eviter l'exception
-            String queryCount = "SELECT * FROM TUTOR WHERE LOGIN = '" + userLoginInput + "' and PASSWORD = '" + userPasswordInput + "'";
-            rs = stmt.executeQuery(queryCount);
-
-            //Si le nombre de rows est supérieur à 0, alors ça signifie que l'input est bon
-            if (rs.next()) {
-                //User est logged
-
-                TutorUser.setId(rs.getInt("TUTOR_ID"));
-                TutorUser.setName(rs.getString("FIRST_NAME"));
-                TutorUser.setLastName(rs.getString("LAST_NAME"));
-                TutorUser.setLogin(rs.getString("LOGIN"));
-                TutorUser.setPassword(rs.getString("PASSWORD"));
-
-                request.setAttribute("keyTutorUser", TutorUser);
-
-                request.getRequestDispatcher("Welcome.jsp").forward(request, response);
-            } else { //Invalid Login : Redirect to index.jsp and set KeyErrMess in order to display it
+            } else{
+                //Invalid Login : Redirect to the login page and set KeyErrMess in order to display it
                 request.setAttribute("KeyErrMess", "Invalid Login or Password");
-                request.getRequestDispatcher("index.jsp").forward(request, response);
+                request.getRequestDispatcher(LOGIN_PAGE).forward(request, response);
             }
-        } catch (SQLException ex) {
+        }catch(RuntimeException ex){
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }catch(SQLException ex){
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 
 }
