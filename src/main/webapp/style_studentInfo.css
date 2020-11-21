@@ -1,12 +1,30 @@
 .page{
     margin-top: 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     width: 70%;
     background: white;
     padding: 40px;
     box-shadow: 2px 2px grey;
+}
+
+.pageContent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pageHeader{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-size: 30px;
+    color: #137bc0;
+}
+
+.logoEfrei{
+    width: 15%;
 }
 
 body{
@@ -18,7 +36,7 @@ body{
 .firstTwo{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     width: 100%;
 }
 
@@ -30,7 +48,7 @@ body{
     width: 130%;
 }
 
-img{
+.person{
     width: 20%;
     margin-top: 20px;
 }
@@ -41,7 +59,7 @@ img{
 }
 
 .container{
-    width: 40%;
+    width: 48%;
     box-shadow: 2px 2px lightgrey;
     border-radius: 5px;
 }
