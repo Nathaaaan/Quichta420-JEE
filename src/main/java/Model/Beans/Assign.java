@@ -9,6 +9,7 @@ import Model.Beans.InternshipInfo;
  * @author Gohu
  */
 public class Assign {
+
     private Tutor tutor;
     private Intern intern;
     private InternshipInfo internshipInfo;
@@ -20,7 +21,7 @@ public class Assign {
     }
 
     public Assign() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     public Tutor getTutor() {
