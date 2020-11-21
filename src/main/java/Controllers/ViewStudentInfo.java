@@ -10,10 +10,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.util.ArrayList;
 
+<<<<<<< HEAD
 import Model.Company;
 import Model.Intern;
 import Model.InternshipInfo;
 import java.sql.Date;
+=======
+import Model.Beans.Company;
+import Model.Beans.Intern;
+import Model.Beans.InternshipInfo;
+import static Utils.Constants.*;
+>>>>>>> 8c73242eeb19d6c8599a620ebb7b76ea743853f9
 
 /**
  *
@@ -48,7 +55,7 @@ public class ViewStudentInfo extends HttpServlet {
         //Ici le code ne devrait pas etre change par contre normalement
         request.setAttribute("intern", intern);
         request.setAttribute("info", info);
-        request.getRequestDispatcher("StudentInfo.jsp").forward(request, response);
+        request.getRequestDispatcher(STUDENT_PAGE).forward(request, response);
     }
 
     @Override

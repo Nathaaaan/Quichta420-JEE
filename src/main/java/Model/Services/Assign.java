@@ -1,4 +1,7 @@
-package Model;
+package Model.Services;
+
+import Model.Beans.Tutor;
+import Model.Beans.Intern;
 
 /**
  *

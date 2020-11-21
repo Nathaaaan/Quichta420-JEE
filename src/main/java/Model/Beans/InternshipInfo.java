@@ -1,4 +1,4 @@
-package Model;
+package Model.Beans;
 
 import java.sql.Date;
 import java.util.ArrayList;
