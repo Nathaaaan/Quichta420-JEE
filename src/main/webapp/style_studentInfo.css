@@ -1,5 +1,4 @@
 body{
-
     background-image: url(images/background.png);
     background-size: cover;
     
@@ -38,11 +37,6 @@ body{
 .pageContainer {
     display: flex;
     justify-content: center;
-}
-
-body{
-    background: lightgrey;
-    padding-bottom: 50px;
 }
 
 .firstTwo{
