@@ -38,7 +38,7 @@ public class InternDAOImpl implements InternDAO {
     @Override
     public ResultSet getInternByTutorId(int Id) throws SQLException{
         stmt = conn.createStatement();
-        String queryCount = "SELECT "
+        String queryCount = "SELECT ";
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

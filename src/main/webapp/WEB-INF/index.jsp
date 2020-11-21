@@ -8,32 +8,43 @@
     
     
     <body>
-        <div id="FramePanel"> 
-            <div id="FrameBorder">
-                <div id="AuthentificationBar">
-                    <img src='images/efrei.png' id="EFREILOGO"> 
-                    <p id="AuthentificationText">Authentification</p>
-                </div>
-                
-                    
+        <div class="container">
+            <div id="FramePanel"> 
+                <div id="FrameBorder">
+                    <div id="AuthentificationBar">
+                        <img src='images/efrei.png' id="EFREILOGO"> 
+                        <div id="AuthentificationText">Authentification</div>
+                    </div>
+
+
                     <form name="FormIndex" action="LoginController" method="POST" id="FORM">
-                        <p id="username">Username :</p>
-                        <input id="TextBoxUsername" type="text" name="UsernameForm"/>
-                        <p id="password">Password :</p>
-                        <input id="TextBoxPassword" type="text" name="PassForm"/>
-                        <input id="SendButton" type="submit" name="SendButton" value="LOGIN" /> 
+                        <div class="inputLabalContainer">
+                            <div class="inputLabal">
+                                <label>Username :</label>
+                                <input type="text" name="UsernameForm"/>
+                            </div>
+                            <div class="inputLabal">
+                                <label>Password :</label>
+                                <input type="text" name="PassForm"/>
+                            </div>
+                        </div>
+                        <div class="buttonContainer">
+                            <%
+                            if(request.getAttribute("KeyErrMess")!=null){
+                                out.println("<div id=\"errorMsgContainer\">"
+                                +       "<div id=\"errorMsg\">"
+                                +       request.getAttribute("KeyErrMess")
+                                +       "</div>"
+                                +   "</div>");
+                            }
+                            else{
+                                out.println("<div></div>");
+                            }
+                            %>
+                            <input id="SendButton" type="submit" name="SendButton" value="LOGIN" /> 
+                        </div>
                     </form>
-                    
-                    <%
-                    if(request.getAttribute("KeyErrMess")!=null){
-                        out.println("<div id=\"errorMsgContainer\">"
-                        +    "<div id=\"errorMsg\">"
-                        +       request.getAttribute("KeyErrMess")
-                        +    "</div>"
-                        +"</div>");
-                    }
-                    %>
-                
+                </div>
             </div>
         </div>
     </body>
