@@ -22,7 +22,7 @@ public class AssignService {
         
         assign.setTutor(tutor);
         assign.setInternshipInfo(internship.getInternshipInfoById(tutor.getId()));
-        assign.setIntern(intern.getInternById());
+        assign.setIntern(intern.getInternById(tutor.getId()));
         
         return assign;
     }

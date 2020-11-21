@@ -1,15 +1,12 @@
 package Model.Beans;
 
-import Model.Beans.Tutor;
-import Model.Beans.Intern;
-import Model.Beans.InternshipInfo;
 
 /**
  *
  * @author Gohu
  */
 public class Assign {
-
+    
     private Tutor tutor;
     private Intern intern;
     private InternshipInfo internshipInfo;

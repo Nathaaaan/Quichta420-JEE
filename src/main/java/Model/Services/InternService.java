@@ -5,7 +5,11 @@
  */
 package Model.Services;
 
+import Database.InternDAO;
+import Database.InternDAOImpl;
 import Model.Beans.Intern;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -13,8 +17,18 @@ import Model.Beans.Intern;
  */
 public class InternService {
     
-    public Intern getInternById(){
-        // TODO : get Intern from database
-        return new Intern();
+    public Intern getInternById(int id)throws SQLException{
+        InternDAO internDAO = new InternDAOImpl();
+        ResultSet rs = internDAO.getInfoByTutorID(id);
+        if(rs.next()){
+            Intern intern = new Intern();
+            intern.setId(rs.getInt("INTERN_ID"));
+            intern.setFirstName(rs.getString("FIRST_NAME"));
+            intern.setLastName(rs.getString("LAST_NAME"));
+            intern.setSchoolGroup(rs.getString("SCHOOLGROUP_NAME"));
+            return intern;
+        }else{
+            return null;
+        }
     }
 }

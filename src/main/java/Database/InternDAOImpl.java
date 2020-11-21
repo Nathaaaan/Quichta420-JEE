@@ -36,10 +36,13 @@ public class InternDAOImpl implements InternDAO {
     
     
     @Override
-    public ResultSet getInternByTutorId(int Id) throws SQLException{
+    public ResultSet getInternByTutorId(int tutorId) throws SQLException{
         stmt = conn.createStatement();
-        String queryCount = "SELECT ";
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String queryCount = "SELECT INTERN.* FROM ASSIGN "
+                + "INNER JOIN INTERN "
+                + "ON ASSIGN.INTERN_ID = INTERN.INTERN_ID "
+                + "WHERE ASSIGN.TUTOR_ID = "+ tutorId;
+        return stmt.executeQuery(queryCount);
     }
 
     @Override
