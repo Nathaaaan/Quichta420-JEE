@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import Model.Company;
 import Model.Intern;
 import Model.InternshipInfo;
+import java.sql.Date;
 
 /**
  *
@@ -41,8 +42,8 @@ public class ViewStudentInfo extends HttpServlet {
 
         //Je cree donc en offline ce Intern et ce InternshipInfo avec une Company (pas besoin de keywords ici il me semble)
         InternshipInfo info = new InternshipInfo(1, new Company(1, "google", "1 rue de google"), new ArrayList<String>(), "la description",
-                "les meeting infos", "intern comments", "tutor comments", "profil linkedin");
-        Intern intern = new Intern(1, "robert", "dupond", "M1");
+                "les meeting infos", "intern comments", "tutor comments", "profil linkedin","Antoine Banniel",Date.valueOf("2020-10-02"),Date.valueOf("2021-08-04"));
+        Intern intern = new Intern(1, "Robert", "Dupond", "M1");
 
         //Ici le code ne devrait pas etre change par contre normalement
         request.setAttribute("intern", intern);

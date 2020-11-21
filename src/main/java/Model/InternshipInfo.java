@@ -1,5 +1,6 @@
 package Model;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
 /**
@@ -17,9 +18,12 @@ public class InternshipInfo {
     private String internComment;
     private String tutorComment;
     private String linkedinProfile;
+    private String master;
+    private Date dateDebut;
+    private Date dateFin;
 
     public InternshipInfo(int internshipId, Company company, ArrayList<String> keywords,
-            String description, String meetingInfo, String internComment, String tutorComment, String linkedinProfile) {
+            String description, String meetingInfo, String internComment, String tutorComment, String linkedinProfile, String master, Date dateDebut, Date dateFin) {
         this.internshipId = internshipId;
         this.company = company;
         this.keywords = keywords;
@@ -28,6 +32,9 @@ public class InternshipInfo {
         this.internComment = internComment;
         this.tutorComment = tutorComment;
         this.linkedinProfile = linkedinProfile;
+        this.master = master;
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
     }
 
     public int getInternshipId() {
@@ -93,4 +100,30 @@ public class InternshipInfo {
     public void setLinkedinProfile(String linkedinProfile) {
         this.linkedinProfile = linkedinProfile;
     }
+    
+    public String getMaster(){
+        return master;
+    }
+    
+    public void setMaster(String master){
+        this.master = master;
+    }
+
+    public Date getDateDebut() {
+        return dateDebut;
+    }
+
+    public Date getDateFin() {
+        return dateFin;
+    }
+
+    public void setDateDebut(Date dateDebut) {
+        this.dateDebut = dateDebut;
+    }
+
+    public void setDateFin(Date dateFin) {
+        this.dateFin = dateFin;
+    }
+    
+    
 }
