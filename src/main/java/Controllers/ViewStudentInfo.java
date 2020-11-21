@@ -46,7 +46,7 @@ public class ViewStudentInfo extends HttpServlet {
         // -Le Intern en quesiton
         // -Le InternshipInfo en question
         // -La company en question dont l'id est specifié dans internshipInfo
-       
+        
         
         try {
             AssignService assignService = new AssignService();
