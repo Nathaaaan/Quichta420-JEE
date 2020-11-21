@@ -5,7 +5,6 @@
  */
 package Database;
 
-import Model.Beans.Tutor;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,15 +15,16 @@ import java.sql.Statement;
  * @author Andriatiana Victor
  */
 public class TutorDAOImpl implements TutorDAO{
-    private Connection conn;
+    private final Connection conn;
     private Statement stmt;
-    private ResultSet rs;
-    private Tutor TutorUser;
+    
+    public TutorDAOImpl(){
+        conn = DB.getCo();
+    }
     
     @Override
     public ResultSet getByCredentials(String userLoginInput, String userPasswordInput)throws RuntimeException,SQLException{
         
-        conn = DB.getCo();
         stmt = conn.createStatement();
         String queryCount = "SELECT * FROM TUTOR WHERE LOGIN = '" + userLoginInput + "' and PASSWORD = '" + userPasswordInput + "'";
         return stmt.executeQuery(queryCount);

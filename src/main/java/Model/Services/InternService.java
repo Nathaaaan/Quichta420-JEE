@@ -5,10 +5,16 @@
  */
 package Model.Services;
 
+import Model.Beans.Intern;
+
 /**
  *
  * @author Andriatiana Victor
  */
 public class InternService {
     
+    public Intern getInternById(){
+        // TODO : get Intern from database
+        return new Intern();
+    }
 }

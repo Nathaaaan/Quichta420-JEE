@@ -1,7 +1,7 @@
 package Controllers;
 
+import Model.Beans.Assign;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,7 +15,12 @@ import Model.Beans.Company;
 import Model.Beans.Excel;
 import Model.Beans.Intern;
 import Model.Beans.InternshipInfo;
+import Model.Beans.Tutor;
+import Model.Services.AssignService;
 import static Utils.Constants.*;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -41,7 +46,16 @@ public class ViewStudentInfo extends HttpServlet {
         // -Le Intern en quesiton
         // -Le InternshipInfo en question
         // -La company en question dont l'id est specifié dans internshipInfo
-
+       
+        
+        try {
+            AssignService assignService = new AssignService();
+            Tutor tutor = (Tutor)request.getSession().getAttribute("user");
+            Assign assign = assignService.getInternInfo(tutor);
+        } catch (SQLException ex) {
+            Logger.getLogger(ViewStudentInfo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         //Je cree donc en offline ce Intern et ce InternshipInfo avec une Company (pas besoin de keywords ici il me semble)
         InternshipInfo info = new InternshipInfo(1, new Company(1, "google", "1 rue de google"), new ArrayList<String>(), "la description",
                 "les meeting infos", "intern comments", "tutor comments", "profil linkedin","Antoine Banniel",

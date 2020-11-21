@@ -1,4 +1,4 @@
-package Model.Services;
+package Model.Beans;
 
 import Model.Beans.Tutor;
 import Model.Beans.Intern;
@@ -18,6 +18,10 @@ public class Assign {
         this.tutor = tutor;
         this.intern = intern;
         this.internshipInfo = internshipInfo;
+    }
+
+    public Assign() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public Tutor getTutor() {

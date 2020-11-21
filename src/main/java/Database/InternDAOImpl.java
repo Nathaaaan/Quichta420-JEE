@@ -5,8 +5,7 @@
  */
 package Database;
 
-import Model.Beans.Company;
-import Model.Beans.Intern;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,7 +18,6 @@ import java.sql.Statement;
 public class InternDAOImpl implements InternDAO {
     private final Connection conn;
     private Statement stmt;
-    private ResultSet rs;
     
     public InternDAOImpl(){
         conn = DB.getCo();
@@ -32,20 +30,23 @@ public class InternDAOImpl implements InternDAO {
         String queryCount = "SELECT INTERNSHIPINFO.* FROM ASSIGN "
                 + "INNER JOIN INTERNSHIPINFO "
                 + "ON ASSIGN.INTERNSHIP_ID = INTERSHIPINFO.INTERNSHIP_ID "
-                + "WHERE ASSIGN.TUTOR_ID = '" +tutorId+ "'";
+                + "WHERE ASSIGN.TUTOR_ID = " + tutorId;
         return stmt.executeQuery(queryCount);
     }
     
     
     @Override
-    public Intern getById(int Id) {
+    public ResultSet getInternByTutorId(int Id) throws SQLException{
+        stmt = conn.createStatement();
+        String queryCount = "SELECT "
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Company getCompanyById(int companyId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ResultSet getCompanyById(int companyId) throws SQLException{
+        stmt = conn.createStatement();
+        // TODO: SQL query for company
+        String queryCount = "SELECT * FROM COMPANY WHERE COMPANY_ID = " + companyId;
+        return stmt.executeQuery(queryCount);
     }
-    
-    
 }

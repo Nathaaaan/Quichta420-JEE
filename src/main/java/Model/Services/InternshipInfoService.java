@@ -7,6 +7,7 @@ package Model.Services;
 
 import Database.InternDAO;
 import Database.InternDAOImpl;
+import Model.Beans.Company;
 import Model.Beans.InternshipInfo;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,13 +17,12 @@ import java.sql.SQLException;
  * @author Andriatiana Victor
  */
 public class InternshipInfoService {
-    public InternshipInfo getInternshipInfoById(int id) throws SQLException{
+    public InternshipInfo getInternshipInfoById(int tutorId) throws SQLException{
         InternDAO internDAO = new InternDAOImpl();
-        ResultSet rs = internDAO.getInfoByTutorID(id);
+        ResultSet rs = internDAO.getInfoByTutorID(tutorId);
         if (rs.next()) {
             InternshipInfo Internship = new InternshipInfo();
             Internship.setInternshipId(rs.getInt("INTERNSHIP_ID"));
-            //Internship.setCompany() needs to be implemented in a service
             Internship.setMaster(rs.getString("MASTER"));
             Internship.setDateDebut(rs.getDate("START_DATE"));
             Internship.setDateFin(rs.getDate("END_DATE"));
@@ -32,9 +32,26 @@ public class InternshipInfoService {
             Internship.setTutorComment(rs.getString("TUTOR_COMMENT"));
             Internship.setLinkedinProfile(rs.getString("LINKEDIN_PROFILE"));
             
+            //Internship.setCompany() takes a Company object as a parameter
+            Internship.setCompany(getCompanyById(rs.getInt("COMPANY_ID")));
+            
             return Internship;
             
         } else {
+            return null;
+        }
+    }
+    
+    public Company getCompanyById(int companyId)throws SQLException{
+        InternDAO internDAO = new InternDAOImpl();
+        ResultSet rs = internDAO.getInfoByTutorID(companyId);
+        if(rs.next()){
+            Company company = new Company();
+            company.setCompanyId(rs.getInt("COMPANY_ID"));
+            company.setCompanyName(rs.getString("COMPANY_NAME"));
+            company.setCompanyAddress(rs.getString("COMPANY_ADRESS"));
+            return company;
+        }else{
             return null;
         }
     }
