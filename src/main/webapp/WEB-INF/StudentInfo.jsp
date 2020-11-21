@@ -4,9 +4,9 @@
     Author     : Gohu
 --%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="Model.Intern"%>
-<%@page import="Model.InternshipInfo"%>
-<%@page import="Model.Company"%>
+<%@page import="Model.Beans.Intern"%>
+<%@page import="Model.Beans.InternshipInfo"%>
+<%@page import="Model.Beans.Company"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
