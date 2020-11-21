@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Model.BD;
-
+//import Controllers.WelcomePageController;
 /**
  *
  * @author natha
@@ -74,7 +74,10 @@ public class LoginController extends HttpServlet {
 
                 request.setAttribute("keyTutorUser", TutorUser);
 
-                request.getRequestDispatcher("Welcome.jsp").forward(request, response);
+                // redirects to welcome page controller 
+                response.sendRedirect("WelcomePageController");
+                
+                //request.getRequestDispatcher("/WelcomePageController").forward(request, response);
             } else { //Invalid Login : Redirect to index.jsp and set KeyErrMess in order to display it
                 request.setAttribute("KeyErrMess", "Invalid Login or Password");
                 request.getRequestDispatcher("index.jsp").forward(request, response);

@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -44,15 +46,11 @@
                 <table class="list-table">
 
                     <tr>
-                        <th>#</th>
-                        <th>group</th>
-                        <th>Nom</th>
-                        <th>Prenom</th>
-                        <th>CDC</th>
-                        <th>fiche_visite</th>
-                        <th>fiche_eval_entr</th>
-                        <th>sondage_web</th>
-                        <th>rapport_rendu</th>
+                        <th>#excelId</th>
+                        <th>cdc</th>
+                        <th>ficheVisite</th>
+                        <th>sondageWeb</th>
+                        <th>rapportRendu</th>
                         <th>sout</th>
                         <th>planif</th>
                         <th>faite</th>
@@ -62,67 +60,26 @@
                         <th>note_tech</th>
                         <th>note_com</th>
                     </tr>
+              
 
-                    <tr>
-                        <td>1</td>
-                        <td>M2</td>
-                        <td>Nom</td>
-                        <td>Prenom</td  >
-                        <td><input type="checkbox"/></td>
-                        <td><input type="checkbox" checked="true"/></td>
-                        <td><input type="checkbox" checked/></td>
-                        <td><input type="checkbox"/></td>
-                        <td><input type="checkbox"/></td>
-                        <td><input type="checkbox"/></td>
-                        <td><input type="checkbox"/></td>
-                        <td><input type="checkbox"/></td>
-                        <td>ENTR</td>
-                        <td>MdS</td>
-                        <td>Adresse</td>
-                        <td><input type="checkbox"/></td>
-                        <td><input type="checkbox"/></td>
-                    </tr>
-
-                    <tr>
-                        <td>2</td>
-                        <td>M2</td>
-                        <td>Nom</td>
-                        <td>Prenom</td  >
-                        <td><input type="checkbox"/></td>
-                        <td><input type="checkbox" checked="true"/></td>
-                        <td><input type="checkbox" checked/></td>
-                        <td><input type="checkbox"/></td>
-                        <td><input type="checkbox"/></td>
-                        <td><input type="checkbox"/></td>
-                        <td><input type="checkbox"/></td>
-                        <td><input type="checkbox"/></td>
-                        <td>ENTR</td>
-                        <td>MdS</td>
-                        <td>Adresse</td>
-                        <td><input type="checkbox"/></td>
-                        <td><input type="checkbox"/></td>
-                    </tr>
-
-                    <tr>
-                        <td>3</td>
-                        <td>M1</td>
-                        <td>Nom</td>
-                        <td>Prenom</td  >
-                        <td><input type="checkbox"/></td>
-                        <td><input type="checkbox" checked="true"/></td>
-                        <td><input type="checkbox" checked/></td>
-                        <td><input type="checkbox"/></td>
-                        <td><input type="checkbox"/></td>
-                        <td><input type="checkbox"/></td>
-                        <td><input type="checkbox"/></td>
-                        <td><input type="checkbox"/></td>
-                        <td>ENTR</td>
-                        <td>MdS</td>
-                        <td>Adresse</td>
-                        <td><input type="checkbox"/></td>
-                        <td><input type="checkbox"/></td>
-                    </tr>
-
+                     <c:forEach items="${keyExcel}" var="excelInfo">
+                     <tr>
+                    <td>${excelInfo.excelId}</td>
+                    <td>${excelInfo.cdc}</td>
+                    <td>${excelInfo.ficheVisite}</td>
+                    <td>${excelInfo.sondageWeb}</td>
+                    <td> <input type="checkbox" checked=${excelInfo.rapportRendu} /> </td>
+                    <td>${excelInfo.sout}</td>
+                    <td>${excelInfo.planif}</td>
+                    <td>${excelInfo.faite}</td>
+                    <td>${excelInfo.ENTR}</td>
+                    <td>${excelInfo.mds}</td>
+                    <td>${excelInfo.adresse}</td>
+                    <td>${excelInfo.noteTech}</td>
+                    <td> <input type="checkbox" checked="${excelInfo.noteCom}" /> </td>
+                </tr>
+            </c:forEach>
+       
                 </table>
             </div>
 
@@ -130,7 +87,12 @@
                 <button>AJOUTER</button>
                 <button>VALIDER</button>
                 <button>DETAILS</button>
+                
+           
             </div>
+            
+           
+                
         </div>
 
     </body>
