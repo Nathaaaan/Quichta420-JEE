@@ -4,6 +4,13 @@
     Author     : natha
 --%>
 
+<%@page import="Model.Beans.Company"%>
+<%@page import="java.sql.Date"%>
+<%@page import="Model.Beans.Intern"%>
+<%@page import="Model.Beans.Excel"%>
+<%@page import="Model.Beans.InternshipInfo"%>
+<%@page import="Model.Services.Assign"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -11,23 +18,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Welcome</title>
         <link href="style_welcome.css" rel="stylesheet">
-
-
     </head>
     <body>
-        <header>
-            <div class="logo">
-                <h2>LOGO HERE</h2>
-            </div>
-
-            <nav>
-                <ul>
-                    <li> <a href="#">Add Student</a> </li>
-                    <li> <a href="#">M. Nom</a> </li>
-                    <li> <a href="#">Logout</a></li>
-                </ul>
-            </nav>
-        </header>
+        <!-- This line import header we have to put it in all the jsp page wich have the header instead of copy paste it-->
+        <%@include file="Header.jspf"%>
+        
         <h1>Hello World!</h1>
         <p>Si j'arrive à cette page, c'est que le login marche</p>
 
@@ -42,7 +37,6 @@
 
             <div class="container-list">
                 <table class="list-table">
-
                     <tr>
                         <th>#</th>
                         <th>group</th>
@@ -63,66 +57,50 @@
                         <th>note_com</th>
                     </tr>
 
-                    <tr>
-                        <td>1</td>
-                        <td>M2</td>
-                        <td>Nom</td>
-                        <td>Prenom</td  >
-                        <td><input type="checkbox"/></td>
-                        <td><input type="checkbox" checked="true"/></td>
-                        <td><input type="checkbox" checked/></td>
-                        <td><input type="checkbox"/></td>
-                        <td><input type="checkbox"/></td>
-                        <td><input type="checkbox"/></td>
-                        <td><input type="checkbox"/></td>
-                        <td><input type="checkbox"/></td>
-                        <td>ENTR</td>
-                        <td>MdS</td>
-                        <td>Adresse</td>
-                        <td><input type="checkbox"/></td>
-                        <td><input type="checkbox"/></td>
-                    </tr>
-
-                    <tr>
-                        <td>2</td>
-                        <td>M2</td>
-                        <td>Nom</td>
-                        <td>Prenom</td  >
-                        <td><input type="checkbox"/></td>
-                        <td><input type="checkbox" checked="true"/></td>
-                        <td><input type="checkbox" checked/></td>
-                        <td><input type="checkbox"/></td>
-                        <td><input type="checkbox"/></td>
-                        <td><input type="checkbox"/></td>
-                        <td><input type="checkbox"/></td>
-                        <td><input type="checkbox"/></td>
-                        <td>ENTR</td>
-                        <td>MdS</td>
-                        <td>Adresse</td>
-                        <td><input type="checkbox"/></td>
-                        <td><input type="checkbox"/></td>
-                    </tr>
-
-                    <tr>
-                        <td>3</td>
-                        <td>M1</td>
-                        <td>Nom</td>
-                        <td>Prenom</td  >
-                        <td><input type="checkbox"/></td>
-                        <td><input type="checkbox" checked="true"/></td>
-                        <td><input type="checkbox" checked/></td>
-                        <td><input type="checkbox"/></td>
-                        <td><input type="checkbox"/></td>
-                        <td><input type="checkbox"/></td>
-                        <td><input type="checkbox"/></td>
-                        <td><input type="checkbox"/></td>
-                        <td>ENTR</td>
-                        <td>MdS</td>
-                        <td>Adresse</td>
-                        <td><input type="checkbox"/></td>
-                        <td><input type="checkbox"/></td>
-                    </tr>
-
+                    <%
+                        //This tab should be downlades by the database thanks to the tutorId
+                        ArrayList<Assign> assigns = new ArrayList<Assign>();
+                        //I'm adding some fake value for testing
+                        assigns.add(new Assign(null,new Intern(0,"Antoine", "Banniel", "M1"),
+                            new InternshipInfo(0, new Company(0, "Google", "420 rue quichta"), null, null, null, null, null, null, "Hugo", Date.valueOf("2020-01-01"), Date.valueOf("2020-08-01"),
+                            new Excel(false, true, true, false, false, true, true, false, "", ""))));
+                        assigns.add(new Assign(null,new Intern(0,"Ryan", "Viehweger", "M1"),
+                            new InternshipInfo(0, new Company(0,"Amazon","1 rue amazooo"), null, null, null, null, null, null, "Nathan", Date.valueOf("2020-01-01"), Date.valueOf("2020-08-01"),
+                            new Excel(true, true, false, false, true, true, false, false, "", ""))));
+                        assigns.add(new Assign(null,new Intern(0,"Seedy", "Jobe", "M1"),
+                            new InternshipInfo(0, new Company(0,"Apple","1 rue des pommes"), null, null, null, null, null, null, "Andriatiana", Date.valueOf("2020-01-01"), Date.valueOf("2020-08-01"),
+                            new Excel(true, false, false, true, true, true, false, false, "", ""))));
+                        
+                        int cmpt = 1;
+                        for(Assign assign : assigns){
+                            InternshipInfo info = assign.getInternshipInfo();
+                            Excel excel = info.getExcel();
+                            Intern intern = assign.getIntern();
+                            Company company = info.getCompany();
+                            
+                            out.println("<tr>");
+                                out.println("<td>"+cmpt+"</td>");
+                                out.println("<td>"+intern.getSchoolGroup()+"</td>");
+                                out.println("<td>"+intern.getLastName()+"</td>");
+                                out.println("<td>"+intern.getFirstName()+"</td>");
+                                out.println("<td><input type=\"checkbox\""+Excel.getChecked(excel.isCdc())+"/></td>");
+                                out.println("<td><input type=\"checkbox\""+Excel.getChecked(excel.isFicheVisite())+"/></td>");
+                                out.println("<td><input type=\"checkbox\""+Excel.getChecked(excel.isFicheEvalEntr())+"/></td>");
+                                out.println("<td><input type=\"checkbox\""+Excel.getChecked(excel.isSondageWeb())+"/></td>");
+                                out.println("<td><input type=\"checkbox\""+Excel.getChecked(excel.isRapportRendu())+"/></td>");
+                                out.println("<td><input type=\"checkbox\""+Excel.getChecked(excel.isSout())+"/></td>");
+                                out.println("<td><input type=\"checkbox\""+Excel.getChecked(excel.isPlanif())+"/></td>");
+                                out.println("<td><input type=\"checkbox\""+Excel.getChecked(excel.isFaite())+"/></td>");
+                                out.println("<td>"+company.getCompanyName()+"</td>");
+                                out.println("<td>"+info.getMaster()+"</td>");
+                                out.println("<td>"+company.getCompanyAddress()+"</td>");
+                                out.println("<td>"+excel.getNoteTech()+"</td>");
+                                out.println("<td>"+excel.getNoteTech()+"</td>");
+                            out.println("</tr>");
+                            
+                            cmpt++;
+                        }
+                    %>
                 </table>
             </div>
 

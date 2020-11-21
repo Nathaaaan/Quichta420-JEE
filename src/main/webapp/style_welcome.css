@@ -8,34 +8,6 @@ body{
 
 }
 
-/* - - - HEADER STYLE */
-
-header{
-    background: blue;
-    color: #FFFFFF;
-    width: 100%;
-    padding: 10px 0;
-    display: flex;
-    justify-content: space-between;
-    /*top: 0;*/
-
-}
-nav ul{
-
-}
-nav ul li{
-    padding: 7px 10px;
-    display: inline-block;
-}
-
-nav ul li a{
-    color: #FFFFFF;
-    text-decoration: none;
-
-}
-
-/* - - - HEADER STYLE */
-
 /* - - - TABLE STYLE */
 
 .list-table{

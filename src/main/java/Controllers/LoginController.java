@@ -16,6 +16,7 @@ import static Utils.Constants.*;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import sun.security.pkcs11.wrapper.Functions;
 
 /**
  *
@@ -61,6 +62,7 @@ public class LoginController extends HttpServlet {
             if(UserService.isGoodCredentials(userLoginInput, userPasswordInput)){
                 //User is logged
                 request.setAttribute("keyTutorUser", UserService.getByCredentials(userLoginInput, userPasswordInput));
+                request.getSession().setAttribute("user", UserService.getByCredentials(userLoginInput, userPasswordInput));
                 request.getRequestDispatcher(WELCOME_PAGE).forward(request, response);
 
             } else{

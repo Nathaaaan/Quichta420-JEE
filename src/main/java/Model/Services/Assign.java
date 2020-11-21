@@ -2,6 +2,7 @@ package Model.Services;
 
 import Model.Beans.Tutor;
 import Model.Beans.Intern;
+import Model.Beans.InternshipInfo;
 
 /**
  *
@@ -11,12 +12,12 @@ public class Assign {
 
     private Tutor tutor;
     private Intern intern;
-    private int internshipId;
+    private InternshipInfo internshipInfo;
 
-    public Assign(Tutor tutor, Intern intern, int internshipId) {
+    public Assign(Tutor tutor, Intern intern, InternshipInfo internshipInfo) {
         this.tutor = tutor;
         this.intern = intern;
-        this.internshipId = internshipId;
+        this.internshipInfo = internshipInfo;
     }
 
     public Tutor getTutor() {
@@ -35,11 +36,11 @@ public class Assign {
         this.intern = intern;
     }
 
-    public int getInternshipId() {
-        return internshipId;
+    public InternshipInfo getInternshipInfo() {
+        return internshipInfo;
     }
 
-    public void setInternshipId(int internshipId) {
-        this.internshipId = internshipId;
+    public void setInternshipInfo(InternshipInfo internshipInfo) {
+        this.internshipInfo = internshipInfo;
     }
 }

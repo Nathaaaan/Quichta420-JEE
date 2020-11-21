@@ -21,9 +21,10 @@ public class InternshipInfo {
     private String master;
     private Date dateDebut;
     private Date dateFin;
+    private Excel excel;
 
-    public InternshipInfo(int internshipId, Company company, ArrayList<String> keywords,
-            String description, String meetingInfo, String internComment, String tutorComment, String linkedinProfile, String master, Date dateDebut, Date dateFin) {
+    public InternshipInfo(int internshipId, Company company, ArrayList<String> keywords,String description,
+            String meetingInfo, String internComment, String tutorComment, String linkedinProfile, String master, Date dateDebut, Date dateFin, Excel excel) {
         this.internshipId = internshipId;
         this.company = company;
         this.keywords = keywords;
@@ -35,6 +36,7 @@ public class InternshipInfo {
         this.master = master;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
+        this.excel = excel;
     }
 
     public int getInternshipId() {
@@ -123,6 +125,14 @@ public class InternshipInfo {
 
     public void setDateFin(Date dateFin) {
         this.dateFin = dateFin;
+    }
+
+    public Excel getExcel() {
+        return excel;
+    }
+
+    public void setExcel(Excel excel) {
+        this.excel = excel;
     }
     
     

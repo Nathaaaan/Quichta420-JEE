@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import java.sql.Date;
 import Model.Beans.Company;
+import Model.Beans.Excel;
 import Model.Beans.Intern;
 import Model.Beans.InternshipInfo;
 import static Utils.Constants.*;
@@ -43,7 +44,8 @@ public class ViewStudentInfo extends HttpServlet {
 
         //Je cree donc en offline ce Intern et ce InternshipInfo avec une Company (pas besoin de keywords ici il me semble)
         InternshipInfo info = new InternshipInfo(1, new Company(1, "google", "1 rue de google"), new ArrayList<String>(), "la description",
-                "les meeting infos", "intern comments", "tutor comments", "profil linkedin","Antoine Banniel",Date.valueOf("2020-10-02"),Date.valueOf("2021-08-04"));
+                "les meeting infos", "intern comments", "tutor comments", "profil linkedin","Antoine Banniel",
+                Date.valueOf("2020-10-02"),Date.valueOf("2021-08-04"),new Excel());
         Intern intern = new Intern(1, "Robert", "Dupond", "M1");
 
         //Ici le code ne devrait pas etre change par contre normalement
