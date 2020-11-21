@@ -19,6 +19,9 @@ public class Constants {
     public static final String WELCOME_PAGE = "/WEB-INF/Welcome.jsp";
     public static final String STUDENT_PAGE = "/WEB-INF/StudentInfo.jsp";
     
+    //controllers
+    public static final String STUDENT_CONTROLLER = "/LoginController";
+    
     //database access credentials
     public static final String DB_CRED="/WEB-INF/db.properties";
 }

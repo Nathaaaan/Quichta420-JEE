@@ -22,27 +22,11 @@ public class TutorDAOImpl implements TutorDAO{
     private Tutor TutorUser;
     
     @Override
-    public Tutor getByCredentials(String userLoginInput, String userPasswordInput)throws RuntimeException,SQLException{
+    public ResultSet getByCredentials(String userLoginInput, String userPasswordInput)throws RuntimeException,SQLException{
         
         conn = DB.getCo();
         stmt = conn.createStatement();
         String queryCount = "SELECT * FROM TUTOR WHERE LOGIN = '" + userLoginInput + "' and PASSWORD = '" + userPasswordInput + "'";
-        rs = stmt.executeQuery(queryCount);
-
-        //Si le nombre de rows est supérieur à 0, alors ça signifie que l'input est bon
-        if (rs.next()) {
-            
-            TutorUser = new Tutor();
-            TutorUser.setId(rs.getInt("TUTOR_ID"));
-            TutorUser.setName(rs.getString("FIRST_NAME"));
-            TutorUser.setLastName(rs.getString("LAST_NAME"));
-            TutorUser.setLogin(rs.getString("LOGIN"));
-            TutorUser.setPassword(rs.getString("PASSWORD"));
-            System.out.println("File found");
-            return TutorUser;
-            
-        } else {
-            return null;
-        }
+        return stmt.executeQuery(queryCount);
     }
 }

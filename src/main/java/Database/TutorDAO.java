@@ -7,11 +7,12 @@ package Database;
 
 import Model.Beans.Tutor;
 import java.sql.SQLException;
+import java.sql.ResultSet;
 
 /**
  *
  * @author Andriatiana Victor
  */
 public interface TutorDAO {
-    public Tutor getByCredentials(String userLoginInput, String userPasswordInput)throws RuntimeException,SQLException;
+    public ResultSet getByCredentials(String userLoginInput, String userPasswordInput)throws RuntimeException,SQLException;
 }

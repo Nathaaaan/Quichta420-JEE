@@ -57,7 +57,6 @@ public class LoginController extends HttpServlet {
             String userLoginInput = request.getParameter(LOGIN_USER);
             String userPasswordInput = request.getParameter(LOGIN_PWD);
             
-            // TODO: implement session management
             //Now let's check the validity of the credentials on the database
             if(UserService.isGoodCredentials(userLoginInput, userPasswordInput)){
                 //User is logged
