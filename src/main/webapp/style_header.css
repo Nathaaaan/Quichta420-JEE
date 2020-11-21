@@ -1,0 +1,39 @@
+/* - - - HEADER STYLE */
+body{
+    margin:0;
+}
+header{
+    background: #137bc0;
+    color: #FFFFFF;
+    width: 100%;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    height: 60px;
+    align-items: center;
+}
+
+nav{
+    margin-right: 20px;
+}
+
+nav ul{
+    
+}
+
+nav ul li{
+    padding: 7px 10px;
+    display: inline-block;
+}
+
+nav ul li a{
+    color: #FFFFFF;
+    text-decoration: none;
+
+}
+
+.logoHeader{
+    height: 50px;
+    margin-left: 20px;
+}
+/* - - - HEADER STYLE */

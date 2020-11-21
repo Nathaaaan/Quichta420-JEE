@@ -1,0 +1,17 @@
+<%-- any content can be specified here e.g.: --%>
+<%@page import="Model.Beans.Tutor"%>
+<%@ page pageEncoding="UTF-8" %>
+<link rel="stylesheet" href="style_header.css"/>
+<header>
+    <div class="logo">
+        <img class="logoHeader" src="images/efrei.png"/>
+    </div>
+
+    <nav>
+        <ul>
+            <li> <a href="#">Add Student</a> </li>
+            <li> <a href="#"><% out.println(((Tutor) session.getAttribute("user")).getName()); %></a> </li>
+            <li> <a href="#">Logout</a></li>
+        </ul>
+    </nav>
+</header>
