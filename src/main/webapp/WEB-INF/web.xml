@@ -8,6 +8,22 @@
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/LoginController</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>LogOut</servlet-name>
+        <servlet-class>Controllers.LogOut</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogOut</servlet-name>
+        <url-pattern>/LogOut</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ViewStudentInfo</servlet-name>
+        <servlet-class>Controllers.ViewStudentInfo</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewStudentInfo</servlet-name>
+        <url-pattern>/ViewStudentInfo</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

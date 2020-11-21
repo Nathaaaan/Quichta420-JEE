@@ -27,10 +27,14 @@
     width: 15%;
 }
 
-body{
+.pageContainer {
     display: flex;
     justify-content: center;
+}
+
+body{
     background: lightgrey;
+    padding-bottom: 50px;
 }
 
 .firstTwo{

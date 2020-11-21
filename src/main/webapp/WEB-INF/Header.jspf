@@ -1,6 +1,14 @@
 <%-- any content can be specified here e.g.: --%>
+<%@page import="Utils.Constants"%>
 <%@page import="Model.Beans.Tutor"%>
 <%@ page pageEncoding="UTF-8" %>
+
+<%
+    if(request.getSession().getAttribute("user") == null){
+        request.getRequestDispatcher(Constants.LOGIN_PAGE).forward(request, response);
+    }
+%>
+
 <link rel="stylesheet" href="style_header.css"/>
 <header>
     <div class="logo">
@@ -9,9 +17,8 @@
 
     <nav>
         <ul>
-            <li> <a href="#">Add Student</a> </li>
             <li> <a href="#"><% out.println(((Tutor) session.getAttribute("user")).getName()); %></a> </li>
-            <li> <a href="#">Logout</a></li>
+            <li> <a href="LogOut">Logout</a></li>
         </ul>
     </nav>
 </header>
