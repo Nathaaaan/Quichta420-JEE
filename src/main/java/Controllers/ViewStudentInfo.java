@@ -46,15 +46,15 @@ public class ViewStudentInfo extends HttpServlet {
         // -Le Intern en quesiton
         // -Le InternshipInfo en question
         // -La company en question dont l'id est specifié dans internshipInfo
-        
-        
+       
+        /*
         try {
             AssignService assignService = new AssignService();
             Tutor tutor = (Tutor)request.getSession().getAttribute("user");
             Assign assign = assignService.getInternInfo(tutor);
         } catch (SQLException ex) {
             Logger.getLogger(ViewStudentInfo.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
         
         //Je cree donc en offline ce Intern et ce InternshipInfo avec une Company (pas besoin de keywords ici il me semble)
         InternshipInfo info = new InternshipInfo(1, new Company(1, "google", "1 rue de google"), new ArrayList<String>(), "la description",

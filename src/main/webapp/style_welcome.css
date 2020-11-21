@@ -1,23 +1,25 @@
 body{
-
-    /* Login Page Frame */
-
-
-
-    background: #999999;
-
+    background-image: url(images/background.png);
+    background-size: cover;
 }
 
-/* - - - TABLE STYLE */
+.container-content{
+    max-width: 75%;
+    overflow: scroll;
+    background: #FFFFFF;
+    margin: 0 auto;
+    padding: 10px;
+    margin-top: 90px;
+    box-shadow: 4px 4px 4px 2px rgba(0, 0, 0, 0.4);
+}
 
 .list-table{
     border-collapse: collapse;
-    /*width: 100%;*/
 }
 
 .list-table td, .list-table th{
-    border: 2px solid red;
     padding: 8px;
+    text-align: center;
 }
 
 .list-table tr:nth-child(even){background-color: #f2f2f2;}
@@ -27,26 +29,55 @@ body{
 .list-table th {
     padding-top: 12px;
     padding-bottom: 12px;
-    text-align: left;
-    background-color: #4CAF50;
+    text-align: center;
+    background-color: #137bc0;
     color: white;
 }
 
-
-/* - - - TABLE STYLE */
-
-
-/* - - - TABLE STYLE */
-
-.container-content{
-    max-width: 990px;
-    overflow: scroll;
-    background: #FFFFFF;
-    margin: 0 auto;
-    padding: 10px;
+.detailsBtn img{
+    width: 30px;
 }
 
 .container-header{
-    margin-bottom: 1px solid black;
+    margin-bottom: 20px;
 }
-/* - - - TABLE STYLE */
+
+.container-header h2{
+    color: #137bc0;
+    font-size: 40px;
+    margin-left: 10px;
+}
+
+.search{
+    display: flex;
+    justify-content: center;
+}
+
+.search input{
+    border-radius: 5px;
+    width: 50%;
+    height: 30px;
+    padding-left: 5px;
+    margin-right: 20px;
+}
+
+.container-list{
+    width: 113%;
+    margin-left: 30px;
+}
+
+.container-buttons{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.container-buttons a {
+    margin:10px;
+    background: lightgray;
+    padding: 8px;
+    border:1px solid gray;
+    text-decoration: none;
+    color:black;
+    font-size:16px;
+}
