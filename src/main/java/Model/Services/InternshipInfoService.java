@@ -58,6 +58,8 @@ public class InternshipInfoService {
         }
     }
     
+    
+    
     public InternshipInfo createInternshipModel(ResultSet rs) throws SQLException{
         InternshipInfo Internship = new InternshipInfo();
         Internship.setInternshipId(rs.getInt("INTERNSHIP_ID"));
