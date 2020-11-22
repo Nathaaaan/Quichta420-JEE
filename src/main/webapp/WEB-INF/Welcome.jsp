@@ -105,9 +105,7 @@
                                 out.println("<td>"+company.getCompanyAddress()+"</td>");
                                 out.println("<td>"+excel.getNoteTech()+"</td>");
                                 out.println("<td>"+excel.getNoteTech()+"</td>");
-                              out.println("<td> <a href='#'> <button> Ajouter</button> </a> </td>");
-                              out.println("<td> <a href='#'> <button> Valider</button> </a> </td>");
-                              out.println("<td> <a href='#'> <button> Details</button> </a> </td>");
+                              out.println("<td> <a href='#'> <button> Mise à jour </button> </a> </td>");
 
                               out.println("</tr>");
                         }
@@ -116,9 +114,7 @@
             </div>
 
             <div class="container-buttons">
-                <a href="#">Ajouter</a>
-                <a href="#">Valider</a>
-                <a href="#">Details</a>
+                <a href="#">Ajouter un stagiaire</a>
             </div>
         </div>
 
