@@ -1,5 +1,6 @@
 package Controllers;
 
+import Database.InternDAOImpl;
 import Model.Beans.Assign;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -18,6 +19,10 @@ import Model.Beans.InternshipInfo;
 import Model.Beans.Tutor;
 import Model.Services.AssignService;
 import static Utils.Constants.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -33,36 +38,32 @@ public class ViewStudentInfo extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //On est censé recuperer les infos dans la database grace a cet ID
+        //On doit recuperer les infos dans la database grace a cet ID
         int internshipId = Integer.parseInt(request.getParameter("internshipId"));
-//Pour Andriatiana
-        //Comme la je test en offline je vais creer des donnees moi meme
-        //Jaimerais bien pouvoir faire
-        //Creer une instance de Assign grace a cet Id
-        //Ensuite depuis cet Assign, recuperer depuis la bdd
-        // -Le Intern en quesiton
-        // -Le InternshipInfo en question
-        // -La company en question dont l'id est specifié dans internshipInfo
        
-        /*
+        
         try {
+            InternDAOImpl internDaoImpl = new InternDAOImpl();
             AssignService assignService = new AssignService();
-            Tutor tutor = (Tutor)request.getSession().getAttribute("user");
-            Assign assign = assignService.getInternInfo(tutor);
+            ResultSet rs = internDaoImpl.getAssignByInternshipId(internshipId);
+            rs.next();
+            Assign assign = assignService.createAssignModel(rs);
+            
+            Intern intern = assign.getIntern();
+            InternshipInfo info = assign.getInternshipInfo();
+        
+            request.setAttribute("intern", intern);
+            request.setAttribute("info", info);
+            request.getRequestDispatcher(STUDENT_PAGE).forward(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(ViewStudentInfo.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+        }
         
         //Je cree donc en offline ce Intern et ce InternshipInfo avec une Company (pas besoin de keywords ici il me semble)
-        InternshipInfo info = new InternshipInfo(1, new Company(1, "google", "1 rue de google"), new ArrayList<String>(), "la description",
+        /*InternshipInfo info = new InternshipInfo(1, new Company(1, "google", "1 rue de google"), new ArrayList<String>(), "la description",
                 "les meeting infos", "intern comments", "tutor comments", "profil linkedin","Antoine Banniel",
                 Date.valueOf("2020-10-02"),Date.valueOf("2021-08-04"),new Excel());
-        Intern intern = new Intern(1, "Robert", "Dupond", "M1");
-
-        //Ici le code ne devrait pas etre change par contre normalement
-        request.setAttribute("intern", intern);
-        request.setAttribute("info", info);
-        request.getRequestDispatcher(STUDENT_PAGE).forward(request, response);
+        Intern intern = new Intern(1, "Robert", "Dupond", "M1");*/
     }
 
     @Override

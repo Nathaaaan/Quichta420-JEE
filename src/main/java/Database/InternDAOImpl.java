@@ -55,4 +55,17 @@ public class InternDAOImpl implements InternDAO {
                 + "WHERE ASSIGN.TUTOR_ID = "+ tutorId;
         return stmt.executeQuery(queryCount);
     }*/
+
+    @Override
+    public ResultSet getAssignByInternshipId(int id) throws SQLException {
+        Statement stmt = conn.createStatement();
+        String queryCount = "SELECT INTERN.*, INTERNSHIPINFO.*, EXCEL.*, COMPANY.* "
+            + "FROM ASSIGN "
+            + "INNER JOIN INTERN ON ASSIGN.INTERN_ID = INTERN.INTERN_ID "
+            + "INNER JOIN INTERNSHIPINFO ON ASSIGN.INTERNSHIP_ID = INTERNSHIPINFO.INTERNSHIP_ID "
+            + "INNER JOIN EXCEL ON INTERNSHIPINFO.EXCEL_ID = EXCEL.EXCEL_ID "
+            + "INNER JOIN COMPANY ON INTERNSHIPINFO.COMPANY_ID = COMPANY.COMPANY_ID "
+            + "WHERE ASSIGN.Internship_Id = "+ id;
+        return stmt.executeQuery(queryCount);
+    }
 }
