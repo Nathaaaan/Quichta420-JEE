@@ -17,9 +17,9 @@ import java.sql.SQLException;
  */
 public class InternService {
     
-    public Intern getInternById(int id)throws SQLException{
+    /*public Intern getInternById(int id)throws SQLException{
         InternDAO internDAO = new InternDAOImpl();
-        ResultSet rs = internDAO.getInfoByTutorID(id);
+        ResultSet rs = internDAO.getInternByTutorId(id);
         if(rs.next()){
             Intern intern = new Intern();
             intern.setId(rs.getInt("INTERN_ID"));
@@ -30,5 +30,14 @@ public class InternService {
         }else{
             return null;
         }
+    }*/
+    
+    public Intern createInternModel(ResultSet rs) throws SQLException {
+        Intern intern = new Intern();
+        intern.setId(rs.getInt("INTERN_ID"));
+        intern.setFirstName(rs.getString("FIRST_NAME"));
+        intern.setLastName(rs.getString("LAST_NAME"));
+        intern.setSchoolGroup(rs.getString("SCHOOLGROUP_NAME"));
+        return intern;
     }
 }

@@ -18,9 +18,6 @@ import Model.Beans.InternshipInfo;
 import Model.Beans.Tutor;
 import Model.Services.AssignService;
 import static Utils.Constants.*;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *

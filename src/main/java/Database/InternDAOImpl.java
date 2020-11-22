@@ -23,18 +23,6 @@ public class InternDAOImpl implements InternDAO {
         conn = DB.getCo();
     }
     
-    
-    @Override
-    public ResultSet getInfoByTutorID(int tutorId) throws SQLException{
-        stmt = conn.createStatement();
-        String queryCount = "SELECT INTERNSHIPINFO.* FROM ASSIGN "
-                + "INNER JOIN INTERNSHIPINFO "
-                + "ON ASSIGN.INTERNSHIP_ID = INTERSHIPINFO.INTERNSHIP_ID "
-                + "WHERE ASSIGN.TUTOR_ID = " + tutorId;
-        return stmt.executeQuery(queryCount);
-    }
-    
-    
     @Override
     public ResultSet getInternByTutorId(int tutorId) throws SQLException{
         stmt = conn.createStatement();
@@ -44,12 +32,16 @@ public class InternDAOImpl implements InternDAO {
                 + "WHERE ASSIGN.TUTOR_ID = "+ tutorId;
         return stmt.executeQuery(queryCount);
     }
-
+    
     @Override
-    public ResultSet getCompanyById(int companyId) throws SQLException{
+    public ResultSet getAllByTutorId(int id) throws SQLException {
         stmt = conn.createStatement();
-        // TODO: SQL query for company
-        String queryCount = "SELECT * FROM COMPANY WHERE COMPANY_ID = " + companyId;
+        String queryCount = "SELECT INTERN.*, INTERNSHIPINFO.*, EXCEL.* "
+                + "FROM ASSIGN "
+                + "INNER JOIN INTERN ON ASSIGN.INTERN_ID = INTERN.INTERN_ID "
+                + "INNER JOIN INTERNSHIPINFO ON ASSIGN.INTERNSHIP_ID = INTERNSHIPINFO.INTERNSHIP_ID "
+                + "INNER JOIN EXCEL ON INTERNSHIPINFO.EXCEL_ID = EXCEL.EXCEL_ID "
+                + "WHERE ASSIGN.TUTOR_ID = "+ id;
         return stmt.executeQuery(queryCount);
     }
 }

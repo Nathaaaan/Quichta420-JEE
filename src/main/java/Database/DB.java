@@ -18,6 +18,7 @@ public class DB {
      * @return Connection object
      * @throws RuntimeException
      */
+    // TODO: Check thread safety
     public static Connection getCo() throws RuntimeException {
         try{
             return DriverManager.getConnection(URL, USER, PASS);
