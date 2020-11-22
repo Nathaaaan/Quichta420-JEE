@@ -6,7 +6,8 @@
 package Utils;
 
 /**
- *
+ * Provides a set of static final constant Strings that should make the rest of
+ * the code cleaner and more maintainable.
  * @author Andriatiana Victor
  */
 public class Constants {

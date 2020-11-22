@@ -23,7 +23,7 @@ public class DB {
         try{
             return DriverManager.getConnection(URL, USER, PASS);
         } catch (SQLException ex){
-            throw new RuntimeException ("Couldn't get connection to database");
+            throw new RuntimeException ("Couldn't get connection to database\n"+ex.getMessage());
         }
     }
     

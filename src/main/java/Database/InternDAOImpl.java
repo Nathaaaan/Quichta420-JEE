@@ -12,7 +12,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * 
+ * A Data access object used for doing basic CRUD operations on Interns and 
+ * the related tables.
+ * Provides methods for running operations on the database using queries.
+ * Implementation of the InternDAO interface.
  * @author Andriatiana Victor
  */
 public class InternDAOImpl implements InternDAO {
@@ -23,11 +26,17 @@ public class InternDAOImpl implements InternDAO {
         conn = DB.getCo();
     }
     
-    
+    /**
+     * Runs a query to get a tutor's interns and their internship information.
+     * @param id - Which is the id of the tutor.
+     * @return Raw ResultSet object.
+     * @throws SQLException
+     * @see Model.Services.AssignService
+     */
     @Override
     public ResultSet getAllByTutorId(int id) throws SQLException {
         //the try catch close will automatically close the connection 
-        Statement stmt = conn.createStatement();
+        stmt = conn.createStatement();
         String queryCount = "SELECT INTERN.*, INTERNSHIPINFO.*, EXCEL.*, COMPANY.* "
             + "FROM ASSIGN "
             + "INNER JOIN INTERN ON ASSIGN.INTERN_ID = INTERN.INTERN_ID "
