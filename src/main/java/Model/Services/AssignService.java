@@ -18,18 +18,6 @@ import java.util.ArrayList;
  * @author Andriatiana Victor
  */
 public class AssignService {
-    /*public Assign getInternInfo(Tutor tutor) throws SQLException{
-        
-        Assign assign = new Assign();
-        InternshipInfoService internship = new InternshipInfoService();
-        InternService intern = new InternService();
-        
-        assign.setTutor(tutor);
-        assign.setInternshipInfo(internship.getInternshipInfoById(tutor.getId()));
-        assign.setIntern(intern.getInternById(tutor.getId()));
-        
-        return assign;
-    }*/
     
     public Assign createAssignModel(ResultSet rs) throws SQLException{
         Assign assign = new Assign();
@@ -49,4 +37,17 @@ public class AssignService {
         }
         return assignList;
     }
+    
+    /*public Assign getInternInfo(Tutor tutor) throws SQLException{
+        
+        Assign assign = new Assign();
+        InternshipInfoService internship = new InternshipInfoService();
+        InternService intern = new InternService();
+        
+        assign.setTutor(tutor);
+        assign.setInternshipInfo(internship.getInternshipInfoById(tutor.getId()));
+        assign.setIntern(intern.getInternById(tutor.getId()));
+        
+        return assign;
+    }*/
 }

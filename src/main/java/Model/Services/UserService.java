@@ -18,9 +18,6 @@ import java.sql.ResultSet;
  */
 public class UserService {
     
-    public static boolean isGoodCredentials(String userLoginInput, String userPasswordInput)throws RuntimeException,SQLException{
-        return getByCredentials(userLoginInput, userPasswordInput)!= null;
-    }
     
     public static Tutor getByCredentials(String userLoginInput, String userPasswordInput) throws RuntimeException,SQLException{
         
@@ -41,5 +38,9 @@ public class UserService {
         } else {
             return null;
         }
+    }
+    
+    public static boolean isGoodCredentials(String userLoginInput, String userPasswordInput)throws RuntimeException,SQLException{
+        return getByCredentials(userLoginInput, userPasswordInput)!= null;
     }
 }

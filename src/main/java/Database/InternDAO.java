@@ -14,7 +14,7 @@ import java.sql.SQLException;
  */
 public interface InternDAO {
     
-    public ResultSet getInternByTutorId (int Id) throws SQLException;
     public ResultSet getAllByTutorId (int id) throws SQLException;
-    
+    //public ResultSet getInternByTutorId (int Id) throws SQLException;
+    //public ResultSet getCompanyById (int companyId) throws SQLException;
 }
