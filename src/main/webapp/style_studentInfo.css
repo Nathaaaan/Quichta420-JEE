@@ -47,6 +47,13 @@ body{
     width: 100%;
 }
 
+#details {
+    height: 200px;
+    justify-content: space-around;
+    flex-direction: column;
+    display: flex;
+}
+
 .third{
     display: flex;
     flex-direction: row;
@@ -93,21 +100,39 @@ body{
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 10px;
+    width: 90%;
+    align-items: center;
 }
 
 .line div {
     text-align: left;
-    width: 40%;
+    width: 45%;
 }
 
 .line div:first-child{
     font-weight: bold;
 }
 
+.line textarea{
+    width: 45%;
+    height: 60px;
+    resize: none;
+}
+
 .container-buttons{
     margin-top: 20px;
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+input[type="submit"]{
+    height: 36px;
+    border: 1px solid gray;
+    background: lightgray;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px;
 }
 
 .container-buttons a {
