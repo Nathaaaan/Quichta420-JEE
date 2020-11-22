@@ -24,14 +24,14 @@ INSERT INTO INTERN(first_name,last_name,SchoolGroup_name) VALUES('Kouba','LaD','
 INSERT INTO INTERN(first_name,last_name,SchoolGroup_name) VALUES('Jul','LeS','L3');
 
 
-INSERT INTO ASSIGN(tutor_id,intern_id,internShipYear) VALUES('1','1','2020');
-INSERT INTO ASSIGN(tutor_id,intern_id,internShipYear) VALUES('1','2','2020');
-INSERT INTO ASSIGN(tutor_id,intern_id,internShipYear) VALUES('1','3','2020');
-INSERT INTO ASSIGN(tutor_id,intern_id,internShipYear) VALUES('1','4','2020');
-INSERT INTO ASSIGN(tutor_id,intern_id,internShipYear) VALUES('1','5','2020');
-INSERT INTO ASSIGN(tutor_id,intern_id,internShipYear) VALUES('2','6','2020');
-INSERT INTO ASSIGN(tutor_id,intern_id,internShipYear) VALUES('2','7','2020');
-INSERT INTO ASSIGN(tutor_id,intern_id,internShipYear) VALUES('2','8','2020');
+INSERT INTO ASSIGN(tutor_id,intern_id,internShip_Year) VALUES(1,1,2020);
+INSERT INTO ASSIGN(tutor_id,intern_id,internShip_Year) VALUES(1,2,2020);
+INSERT INTO ASSIGN(tutor_id,intern_id,internShip_Year) VALUES(1,3,2020);
+INSERT INTO ASSIGN(tutor_id,intern_id,internShip_Year) VALUES(1,4,2020);
+INSERT INTO ASSIGN(tutor_id,intern_id,internShip_Year) VALUES(1,5,2020);
+INSERT INTO ASSIGN(tutor_id,intern_id,internShip_Year) VALUES(2,6,2020);
+INSERT INTO ASSIGN(tutor_id,intern_id,internShip_Year) VALUES(2,7,2020);
+INSERT INTO ASSIGN(tutor_id,intern_id,internShip_Year) VALUES(2,8,2020);
 
 
 INSERT INTO EXCEL(cdc,fiche_visite,fiche_eval_entr,sondage_web,rapport_rendu,sout,planif,faite)
@@ -53,7 +53,7 @@ INSERT INTO EXCEL(cdc,fiche_visite,fiche_eval_entr,sondage_web,rapport_rendu,sou
 
 
 INSERT INTO COMPANY(company_name,company_adress) VALUES('Google','1 avenue de la rue');
-INSERT INTO COMPANY(company_name,company_adress) VALUES('Amazon','1 rue de l\'avenue');
+INSERT INTO COMPANY(company_name,company_adress) VALUES('Amazon','1 rue de l''avenue');
 INSERT INTO COMPANY(company_name,company_adress) VALUES('Apple','1 boulevard de la rue');
 INSERT INTO COMPANY(company_name,company_adress) VALUES('Facebook','1 avenue du boulevard');
 INSERT INTO COMPANY(company_name,company_adress) VALUES('Quichta420','420 rue de la quichta');
