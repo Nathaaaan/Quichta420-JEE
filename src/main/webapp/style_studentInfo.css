@@ -103,3 +103,19 @@ body{
 .line div:first-child{
     font-weight: bold;
 }
+
+.container-buttons{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.container-buttons a {
+    margin:10px;
+    background: lightgray;
+    padding: 8px;
+    border:1px solid gray;
+    text-decoration: none;
+    color:black;
+    font-size:16px;
+}

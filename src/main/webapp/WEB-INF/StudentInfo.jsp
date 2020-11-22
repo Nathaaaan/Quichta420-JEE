@@ -67,6 +67,9 @@
                             </div>
                         </div>
                     </div>
+                </div>            
+                <div class="container-buttons">
+                <a href="WelcomeController">Retour</a>
                 </div>
             </div>
         </div>
