@@ -56,6 +56,33 @@ body{
     text-transform: uppercase;
 }
 
+.tdCb{
+    width: 128px;
+}
+
+.tdCb input[type="checkbox"]{
+    width: 20px;
+    height: 20px;
+}
+
+.tdNote{
+    width: 60px;
+}
+
+.tdNote input[type="text"]{
+    width:40px;
+    height: 25px;
+    text-align: center;
+}
+
+.tdAddr{
+    width: 370px;
+}
+
+.tdAddr td{
+    font-size: 14px;
+}
+
 .detailsBtn img{
     width: 30px;
 }
@@ -85,7 +112,7 @@ body{
 }
 
 .container-list{
-    width: 130%;
+    width: 2730px;
     margin-left: 30px;
 }
 

@@ -43,22 +43,22 @@
                 <table class="list-table">
                     <tr>
                         <th>#</th>
-                        <th>group</th>
+                        <th>Groupe</th>
                         <th>Nom</th>
                         <th>Prenom</th>
-                        <th>CDC</th>
-                        <th>fiche_visite</th>
-                        <th>fiche_eval_entr</th>
-                        <th>sondage_web</th>
-                        <th>rapport_rendu</th>
-                        <th>sout</th>
-                        <th>planif</th>
-                        <th>faite</th>
-                        <th>ENTR</th>
-                        <th>MdS</th>
-                        <th>Adresse</th>
-                        <th>note_tech</th>
-                        <th>note_com</th>
+                        <th class="tdCb">C.d.C</th>
+                        <th class="tdCb">Fiche de visite</th>
+                        <th class="tdCb">Fiche evaluation entreprise</th>
+                        <th class="tdCb">Sondage web</th>
+                        <th class="tdCb">Rapport rendu</th>
+                        <th class="tdCb">Soutenance</th>
+                        <th class="tdCb">Visite planifié</th>
+                        <th class="tdCb">Visite faite</th>
+                        <th>Entreprise</th>
+                        <th>Maitre de stage</th>
+                        <th class="tdAddr">Adresse</th>
+                        <th class="tdNote">Note tech</th>
+                        <th class="tdNote">Note com</th>
                         
                         <th colspan="3">Actions</th>
                       
@@ -68,18 +68,7 @@
                     
 
                     <%
-                        //This tab should be downlades by the database thanks to the tutorId
                         ArrayList<Assign> assigns = (ArrayList<Assign>)request.getAttribute("keyExcel");
-                        //I'm adding some fake value for testing
-                        /*assigns.add(new Assign(null,new Intern(0,"Antoine", "Banniel", "M1"),
-                            new InternshipInfo(1, new Company(0, "Google", "420 rue quichta"), null, null, null, null, null, null, "Hugo", Date.valueOf("2020-01-01"), Date.valueOf("2020-08-01"),
-                            new Excel(1, false, true, true, false, false, true, true, false, 2, 3))));
-                        assigns.add(new Assign(null,new Intern(0,"Ryan", "Viehweger", "M1"),
-                            new InternshipInfo(2, new Company(0,"Amazon","1 rue amazooo"), null, null, null, null, null, null, "Nathan", Date.valueOf("2020-01-01"), Date.valueOf("2020-08-01"),
-                            new Excel(2,true, true, false, false, true, true, false, false, 2,3))));
-                        assigns.add(new Assign(null,new Intern(0,"Seedy", "Jobe", "M1"),
-                            new InternshipInfo(3, new Company(0,"Apple","1 rue des pommes"), null, null, null, null, null, null, "Andriatiana", Date.valueOf("2020-01-01"), Date.valueOf("2020-08-01"),
-                            new Excel(3, true, false, false, true, true, true, false, false, 4, 5))));*/
                         
                         for(Assign assign : assigns){
                             InternshipInfo info = assign.getInternshipInfo();
@@ -94,19 +83,19 @@
                                     out.println("<td>"+intern.getSchoolGroup()+"</td>");
                                     out.println("<td>"+intern.getLastName()+"</td>");
                                     out.println("<td>"+intern.getFirstName()+"</td>");
-                                    out.println("<td><input name=\""+Constants.UP_CDC+"\" type=\"checkbox\""+Excel.getChecked(excel.isCdc())+"/></td>");
-                                    out.println("<td><input name=\""+Constants.UP_FICHE_VISITE+"\" type=\"checkbox\""+Excel.getChecked(excel.isFicheVisite())+"/></td>");
-                                    out.println("<td><input name=\""+Constants.UP_FICHE_EVAL+"\" type=\"checkbox\""+Excel.getChecked(excel.isFicheEvalEntr())+"/></td>");
-                                    out.println("<td><input name=\""+Constants.UP_SONDAGE_WEB+"\" type=\"checkbox\""+Excel.getChecked(excel.isSondageWeb())+"/></td>");
-                                    out.println("<td><input name=\""+Constants.UP_RAPPORT_RENDU+"\" type=\"checkbox\""+Excel.getChecked(excel.isRapportRendu())+"/></td>");
-                                    out.println("<td><input name=\""+Constants.UP_SOUT+"\" type=\"checkbox\""+Excel.getChecked(excel.isSout())+"/></td>");
-                                    out.println("<td><input name=\""+Constants.UP_PLANIF+"\" type=\"checkbox\""+Excel.getChecked(excel.isPlanif())+"/></td>");
-                                    out.println("<td><input name=\""+Constants.UP_FAITE+"\" type=\"checkbox\""+Excel.getChecked(excel.isFaite())+"/></td>");
+                                    out.println("<td class=\"tdCb\"><input name=\""+Constants.UP_CDC+"\" type=\"checkbox\""+Excel.getChecked(excel.isCdc())+"/></td>");
+                                    out.println("<td class=\"tdCb\"><input name=\""+Constants.UP_FICHE_VISITE+"\" type=\"checkbox\""+Excel.getChecked(excel.isFicheVisite())+"/></td>");
+                                    out.println("<td class=\"tdCb\"><input name=\""+Constants.UP_FICHE_EVAL+"\" type=\"checkbox\""+Excel.getChecked(excel.isFicheEvalEntr())+"/></td>");
+                                    out.println("<td class=\"tdCb\"><input name=\""+Constants.UP_SONDAGE_WEB+"\" type=\"checkbox\""+Excel.getChecked(excel.isSondageWeb())+"/></td>");
+                                    out.println("<td class=\"tdCb\"><input name=\""+Constants.UP_RAPPORT_RENDU+"\" type=\"checkbox\""+Excel.getChecked(excel.isRapportRendu())+"/></td>");
+                                    out.println("<td class=\"tdCb\"><input name=\""+Constants.UP_SOUT+"\" type=\"checkbox\""+Excel.getChecked(excel.isSout())+"/></td>");
+                                    out.println("<td class=\"tdCb\"><input name=\""+Constants.UP_PLANIF+"\" type=\"checkbox\""+Excel.getChecked(excel.isPlanif())+"/></td>");
+                                    out.println("<td class=\"tdCb\"><input name=\""+Constants.UP_FAITE+"\" type=\"checkbox\""+Excel.getChecked(excel.isFaite())+"/></td>");
                                     out.println("<td>"+company.getCompanyName()+"</td>");
                                     out.println("<td>"+info.getMaster()+"</td>");
-                                    out.println("<td>"+company.getCompanyAddress()+"</td>");
-                                    out.println("<td><input type=\"text\" name=\""+Constants.UP_NOTE_TECH+"\" value=\""+excel.getNoteTech()+"\"</td>");
-                                    out.println("<td><input type=\"text\" name=\""+Constants.UP_NOTE_COM+"\" value=\""+excel.getNoteCom()+"\"</td>");
+                                    out.println("<td class=\"tdAddr\">"+company.getCompanyAddress()+"</td>");
+                                    out.println("<td class=\"tdNote\"><input type=\"text\" name=\""+Constants.UP_NOTE_TECH+"\" value=\""+excel.getNoteTech()+"\"</td>");
+                                    out.println("<td class=\"tdNote\"><input type=\"text\" name=\""+Constants.UP_NOTE_COM+"\" value=\""+excel.getNoteCom()+"\"</td>");
                                     out.println("<td> <input type=\"submit\" value=\"Mis à jour\" /> </td>");
                                   out.println("</tr>");
                                   out.println("<input type=\"hidden\" value=\""+excel.getExcelId()+"\" name=\""+Constants.UP_EXCEL_ID+"\" />");
