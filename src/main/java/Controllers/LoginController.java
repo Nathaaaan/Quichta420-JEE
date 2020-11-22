@@ -62,7 +62,8 @@ public class LoginController extends HttpServlet {
                 //User is logged
                 request.setAttribute("keyTutorUser", UserService.getByCredentials(userLoginInput, userPasswordInput));
                 request.getSession().setAttribute("user", UserService.getByCredentials(userLoginInput, userPasswordInput));
-                request.getRequestDispatcher(WELCOME_PAGE).forward(request, response);
+                //request.getRequestDispatcher(WELCOME_PAGE).forward(request, response);
+                response.sendRedirect("WelcomeController");
 
             } else{
                 //Invalid Login : Redirect to the login page and set KeyErrMess in order to display it

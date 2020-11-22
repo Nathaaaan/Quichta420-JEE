@@ -7,6 +7,8 @@ import java.sql.Date;
  * @author Gohu
  */
 public class Excel {
+    
+    private int excelId;
     private boolean cdc;
     private boolean ficheVisite;
     private boolean ficheEvalEntr;
@@ -15,11 +17,12 @@ public class Excel {
     private boolean sout;
     private boolean planif;
     private boolean faite;
-    private String noteTech;
-    private String noteCom;
+    private int noteTech;
+    private int noteCom;
 
-    public Excel(boolean cdc, boolean ficheVisite, boolean ficheEvalEntr, boolean sondageWeb, boolean rapportRendu,
-            boolean sout, boolean planif, boolean faite, String noteTech, String noteCom) {
+    public Excel(int excelId, boolean cdc, boolean ficheVisite, boolean ficheEvalEntr, boolean sondageWeb, boolean rapportRendu,
+            boolean sout, boolean planif, boolean faite, int noteTech, int noteCom) {
+        this.excelId = excelId;
         this.cdc = cdc;
         this.ficheVisite = ficheVisite;
         this.ficheEvalEntr = ficheEvalEntr;
@@ -32,10 +35,18 @@ public class Excel {
         this.noteCom = noteCom;
     }
     
-    public Excel(){
-        
+    public Excel(){}
+
+    
+    public int getExcelId() {
+        return excelId;
     }
 
+    public void setExcelId(int excelId) {
+        this.excelId = excelId;
+    }
+
+    
     public boolean isCdc() {
         return cdc;
     }
@@ -100,19 +111,19 @@ public class Excel {
         this.faite = faite;
     }
 
-    public String getNoteTech() {
+    public int getNoteTech() {
         return noteTech;
     }
 
-    public void setNoteTech(String noteTech) {
+    public void setNoteTech(int noteTech) {
         this.noteTech = noteTech;
     }
 
-    public String getNoteCom() {
+    public int getNoteCom() {
         return noteCom;
     }
 
-    public void setNoteCom(String noteCom) {
+    public void setNoteCom(int noteCom) {
         this.noteCom = noteCom;
     }
     

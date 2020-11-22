@@ -12,6 +12,8 @@
 <%@page import="Model.Beans.Assign"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -52,6 +54,11 @@
                         <th>Adresse</th>
                         <th>note_tech</th>
                         <th>note_com</th>
+                        
+                        <th colspan="3">Actions</th>
+                      
+                        
+
                     </tr>
                     
 
@@ -61,13 +68,13 @@
                         //I'm adding some fake value for testing
                         assigns.add(new Assign(null,new Intern(0,"Antoine", "Banniel", "M1"),
                             new InternshipInfo(1, new Company(0, "Google", "420 rue quichta"), null, null, null, null, null, null, "Hugo", Date.valueOf("2020-01-01"), Date.valueOf("2020-08-01"),
-                            new Excel(false, true, true, false, false, true, true, false, "", ""))));
+                            new Excel(1, false, true, true, false, false, true, true, false, 2, 3))));
                         assigns.add(new Assign(null,new Intern(0,"Ryan", "Viehweger", "M1"),
                             new InternshipInfo(2, new Company(0,"Amazon","1 rue amazooo"), null, null, null, null, null, null, "Nathan", Date.valueOf("2020-01-01"), Date.valueOf("2020-08-01"),
-                            new Excel(true, true, false, false, true, true, false, false, "", ""))));
+                            new Excel(2,true, true, false, false, true, true, false, false, 2,3))));
                         assigns.add(new Assign(null,new Intern(0,"Seedy", "Jobe", "M1"),
                             new InternshipInfo(3, new Company(0,"Apple","1 rue des pommes"), null, null, null, null, null, null, "Andriatiana", Date.valueOf("2020-01-01"), Date.valueOf("2020-08-01"),
-                            new Excel(true, false, false, true, true, true, false, false, "", ""))));
+                            new Excel(3, true, false, false, true, true, true, false, false, 4, 5))));
                         
                         for(Assign assign : assigns){
                             InternshipInfo info = assign.getInternshipInfo();
@@ -94,9 +101,43 @@
                                 out.println("<td>"+company.getCompanyAddress()+"</td>");
                                 out.println("<td>"+excel.getNoteTech()+"</td>");
                                 out.println("<td>"+excel.getNoteTech()+"</td>");
-                            out.println("</tr>");
+                              out.println("<td> <a href='#'> <button> Ajouter</button> </a> </td>");
+                              out.println("<td> <a href='#'> <button> Valider</button> </a> </td>");
+                              out.println("<td> <a href='#'> <button> Details</button> </a> </td>");
+
+                              out.println("</tr>");
                         }
                     %>
+                    
+                    <c:forEach items="${keyExcel}" var="excelInfo">
+                     <tr>
+                      <td><a class=\"detailsBtn\" href=\"ViewStudentInfo?internshipId="+assign.getInternshipInfo().getInternshipId()
+                                +"\"><img src=\"images/iconeDetails.png\"/></a></td>
+                    <td>group</td>
+                    <td>Nom</td>
+                    <td>PreNom</td>
+                    <td><input type="checkbox" getChecked( ${excelInfo.cdc}) /></td>
+                    <td><input type="checkbox" Excel.getChecked( ${excelInfo.ficheVisite}) /></td>
+                    <td><input type="checkbox" Excel.getChecked( ${excelInfo.ficheEvalEntr}) /></td>
+                    <td><input type="checkbox" Excel.getChecked( ${excelInfo.sondageWeb}) /></td>
+                    <td> <input type="checkbox" Excel.getChecked(${excelInfo.rapportRendu}) /> </td>
+                    <td><input type="checkbox" Excel.getChecked( ${excelInfo.sout}) /></td>
+                    <td><input type="checkbox" Excel.getChecked( ${excelInfo.planif}) /></td>
+                    <td><input type="checkbox" Excel.getChecked( ${excelInfo.faite}) /></td>
+                    
+                    <td>Comapny Name</td>
+                    <td>Hugo</td>
+                    <td>1 rue amazooo</td>
+
+                    <td>${excelInfo.noteTech}</td>
+                    <td>${excelInfo.noteCom} </td>
+                    
+                    <td> <a href='#'> <button>Ajouter</button> </a> </td>
+                    <td> <a href='#'> <button>Valider</button> </a> </td>
+                    <td> <a href='#'> <button>Details</button> </a> </td>
+                </tr>
+            </c:forEach>
+
                 </table>
             </div>
 
