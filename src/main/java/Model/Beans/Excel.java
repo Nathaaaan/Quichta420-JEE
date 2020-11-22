@@ -1,6 +1,5 @@
 package Model.Beans;
 
-import java.sql.Date;
 
 /**
  *
@@ -20,20 +19,6 @@ public class Excel {
     private int noteTech;
     private int noteCom;
 
-    public Excel(int excelId, boolean cdc, boolean ficheVisite, boolean ficheEvalEntr, boolean sondageWeb, boolean rapportRendu,
-            boolean sout, boolean planif, boolean faite, int noteTech, int noteCom) {
-        this.excelId = excelId;
-        this.cdc = cdc;
-        this.ficheVisite = ficheVisite;
-        this.ficheEvalEntr = ficheEvalEntr;
-        this.sondageWeb = sondageWeb;
-        this.rapportRendu = rapportRendu;
-        this.sout = sout;
-        this.planif = planif;
-        this.faite = faite;
-        this.noteTech = noteTech;
-        this.noteCom = noteCom;
-    }
     
     public Excel(){}
 

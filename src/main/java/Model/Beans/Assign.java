@@ -10,12 +10,7 @@ public class Assign {
     private Tutor tutor;
     private Intern intern;
     private InternshipInfo internshipInfo;
-
-    public Assign(Tutor tutor, Intern intern, InternshipInfo internshipInfo) {
-        this.tutor = tutor;
-        this.intern = intern;
-        this.internshipInfo = internshipInfo;
-    }
+    
 
     public Assign() {
         

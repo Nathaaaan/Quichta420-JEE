@@ -7,7 +7,6 @@ import java.util.ArrayList;
  *
  * @author Gohu
  */
-//TODO : This is not a Java Bean class actually
 public class InternshipInfo {
 
     private int internshipId;
@@ -23,21 +22,6 @@ public class InternshipInfo {
     private Date dateFin;
     private Excel excel;
 
-    public InternshipInfo(int internshipId, Company company, ArrayList<String> keywords,String description,
-            String meetingInfo, String internComment, String tutorComment, String linkedinProfile, String master, Date dateDebut, Date dateFin, Excel excel) {
-        this.internshipId = internshipId;
-        this.company = company;
-        this.keywords = keywords;
-        this.description = description;
-        this.meetingInfo = meetingInfo;
-        this.internComment = internComment;
-        this.tutorComment = tutorComment;
-        this.linkedinProfile = linkedinProfile;
-        this.master = master;
-        this.dateDebut = dateDebut;
-        this.dateFin = dateFin;
-        this.excel = excel;
-    }
 
     public InternshipInfo() {
         
@@ -138,6 +122,4 @@ public class InternshipInfo {
     public void setExcel(Excel excel) {
         this.excel = excel;
     }
-    
-    
 }

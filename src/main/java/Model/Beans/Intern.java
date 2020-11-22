@@ -11,12 +11,7 @@ public class Intern {
     private String lastName;
     private String schoolGroup;
 
-    public Intern(int id, String firstName, String lastName, String schoolGroup) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.schoolGroup = schoolGroup;
-    }
+    
 
     public Intern() {
         

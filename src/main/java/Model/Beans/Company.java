@@ -10,12 +10,6 @@ public class Company {
     private String companyName;
     private String companyAddress;
 
-    public Company(int companyId, String companyName, String companyAddress) {
-        this.companyId = companyId;
-        this.companyName = companyName;
-        this.companyAddress = companyAddress;
-    }
-
     public Company() {
         
     }
