@@ -24,10 +24,14 @@
     <body>
         <!-- This line import header we have to put it in all the jsp page wich have the header instead of copy paste it-->
         <%@include file="Header.jspf"%>
+        
+        <div class="welcome-container">
+            <h2>Bonjour <% out.println(((Tutor) session.getAttribute("user")).getName()); %> <% out.println(((Tutor) session.getAttribute("user")).getLastName()); %> !</h2>
+        </div>
 
         <div class="container-content">
             <div class="container-header">
-                <h2>Student list</h2>
+                <h2>Liste des étudiants :</h2>
                 <div class="search">
                     <input type="text" placeholder="search box" />
                     <button>Search</button>

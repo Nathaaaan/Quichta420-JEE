@@ -25,7 +25,7 @@
                             </div>
                             <div class="inputLabal">
                                 <label>Password :</label>
-                                <input type="text" name="PassForm"/>
+                                <input type="password" name="PassForm"/>
                             </div>
                         </div>
                         <div class="buttonContainer">
