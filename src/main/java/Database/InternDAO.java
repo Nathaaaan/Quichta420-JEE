@@ -1,5 +1,6 @@
 package Database;
 
+import Model.Beans.Excel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -20,4 +21,5 @@ public interface InternDAO {
      */
     public ResultSet getAllByTutorId (int id) throws SQLException;
     public ResultSet getAssignByInternshipId(int id) throws SQLException;
+    public void updateExcel(Excel e);
 }

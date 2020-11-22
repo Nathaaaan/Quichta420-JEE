@@ -1,10 +1,14 @@
 package Database;
 
 
+import Model.Beans.Excel;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * A Data access object used for doing basic CRUD operations on Interns and 
@@ -54,5 +58,30 @@ public class InternDAOImpl implements InternDAO {
             + "INNER JOIN COMPANY ON INTERNSHIPINFO.COMPANY_ID = COMPANY.COMPANY_ID "
             + "WHERE ASSIGN.Internship_Id = "+ id;
         return stmt.executeQuery(queryCount);
+    }
+    
+    @Override
+    public void updateExcel(Excel e) {
+        try {
+            String updateQuery = "UPDATE Excel SET cdc= ?, fiche_visite=?, fiche_eval_entr=?,"
+                    + " sondage_web=?, rapport_rendu=?, sout=?, planif=?, faite=?, note_tech=?,"
+                    + " note_com=? WHERE excel_id = ?";
+            PreparedStatement ps = conn.prepareStatement(updateQuery);
+            ps.setBoolean(1, e.isCdc());
+            ps.setBoolean(2, e.isFicheVisite());
+            ps.setBoolean(3, e.isFicheEvalEntr());
+            ps.setBoolean(4, e.isSondageWeb());
+            ps.setBoolean(5, e.isRapportRendu());
+            ps.setBoolean(6, e.isSout());
+            ps.setBoolean(7, e.isPlanif());
+            ps.setBoolean(8, e.isFaite());
+            ps.setInt(9, e.getNoteTech());
+            ps.setInt(10, e.getNoteCom());
+            ps.setInt(11, e.getExcelId());
+            
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(InternDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

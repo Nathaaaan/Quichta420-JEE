@@ -4,6 +4,7 @@
     Author     : natha
 --%>
 
+<%@page import="Utils.Constants"%>
 <%@page import="Model.Beans.Company"%>
 <%@page import="java.sql.Date"%>
 <%@page import="Model.Beans.Intern"%>
@@ -86,28 +87,30 @@
                             Intern intern = assign.getIntern();
                             Company company = info.getCompany();
                             
-                            out.println("<tr>");
-                                out.println("<td><a class=\"detailsBtn\" href=\"ViewStudentInfo?internshipId="+assign.getInternshipInfo().getInternshipId()
-                                +"\"><img src=\"images/iconeDetails.png\"/></a></td>");
-                                out.println("<td>"+intern.getSchoolGroup()+"</td>");
-                                out.println("<td>"+intern.getLastName()+"</td>");
-                                out.println("<td>"+intern.getFirstName()+"</td>");
-                                out.println("<td><input type=\"checkbox\""+Excel.getChecked(excel.isCdc())+"/></td>");
-                                out.println("<td><input type=\"checkbox\""+Excel.getChecked(excel.isFicheVisite())+"/></td>");
-                                out.println("<td><input type=\"checkbox\""+Excel.getChecked(excel.isFicheEvalEntr())+"/></td>");
-                                out.println("<td><input type=\"checkbox\""+Excel.getChecked(excel.isSondageWeb())+"/></td>");
-                                out.println("<td><input type=\"checkbox\""+Excel.getChecked(excel.isRapportRendu())+"/></td>");
-                                out.println("<td><input type=\"checkbox\""+Excel.getChecked(excel.isSout())+"/></td>");
-                                out.println("<td><input type=\"checkbox\""+Excel.getChecked(excel.isPlanif())+"/></td>");
-                                out.println("<td><input type=\"checkbox\""+Excel.getChecked(excel.isFaite())+"/></td>");
-                                out.println("<td>"+company.getCompanyName()+"</td>");
-                                out.println("<td>"+info.getMaster()+"</td>");
-                                out.println("<td>"+company.getCompanyAddress()+"</td>");
-                                out.println("<td>"+excel.getNoteTech()+"</td>");
-                                out.println("<td>"+excel.getNoteTech()+"</td>");
-                              out.println("<td> <a href='#'> <button> Mise à jour </button> </a> </td>");
-
-                              out.println("</tr>");
+                            out.println("<form method=\"POST\" action=\"UpdateInfos\">");
+                                out.println("<tr>");
+                                    out.println("<td><a class=\"detailsBtn\" href=\"ViewStudentInfo?internshipId="+info.getInternshipId()
+                                    +"\"><img src=\"images/iconeDetails.png\"/></a></td>");
+                                    out.println("<td>"+intern.getSchoolGroup()+"</td>");
+                                    out.println("<td>"+intern.getLastName()+"</td>");
+                                    out.println("<td>"+intern.getFirstName()+"</td>");
+                                    out.println("<td><input name=\""+Constants.UP_CDC+"\" type=\"checkbox\""+Excel.getChecked(excel.isCdc())+"/></td>");
+                                    out.println("<td><input name=\""+Constants.UP_FICHE_VISITE+"\" type=\"checkbox\""+Excel.getChecked(excel.isFicheVisite())+"/></td>");
+                                    out.println("<td><input name=\""+Constants.UP_FICHE_EVAL+"\" type=\"checkbox\""+Excel.getChecked(excel.isFicheEvalEntr())+"/></td>");
+                                    out.println("<td><input name=\""+Constants.UP_SONDAGE_WEB+"\" type=\"checkbox\""+Excel.getChecked(excel.isSondageWeb())+"/></td>");
+                                    out.println("<td><input name=\""+Constants.UP_RAPPORT_RENDU+"\" type=\"checkbox\""+Excel.getChecked(excel.isRapportRendu())+"/></td>");
+                                    out.println("<td><input name=\""+Constants.UP_SOUT+"\" type=\"checkbox\""+Excel.getChecked(excel.isSout())+"/></td>");
+                                    out.println("<td><input name=\""+Constants.UP_PLANIF+"\" type=\"checkbox\""+Excel.getChecked(excel.isPlanif())+"/></td>");
+                                    out.println("<td><input name=\""+Constants.UP_FAITE+"\" type=\"checkbox\""+Excel.getChecked(excel.isFaite())+"/></td>");
+                                    out.println("<td>"+company.getCompanyName()+"</td>");
+                                    out.println("<td>"+info.getMaster()+"</td>");
+                                    out.println("<td>"+company.getCompanyAddress()+"</td>");
+                                    out.println("<td><input type=\"text\" name=\""+Constants.UP_NOTE_TECH+"\" value=\""+excel.getNoteTech()+"\"</td>");
+                                    out.println("<td><input type=\"text\" name=\""+Constants.UP_NOTE_COM+"\" value=\""+excel.getNoteCom()+"\"</td>");
+                                    out.println("<td> <input type=\"submit\" value=\"Mis à jour\" /> </td>");
+                                  out.println("</tr>");
+                                  out.println("<input type=\"hidden\" value=\""+excel.getExcelId()+"\" name=\""+Constants.UP_EXCEL_ID+"\" />");
+                              out.println("</form>");
                         }
                     %>
                 </table>

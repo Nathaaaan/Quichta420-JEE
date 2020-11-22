@@ -10,6 +10,18 @@ public class Constants {
     public static final String LOGIN_USER = "UsernameForm";
     public static final String LOGIN_PWD = "PassForm";
     
+    public static final String UP_CDC = "cdc";
+    public static final String UP_FICHE_VISITE = "ficheVisite";
+    public static final String UP_FICHE_EVAL = "ficheEval";
+    public static final String UP_SONDAGE_WEB = "sondageWeb";
+    public static final String UP_RAPPORT_RENDU = "rapportRendu";
+    public static final String UP_SOUT = "sout";
+    public static final String UP_PLANIF = "planif";
+    public static final String UP_FAITE = "faite";
+    public static final String UP_NOTE_COM = "noteCom";
+    public static final String UP_NOTE_TECH = "noteTech";
+    public static final String UP_EXCEL_ID = "excelId";
+    
     //web pages path
     public static final String LOGIN_PAGE = "/WEB-INF/index.jsp";
     public static final String WELCOME_PAGE = "/WEB-INF/Welcome.jsp";
