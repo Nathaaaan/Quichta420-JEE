@@ -23,6 +23,7 @@ public class UserService {
         
         TutorDAO tutorDAO = new TutorDAOImpl();
         ResultSet rs = tutorDAO.getByCredentials(userLoginInput, userPasswordInput);
+        
         //Si le nombre de rows est supérieur à 0, alors ça signifie que l'input est bon
         if (rs.next()) {
             
@@ -32,7 +33,7 @@ public class UserService {
             TutorUser.setLastName(rs.getString("LAST_NAME"));
             TutorUser.setLogin(rs.getString("LOGIN"));
             TutorUser.setPassword(rs.getString("PASSWORD"));
-            System.out.println("File found");
+            System.out.println("File found: "+TutorUser.getName());
             return TutorUser;
             
         } else {
