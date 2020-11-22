@@ -1,6 +1,7 @@
 package Database;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -33,7 +34,13 @@ public class TutorDAOImpl implements TutorDAO{
     public ResultSet getByCredentials(String userLoginInput, String userPasswordInput)throws RuntimeException,SQLException{
         
         stmt = conn.createStatement();
-        String queryCount = "SELECT * FROM TUTOR WHERE LOGIN = '" + userLoginInput + "' and PASSWORD = '" + userPasswordInput + "'";
-        return stmt.executeQuery(queryCount);
+        
+        //SQL Injection protection using prepared statement
+        String queryCount = "SELECT * FROM TUTOR WHERE LOGIN = ? AND PASSWORD = ?";
+        PreparedStatement ps = conn.prepareStatement(queryCount);
+        ps.setString(1,userLoginInput);
+        ps.setString(2, userPasswordInput);
+        
+        return ps.executeQuery();
     }
 }
