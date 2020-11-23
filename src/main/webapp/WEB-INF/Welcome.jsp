@@ -33,9 +33,12 @@
         <div class="container-content">
             <div class="container-header">
                 <h2>Liste des étudiants :</h2>
+                
                 <div class="search">
-                    <input type="text" placeholder="search box" />
-                    <button>Search</button>
+                    <form name="SearchForm" action="SearchController" method="POST">
+                        <input type="text" placeholder="search box" name="SearchInput"/>
+                        <input type="submit" name="SendButton" value="Search"/>
+                    </form>
                 </div>
             </div>
 

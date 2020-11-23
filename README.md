@@ -2,7 +2,6 @@
 
 
 Configuration : GlassFish Server - Java EE 8 Web (jdk 1.8.0_271)
-Test different Branch
 
 
 --- DATABASE ---
@@ -19,9 +18,8 @@ Test different Branch
       - still in service and database
       - right click on "jdbc/derby://localhost:1527/ST2EEDB
       - click on execute command
-      - execute all the command of the Database Drop Script
       - execute all the command of the Creation Script
-      - execute all the command of the Insertion Script
+      
       
 3) inside the java code you can use the model BD. To create a new connection just have to do
       - import Model.DB
