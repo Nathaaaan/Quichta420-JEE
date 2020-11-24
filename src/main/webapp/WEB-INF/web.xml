@@ -12,6 +12,10 @@
         <servlet-name>SearchController</servlet-name>
         <servlet-class>Controllers.SearchController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>NewStudent</servlet-name>
+        <servlet-class>Controllers.NewStudent</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/LoginController</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>SearchController</servlet-name>
         <url-pattern>/SearchController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewStudent</servlet-name>
+        <url-pattern>/NewStudent</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

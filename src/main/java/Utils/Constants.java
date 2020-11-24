@@ -28,6 +28,7 @@ public class Constants {
     public static final String WELCOME_PAGE = "/WEB-INF/Welcome.jsp";
     public static final String STUDENT_PAGE = "/WEB-INF/StudentInfo.jsp";
     public static final String HEADER = "/WEB-INF/Header.jspf";
+    public static final String ADD_STUDENT_PAGE = "/WEB-INF/NewStudent.jsp";
     
     //controllers
     public static final String LOGIN_CONTROLLER = "/LoginController";

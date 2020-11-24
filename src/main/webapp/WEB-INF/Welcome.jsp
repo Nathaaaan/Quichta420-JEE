@@ -108,8 +108,8 @@
                 </table>
             </div>
 
-            <div class="container-buttons">
-                <a href="#">Ajouter un stagiaire</a>
+            <div class="container-buttons" >
+                <a href="NewStudent">Ajouter un stagiaire</a>
             </div>
         </div>
 
