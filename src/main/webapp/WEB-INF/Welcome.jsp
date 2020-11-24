@@ -46,9 +46,9 @@
                 <table class="list-table">
                     <tr>
                         <th>#</th>
-                        <th>Groupe</th>
-                        <th>Nom</th>
-                        <th>Prenom</th>
+                        <th class="tdGr">Groupe</th>
+                        <th class="tdLa">Nom</th>
+                        <th class="tdNa">Prenom</th>
                         <th class="tdCb">C.d.C</th>
                         <th class="tdCb">Fiche de visite</th>
                         <th class="tdCb">Fiche evaluation entreprise</th>
@@ -57,8 +57,8 @@
                         <th class="tdCb">Soutenance</th>
                         <th class="tdCb">Visite planifié</th>
                         <th class="tdCb">Visite faite</th>
-                        <th>Entreprise</th>
-                        <th>Maitre de stage</th>
+                        <th class="tdEtr">Entreprise</th>
+                        <th class="tdMdS">Maitre de stage</th>
                         <th class="tdAddr">Adresse</th>
                         <th class="tdNote">Note tech</th>
                         <th class="tdNote">Note com</th>
@@ -83,9 +83,9 @@
                                 out.println("<tr>");
                                     out.println("<td><a class=\"detailsBtn\" href=\"ViewStudentInfo?internshipId="+info.getInternshipId()
                                     +"\"><img src=\"images/iconeDetails.png\"/></a></td>");
-                                    out.println("<td>"+intern.getSchoolGroup()+"</td>");
-                                    out.println("<td>"+intern.getLastName()+"</td>");
-                                    out.println("<td>"+intern.getFirstName()+"</td>");
+                                    out.println("<td class=\"tdGr\">"+intern.getSchoolGroup()+"</td>");
+                                    out.println("<td class=\"tdLa\">"+intern.getLastName()+"</td>");
+                                    out.println("<td class=\"tdNa\">"+intern.getFirstName()+"</td>");
                                     out.println("<td class=\"tdCb\"><input name=\""+Constants.UP_CDC+"\" type=\"checkbox\""+Excel.getChecked(excel.isCdc())+"/></td>");
                                     out.println("<td class=\"tdCb\"><input name=\""+Constants.UP_FICHE_VISITE+"\" type=\"checkbox\""+Excel.getChecked(excel.isFicheVisite())+"/></td>");
                                     out.println("<td class=\"tdCb\"><input name=\""+Constants.UP_FICHE_EVAL+"\" type=\"checkbox\""+Excel.getChecked(excel.isFicheEvalEntr())+"/></td>");
@@ -94,8 +94,8 @@
                                     out.println("<td class=\"tdCb\"><input name=\""+Constants.UP_SOUT+"\" type=\"checkbox\""+Excel.getChecked(excel.isSout())+"/></td>");
                                     out.println("<td class=\"tdCb\"><input name=\""+Constants.UP_PLANIF+"\" type=\"checkbox\""+Excel.getChecked(excel.isPlanif())+"/></td>");
                                     out.println("<td class=\"tdCb\"><input name=\""+Constants.UP_FAITE+"\" type=\"checkbox\""+Excel.getChecked(excel.isFaite())+"/></td>");
-                                    out.println("<td>"+company.getCompanyName()+"</td>");
-                                    out.println("<td>"+info.getMaster()+"</td>");
+                                    out.println("<td class=\"tdEtr\">"+company.getCompanyName()+"</td>");
+                                    out.println("<td class=\"tdMdS\">"+info.getMaster()+"</td>");
                                     out.println("<td class=\"tdAddr\">"+company.getCompanyAddress()+"</td>");
                                     out.println("<td class=\"tdNote\"><input type=\"text\" name=\""+Constants.UP_NOTE_TECH+"\" value=\""+excel.getNoteTech()+"\"</td>");
                                     out.println("<td class=\"tdNote\"><input type=\"text\" name=\""+Constants.UP_NOTE_COM+"\" value=\""+excel.getNoteCom()+"\"</td>");

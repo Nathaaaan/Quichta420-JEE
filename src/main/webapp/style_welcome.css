@@ -83,6 +83,22 @@ body{
     font-size: 14px;
 }
 
+.tdEtr, .tdMdS{
+    width: 200px;
+}
+
+.tdGr{
+    width: 100px;
+}
+
+.tdLa{
+    width: 200px;
+}
+
+.tdNa{
+    width: 150px;
+}
+
 .detailsBtn img{
     width: 30px;
 }
@@ -112,7 +128,7 @@ body{
 }
 
 .container-list{
-    width: 2730px;
+    width: 2800px;
     margin-left: 30px;
 }
 
