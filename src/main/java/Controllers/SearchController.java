@@ -6,6 +6,9 @@
 package Controllers;
 
 import Database.SearchRS;
+import Model.Beans.Assign;
+import Model.Beans.Tutor;
+import Model.Services.AssignService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -13,6 +16,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import static Utils.Constants.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -22,6 +30,7 @@ public class SearchController extends HttpServlet {
 
     
     private SearchRS srrs = new SearchRS();
+    private ArrayList<Assign> assignList;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -71,7 +80,27 @@ public class SearchController extends HttpServlet {
        //If the user has at least input something
        if(!UserInput.equals("")){
        
-           //Do the search
+           //Now we have 2 cases : One for the year, and another one for names and keywords
+           //So for the year stuff
+           
+//If it contains ONLY numbers
+           if (UserInput.matches("[0-9]+") && UserInput.length() > 2) {
+               //Now we need
+                //- Search the Assign where Internship_Year is equal to the input
+                Tutor tutor = (Tutor)request.getSession().getAttribute("user");
+               try {
+                   //List of Assign
+                   assignList = new AssignService().getAllByTutorIdAndYear(tutor.getId(), UserInput);
+                   
+               } catch (SQLException ex) {
+                   Logger.getLogger(SearchController.class.getName()).log(Level.SEVERE, null, ex);
+               }
+                ResultSet rs_year;
+                //- We can now gather Internship ID of the stuff
+               //- We can now select that Internship Info
+               
+               
+           }
        
        }
     }

@@ -46,4 +46,17 @@ public class AssignService {
         }
         return assignList;
     }
+    
+    public ArrayList<Assign> getAllByTutorIdAndYear(int tutorId, String userInput) throws SQLException{
+        ArrayList<Assign> assignList=new ArrayList<Assign>();
+        InternDAO internDAO = new InternDAOImpl();
+        
+        
+        ResultSet rs = internDAO.getAllByTutorIdAndYear(tutorId, userInput);
+        int i = 0;
+        while(rs.next()){
+            assignList.add(createAssignModel(rs));
+        }
+        return assignList;
+    }
 }
