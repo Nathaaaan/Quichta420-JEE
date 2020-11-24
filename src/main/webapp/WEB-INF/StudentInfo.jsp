@@ -3,6 +3,7 @@
     Created on : 13 nov. 2020, 15:52:16
     Author     : Gohu
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Model.Beans.Intern"%>
 <%@page import="Model.Beans.InternshipInfo"%>
@@ -21,7 +22,7 @@
             InternshipInfo info = (InternshipInfo) request.getAttribute("info");
             Intern intern = (Intern) request.getAttribute("intern");
         %>
-        <form action="UpdateStudentInfo" method="POST">
+        <form action="UpdateInternshipInfos" method="POST">
             <div class="pageContainer">
                 <div class="page">
                     <div class="pageHeader">
@@ -63,7 +64,7 @@
                                 </div>
                                 <div class="content">
                                     <div class="line"><div>Description de la mission : </div><textarea name="description"><% out.println(info.getDescription()); %></textarea></div>
-                                    <div class="line"><div>Commentaires : </div><textarea name="comment"><% out.println(info.getTutorComment()); %></textarea></div>
+                                    <div class="line"><div>Commentaires : </div><textarea name="tutorComment"><% out.println(info.getTutorComment()); %></textarea></div>
                                     <div class="line"><div>Remplir la fiche de visite  : </div><textarea name="ficheVisite"></textarea></div>
                                 </div>
                             </div>
@@ -71,6 +72,7 @@
                     </div>            
                     <div class="container-buttons">
                         <a href="WelcomeController">Retour</a>
+                        <input type="hidden" name="internshipId" value="<c:out value="${info.internshipId}"/>" />
                         <input type="submit" value="Valider"/>
                     </div>
                 </div>

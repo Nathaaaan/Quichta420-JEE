@@ -2,6 +2,7 @@ package Database;
 
 
 import Model.Beans.Excel;
+import Model.Beans.InternshipInfo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -92,5 +93,18 @@ public class InternDAOImpl implements InternDAO {
         } catch (SQLException ex) {
             Logger.getLogger(InternDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    @Override
+    public void updateInternshipInfo(InternshipInfo info) 
+            throws SQLException {
+        
+                String updateQuery = "UPDATE InternshipInfo SET description=?, tutor_comment=? WHERE internship_id=?";
+                PreparedStatement ps = conn.prepareStatement(updateQuery);
+                ps.setString(1, info.getDescription());
+                ps.setString(2, info.getTutorComment());
+                ps.setInt(3, info.getInternshipId());
+
+                ps.executeUpdate();
     }
 }

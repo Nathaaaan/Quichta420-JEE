@@ -23,6 +23,10 @@ public class Constants {
     public static final String UP_NOTE_TECH = "noteTech";
     public static final String UP_EXCEL_ID = "excelId";
     
+    public static final String UP_DESCRIPTION = "description";
+    public static final String UP_TUTOR_COMMENT = "tutorComment";
+    public static final String UP_INTERNSHIP_ID = "internshipId";
+    
     //web pages path
     public static final String LOGIN_PAGE = "/WEB-INF/index.jsp";
     public static final String WELCOME_PAGE = "/WEB-INF/Welcome.jsp";
