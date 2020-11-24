@@ -41,5 +41,18 @@ public class SearchRS {
         return ps.executeQuery();
     }
     
+    public ResultSet getAssignByInputYear(String userInput)throws RuntimeException,SQLException{
+        
+        stmt = conn.createStatement();
+      
+        //SQL Injection protection using prepared statement
+        //TODO : Set the correct querry
+        String queryCount = "SELECT * FROM ASSIGN WHERE INTERNSHIP_YEAR = ? AND TUTOR_ID = ?";
+        PreparedStatement ps = conn.prepareStatement(queryCount);
+        ps.setString(1,userInput);
+        
+        return ps.executeQuery();
+    }
+    
     
 }

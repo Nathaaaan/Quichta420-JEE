@@ -45,6 +45,7 @@ public class InternDAOImpl implements InternDAO {
             + "WHERE ASSIGN.TUTOR_ID = "+ id;
         return stmt.executeQuery(queryCount);
     }
+   
     
 
     @Override
@@ -58,6 +59,14 @@ public class InternDAOImpl implements InternDAO {
             + "INNER JOIN COMPANY ON INTERNSHIPINFO.COMPANY_ID = COMPANY.COMPANY_ID "
             + "WHERE ASSIGN.Internship_Id = "+ id;
         return stmt.executeQuery(queryCount);
+    }
+    
+    @Override
+    public ResultSet getAllByTutorIdAndYear(int id, String year) throws SQLException{
+    Statement stmt = conn.createStatement();
+        String queryCount = "SELECT * FROM ASSIGN WHERE INTERNSHIP_YEAR = "+year+ " AND TUTOR_ID =" + id;
+        return stmt.executeQuery(queryCount);
+    
     }
     
     @Override
