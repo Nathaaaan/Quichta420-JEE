@@ -9,6 +9,7 @@ public class Constants {
     //jsp field name
     public static final String LOGIN_USER = "UsernameForm";
     public static final String LOGIN_PWD = "PassForm";
+    public static final String SEARCH_INPUT = "SearchInput";
     
     public static final String UP_CDC = "cdc";
     public static final String UP_FICHE_VISITE = "ficheVisite";

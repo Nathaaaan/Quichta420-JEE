@@ -5,12 +5,14 @@
  */
 package Controllers;
 
+import Database.SearchRS;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import static Utils.Constants.*;
 
 /**
  *
@@ -18,6 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class SearchController extends HttpServlet {
 
+    
+    private SearchRS srrs = new SearchRS();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -62,6 +66,14 @@ public class SearchController extends HttpServlet {
        //TODO : Search analyse
        //Get the input in a String value;
        String UserInput;
+       UserInput = request.getParameter(SEARCH_INPUT);
+       
+       //If the user has at least input something
+       if(!UserInput.equals("")){
+       
+           //Do the search
+       
+       }
     }
 
     /**
