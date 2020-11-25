@@ -91,11 +91,14 @@ public class SearchController extends HttpServlet {
                try {
                    //List of Assign
                    assignList = new AssignService().getAllByTutorIdAndYear(tutor.getId(), UserInput);
+                   request.setAttribute("keyExcel", assignList);
+                   request.getRequestDispatcher(WELCOME_PAGE).forward(request, response);
                    
                } catch (SQLException ex) {
                    Logger.getLogger(SearchController.class.getName()).log(Level.SEVERE, null, ex);
                }
-                ResultSet rs_year;
+                
+               
                 //- We can now gather Internship ID of the stuff
                //- We can now select that Internship Info
                

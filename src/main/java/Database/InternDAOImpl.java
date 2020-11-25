@@ -63,7 +63,15 @@ public class InternDAOImpl implements InternDAO {
     @Override
     public ResultSet getAllByTutorIdAndYear(int id, String year) throws SQLException{
     Statement stmt = conn.createStatement();
-        String queryCount = "SELECT * FROM ASSIGN WHERE INTERNSHIP_YEAR = "+year+ " AND TUTOR_ID =" + id;
+    String queryCount = "SELECT INTERN.*, INTERNSHIPINFO.*, EXCEL.*, COMPANY.* "
+            + "FROM ASSIGN "
+            + "INNER JOIN INTERN ON ASSIGN.INTERN_ID = INTERN.INTERN_ID "
+            + "INNER JOIN INTERNSHIPINFO ON ASSIGN.INTERNSHIP_ID = INTERNSHIPINFO.INTERNSHIP_ID "
+            + "INNER JOIN EXCEL ON INTERNSHIPINFO.EXCEL_ID = EXCEL.EXCEL_ID "
+            + "INNER JOIN COMPANY ON INTERNSHIPINFO.COMPANY_ID = COMPANY.COMPANY_ID "
+            + "WHERE ASSIGN.TUTOR_ID = "+ id
+            + "AND ASSIGN.INTERNSHIP_YEAR ="+year;
+        
         return stmt.executeQuery(queryCount);
     
     }
