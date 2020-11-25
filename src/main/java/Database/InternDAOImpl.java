@@ -1,7 +1,9 @@
 package Database;
 
 
+import Model.Beans.Company;
 import Model.Beans.Excel;
+import Model.Beans.Intern;
 import Model.Beans.InternshipInfo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -124,5 +126,71 @@ public class InternDAOImpl implements InternDAO {
         String query = "SELECT * FROM SchoolGroup";
         
         return st.executeQuery(query);
+    }
+    
+    public int insertCompany(Company c) throws SQLException{
+        String query = "INSERT INTO Company(company_name, company_adress) VALUES(?,?)";
+        PreparedStatement ps = conn.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
+        ps.setString(1, c.getCompanyName());
+        ps.setString(2, c.getCompanyAddress());
+        ps.executeUpdate();
+        ResultSet rs = ps.getGeneratedKeys();
+        rs.next();
+        
+        return (int) rs.getLong(1);
+    }
+    
+    public int insertIntern(Intern intern) throws SQLException{
+        String query = "INSERT INTO Intern(first_name, last_name,schoolGroup_name) VALUES(?,?,?)";
+        PreparedStatement ps = conn.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
+        ps.setString(1, intern.getFirstName());
+        ps.setString(2, intern.getLastName());
+        ps.setString(3, intern.getSchoolGroup());
+        ps.executeUpdate();
+        ResultSet rs = ps.getGeneratedKeys();
+        rs.next();
+        
+        return (int) rs.getLong(1);
+    }
+    
+    public int insertExcel() throws SQLException{
+        String query = "INSERT INTO EXCEL(cdc,fiche_visite,fiche_eval_entr,sondage_web,rapport_rendu,sout,planif,faite)"
+                + " VALUES('false','false','false','false','false','false','false','false')";
+        PreparedStatement ps = conn.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
+        ps.executeUpdate();
+        ResultSet rs = ps.getGeneratedKeys();
+        rs.next();
+        
+        return (int) rs.getLong(1);
+    }
+    
+    public ResultSet getCompanyById(int id) throws SQLException{
+        String query = "SELECT * FROM Company WHERE company_id = "+id;
+        Statement st = conn.createStatement();
+        return st.executeQuery(query);
+    }
+    
+    public int insertAssign(int internId, int tutorId) throws SQLException{
+        String query = "INSERT INTO Assign(intern_id,tutor_id) VALUES(?,?)";
+        PreparedStatement ps = conn.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
+        ps.setInt(1, internId);
+        ps.setInt(2, tutorId);
+        ps.executeUpdate();
+        ResultSet rs = ps.getGeneratedKeys();
+        rs.next();
+        
+        return (int) rs.getLong(1);
+    }
+    
+    public void insertInternshipInfo(InternshipInfo info) throws SQLException{
+        String query = "INSERT INTO InternshipInfo(internship_id,company_id,master,start_date,end_date,excel_id) VALUES(?,?,?,?,?,?)";
+        PreparedStatement ps = conn.prepareStatement(query);
+        ps.setInt(1, info.getInternshipId());
+        ps.setInt(2, info.getCompany().getCompanyId());
+        ps.setString(3, info.getMaster());
+        ps.setDate(4, info.getDateDebut());
+        ps.setDate(5, info.getDateFin());
+        ps.setInt(6, info.getExcel().getExcelId());
+        ps.executeUpdate();
     }
 }

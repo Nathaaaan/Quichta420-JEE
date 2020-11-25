@@ -3,6 +3,8 @@ package Model.Services;
 import Database.InternDAO;
 import Database.InternDAOImpl;
 import Model.Beans.Assign;
+import Model.Beans.Excel;
+import Model.Beans.InternshipInfo;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -58,5 +60,21 @@ public class AssignService {
             assignList.add(createAssignModel(rs));
         }
         return assignList;
+    }
+    
+    public void insertAssign(Assign assign) throws SQLException{
+        InternDAOImpl internDAOImpl = new InternDAOImpl();
+        int internId = internDAOImpl.insertIntern(assign.getIntern());
+        int tutorId = assign.getTutor().getId();
+        
+        int internshipId = internDAOImpl.insertAssign(internId,tutorId);
+        int excelId = internDAOImpl.insertExcel();
+        Excel excel = new Excel();
+        excel.setExcelId(excelId);
+        
+        InternshipInfo info = assign.getInternshipInfo();
+        info.setExcel(excel);
+        info.setInternshipId(internshipId);
+        internDAOImpl.insertInternshipInfo(info);
     }
 }

@@ -38,4 +38,11 @@ public class CompanyService {
         
         return companies;
     }
+    
+    public Company getCompanyById(int id) throws SQLException{
+        InternDAOImpl intern = new InternDAOImpl();
+        ResultSet rs = intern.getCompanyById(id);
+        rs.next();
+        return createCompany(rs);
+    }
 }

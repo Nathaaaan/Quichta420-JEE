@@ -15,14 +15,12 @@
     </head>
     <body>
         <%@include file="Header.jspf"%>
-        <h1>Add New Student</h1>
         
     
         
 <div class="form-style-10">
     <h1>Add New Student</h1>
     
-    <!--get tutor ID for session-->
     <form  action="NewStudent" method="POST">
         
         <div class="section"><span>1</span>Student Info</div>
@@ -54,7 +52,7 @@
                     <option disabled>Select a company</option>
                     
                     <c:forEach var="company" items="${requestScope.companies}">
-                        <option value="${company.companyName}">${company.companyName}</option>
+                        <option value="${company.companyId}">${company.companyName}</option>
                     </c:forEach>
                     <option value="new">Autre</option>
                 </select>
