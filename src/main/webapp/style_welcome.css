@@ -99,6 +99,14 @@ body{
     width: 150px;
 }
 
+.tdFiche{
+    width:30px;
+}
+
+.tdActions{
+    width:86px;
+}
+
 .detailsBtn img{
     width: 30px;
 }
@@ -117,6 +125,14 @@ body{
 .search{
     display: flex;
     justify-content: center;
+}
+
+.searchForm{
+    display: inherit;
+}
+
+.searchSubmit{
+    margin-top: 3px;
 }
 
 .search input{
@@ -146,4 +162,5 @@ body{
     text-decoration: none;
     color:black;
     font-size:16px;
+    border-radius: 5px;
 }

@@ -35,9 +35,9 @@
                 <h2>Liste des étudiants :</h2>
 
                 <div class="search">
-                    <form name="SearchForm" action="SearchController" method="POST">
+                    <form class="searchForm" name="SearchForm" action="SearchController" method="POST">
                         <input type="text" placeholder="search box" name="SearchInput"/>
-                        <input type="submit" name="SendButton" value="Search"/>
+                        <input class="searchSubmit" type="submit" name="SendButton" value="Search"/>
                     </form>
                 </div>
             </div>
@@ -45,7 +45,7 @@
             <div class="container-list">
                 <table class="list-table">
                     <tr>
-                        <th>#</th>
+                        <th class="tdFiche">#</th>
                         <th class="tdGr">Groupe</th>
                         <th class="tdLa">Nom</th>
                         <th class="tdNa">Prenom</th>
@@ -63,13 +63,13 @@
                         <th class="tdNote">Note tech</th>
                         <th class="tdNote">Note com</th>
 
-                        <th colspan="3">Actions</th>
+                        <th class="tdActions" colspan="3">Actions</th>
                     </tr>
                     
                     <c:forEach items="${requestScope.keyExcel}" var="assign" >
                         <form method="POST" action="UpdateInfos">
                             <tr>
-                                <td>
+                                <td class="tdFiche">
                                     <a class="detailsBtn" href=<c:out value="ViewStudentInfo?internshipId=${assign.internshipInfo.internshipId}"/> >
                                         <img src="images/iconeDetails.png"/>
                                     </a>
@@ -128,7 +128,7 @@
                                     <input name="noteCom" type="text" value=<c:out value="${assign.excel.noteCom}"/> />
                                 </td>
 
-                                <td> <input type="submit" value="Mis à jour" /> </td>
+                                <td class="tdActions"> <input type="submit" value="Mise à jour" /> </td>
                             </tr>
                             <input type="hidden" value=<c:out value="${assign.excel.internshipId}"/> name="excelId" />
                         </form>

@@ -3,7 +3,6 @@ package Model.Services;
 import Database.InternDAO;
 import Database.InternDAOImpl;
 import Model.Beans.Intern;
-import com.sun.xml.internal.ws.api.message.saaj.SAAJFactory;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
