@@ -14,13 +14,10 @@ public class InternshipInfo {
     private ArrayList<String> keywords;
     private String description;
     private String meetingInfo;
-    private String internComment;
     private String tutorComment;
-    private String linkedinProfile;
     private String master;
     private Date dateDebut;
     private Date dateFin;
-    private Excel excel;
 
 
     public InternshipInfo() {
@@ -67,28 +64,12 @@ public class InternshipInfo {
         this.meetingInfo = meetingInfo;
     }
 
-    public String getInternComment() {
-        return internComment;
-    }
-
-    public void setInternComment(String internComment) {
-        this.internComment = internComment;
-    }
-
     public String getTutorComment() {
         return tutorComment;
     }
 
     public void setTutorComment(String tutorComment) {
         this.tutorComment = tutorComment;
-    }
-
-    public String getLinkedinProfile() {
-        return linkedinProfile;
-    }
-
-    public void setLinkedinProfile(String linkedinProfile) {
-        this.linkedinProfile = linkedinProfile;
     }
     
     public String getMaster(){
@@ -113,13 +94,5 @@ public class InternshipInfo {
 
     public void setDateFin(Date dateFin) {
         this.dateFin = dateFin;
-    }
-
-    public Excel getExcel() {
-        return excel;
-    }
-
-    public void setExcel(Excel excel) {
-        this.excel = excel;
     }
 }

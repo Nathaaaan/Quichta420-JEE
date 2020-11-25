@@ -22,7 +22,7 @@ public class ExcelService {
      */
     public Excel createExcelModel (ResultSet rs)throws SQLException{
         Excel studentInfo = new Excel();
-        studentInfo.setExcelId(rs.getInt("EXCEL_ID"));
+        studentInfo.setInternshipId(rs.getInt("INTERNSHIP_ID"));
         studentInfo.setCdc(rs.getBoolean("CDC"));
         studentInfo.setFicheVisite(rs.getBoolean("FICHE_VISITE"));
         studentInfo.setFicheEvalEntr(rs.getBoolean("FICHE_EVAL_ENTR"));

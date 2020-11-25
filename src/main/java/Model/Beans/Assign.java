@@ -10,6 +10,15 @@ public class Assign {
     private Tutor tutor;
     private Intern intern;
     private InternshipInfo internshipInfo;
+    private Excel excel;
+
+    public Excel getExcel() {
+        return excel;
+    }
+
+    public void setExcel(Excel excel) {
+        this.excel = excel;
+    }
     
 
     public Assign() {

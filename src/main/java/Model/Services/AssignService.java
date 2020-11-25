@@ -29,6 +29,7 @@ public class AssignService {
         Assign assign = new Assign();
         assign.setIntern(new InternService().createInternModel(rs));
         assign.setInternshipInfo(new InternshipInfoService().createInternshipModel(rs));
+        assign.setExcel(new ExcelService().createExcelModel(rs));
         return assign;
     }
     
@@ -68,12 +69,10 @@ public class AssignService {
         int tutorId = assign.getTutor().getId();
         
         int internshipId = internDAOImpl.insertAssign(internId,tutorId);
-        int excelId = internDAOImpl.insertExcel();
-        Excel excel = new Excel();
-        excel.setExcelId(excelId);
+        
+        internDAOImpl.insertExcel(internshipId);
         
         InternshipInfo info = assign.getInternshipInfo();
-        info.setExcel(excel);
         info.setInternshipId(internshipId);
         internDAOImpl.insertInternshipInfo(info);
     }

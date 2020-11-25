@@ -44,12 +44,9 @@ public class InternshipInfoService {
         Internship.setDateFin(rs.getDate("END_DATE"));
         Internship.setDescription(rs.getString("DESCRIPTION"));
         Internship.setMeetingInfo(rs.getString("MEETING_INFO"));
-        Internship.setInternComment(rs.getString("INTERN_COMMENT"));
         Internship.setTutorComment(rs.getString("TUTOR_COMMENT"));
-        Internship.setLinkedinProfile(rs.getString("LINKEDIN_PROFILE"));
         
         Internship.setCompany(createCompanyModel(rs));
-        Internship.setExcel(new ExcelService().createExcelModel(rs));
         return Internship;
     }
 }

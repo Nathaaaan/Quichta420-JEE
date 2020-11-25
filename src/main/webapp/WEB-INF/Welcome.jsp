@@ -86,28 +86,28 @@
                                 </td>
 
                                 <td class="tdCb">
-                                    <input name="cdc" type="checkbox" <c:out value="${assign.internshipInfo.excel.cdc ? 'checked':''}"/> />
+                                    <input name="cdc" type="checkbox" <c:out value="${assign.excel.cdc ? 'checked':''}"/> />
                                 </td>
                                 <td class="tdCb">
-                                    <input name="ficheVisite" type="checkbox" <c:out value="${assign.internshipInfo.excel.ficheVisite ? 'checked':''}"/> />
+                                    <input name="ficheVisite" type="checkbox" <c:out value="${assign.excel.ficheVisite ? 'checked':''}"/> />
                                 </td>
                                 <td class="tdCb">
-                                    <input name="ficheEval" type="checkbox" <c:out value="${assign.internshipInfo.excel.ficheEvalEntr ? 'checked':''}"/> />
+                                    <input name="ficheEval" type="checkbox" <c:out value="${assign.excel.ficheEvalEntr ? 'checked':''}"/> />
                                 </td>
                                 <td class="tdCb">
-                                    <input name="sondageWeb" type="checkbox" <c:out value="${assign.internshipInfo.excel.sondageWeb ? 'checked':''}"/> />
+                                    <input name="sondageWeb" type="checkbox" <c:out value="${assign.excel.sondageWeb ? 'checked':''}"/> />
                                 </td>
                                 <td class="tdCb">
-                                    <input name="rapportRendu" type="checkbox" <c:out value="${assign.internshipInfo.excel.rapportRendu ? 'checked':''}"/> />
+                                    <input name="rapportRendu" type="checkbox" <c:out value="${assign.excel.rapportRendu ? 'checked':''}"/> />
                                 </td>
                                 <td class="tdCb">
-                                    <input name="sout" type="checkbox" <c:out value="${assign.internshipInfo.excel.sout ? 'checked':''}"/> />
+                                    <input name="sout" type="checkbox" <c:out value="${assign.excel.sout ? 'checked':''}"/> />
                                 </td>
                                 <td class="tdCb">
-                                    <input name="planif" type="checkbox" <c:out value="${assign.internshipInfo.excel.planif ? 'checked':''}"/> />
+                                    <input name="planif" type="checkbox" <c:out value="${assign.excel.planif ? 'checked':''}"/> />
                                 </td>
                                 <td class="tdCb">
-                                    <input name="faite" type="checkbox" <c:out value="${assign.internshipInfo.excel.faite ? 'checked':''}"/> />
+                                    <input name="faite" type="checkbox" <c:out value="${assign.excel.faite ? 'checked':''}"/> />
                                 </td>
 
                                 <td class="tdEtr">
@@ -122,15 +122,15 @@
 
                                 </td>
                                 <td class="tdNote">
-                                    <input name="noteTech" type="text" value=<c:out value="${assign.internshipInfo.excel.noteTech}"/> />
+                                    <input name="noteTech" type="text" value=<c:out value="${assign.excel.noteTech}"/> />
                                 </td>
                                 <td class="tdNote">
-                                    <input name="noteCom" type="text" value=<c:out value="${assign.internshipInfo.excel.noteCom}"/> />
+                                    <input name="noteCom" type="text" value=<c:out value="${assign.excel.noteCom}"/> />
                                 </td>
 
                                 <td> <input type="submit" value="Mis à jour" /> </td>
                             </tr>
-                            <input type="hidden" value=<c:out value="${assign.internshipInfo.excel.excelId}"/> name="excelId" />
+                            <input type="hidden" value=<c:out value="${assign.excel.internshipId}"/> name="excelId" />
                         </form>
                     </c:forEach>
 

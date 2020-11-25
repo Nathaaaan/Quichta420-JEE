@@ -41,7 +41,7 @@ public class InternDAOImpl implements InternDAO {
             + "FROM ASSIGN "
             + "INNER JOIN INTERN ON ASSIGN.INTERN_ID = INTERN.INTERN_ID "
             + "INNER JOIN INTERNSHIPINFO ON ASSIGN.INTERNSHIP_ID = INTERNSHIPINFO.INTERNSHIP_ID "
-            + "INNER JOIN EXCEL ON INTERNSHIPINFO.EXCEL_ID = EXCEL.EXCEL_ID "
+            + "INNER JOIN EXCEL ON ASSIGN.INTERNSHIP_ID = EXCEL.INTERNSHIP_ID "
             + "INNER JOIN COMPANY ON INTERNSHIPINFO.COMPANY_ID = COMPANY.COMPANY_ID "
             + "WHERE ASSIGN.TUTOR_ID = "+ id;
         return stmt.executeQuery(queryCount);
@@ -56,7 +56,7 @@ public class InternDAOImpl implements InternDAO {
             + "FROM ASSIGN "
             + "INNER JOIN INTERN ON ASSIGN.INTERN_ID = INTERN.INTERN_ID "
             + "INNER JOIN INTERNSHIPINFO ON ASSIGN.INTERNSHIP_ID = INTERNSHIPINFO.INTERNSHIP_ID "
-            + "INNER JOIN EXCEL ON INTERNSHIPINFO.EXCEL_ID = EXCEL.EXCEL_ID "
+            + "INNER JOIN EXCEL ON INTERNSHIPINFO.INTERNSHIP_ID = EXCEL.INTERNSHIP_ID "
             + "INNER JOIN COMPANY ON INTERNSHIPINFO.COMPANY_ID = COMPANY.COMPANY_ID "
             + "WHERE ASSIGN.Internship_Id = "+ id;
         return stmt.executeQuery(queryCount);
@@ -83,7 +83,7 @@ public class InternDAOImpl implements InternDAO {
         
         String updateQuery = "UPDATE Excel SET cdc= ?, fiche_visite=?, fiche_eval_entr=?,"
                 + " sondage_web=?, rapport_rendu=?, sout=?, planif=?, faite=?, note_tech=?,"
-                + " note_com=? WHERE excel_id = ?";
+                + " note_com=? WHERE internship_id = ?";
         PreparedStatement ps = conn.prepareStatement(updateQuery);
         ps.setBoolean(1, e.getCdc());
         ps.setBoolean(2, e.getFicheVisite());
@@ -95,7 +95,7 @@ public class InternDAOImpl implements InternDAO {
         ps.setBoolean(8, e.getFaite());
         ps.setInt(9, e.getNoteTech());
         ps.setInt(10, e.getNoteCom());
-        ps.setInt(11, e.getExcelId());
+        ps.setInt(11, e.getInternshipId());
 
         ps.executeUpdate();
     }
@@ -153,10 +153,11 @@ public class InternDAOImpl implements InternDAO {
         return (int) rs.getLong(1);
     }
     
-    public int insertExcel() throws SQLException{
-        String query = "INSERT INTO EXCEL(cdc,fiche_visite,fiche_eval_entr,sondage_web,rapport_rendu,sout,planif,faite)"
-                + " VALUES('false','false','false','false','false','false','false','false')";
+    public int insertExcel(int id) throws SQLException{
+        String query = "INSERT INTO EXCEL(internship_id,cdc,fiche_visite,fiche_eval_entr,sondage_web,rapport_rendu,sout,planif,faite)"
+                + " VALUES(?,'false','false','false','false','false','false','false','false')";
         PreparedStatement ps = conn.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
+        ps.setInt(1, id);
         ps.executeUpdate();
         ResultSet rs = ps.getGeneratedKeys();
         rs.next();
@@ -183,14 +184,13 @@ public class InternDAOImpl implements InternDAO {
     }
     
     public void insertInternshipInfo(InternshipInfo info) throws SQLException{
-        String query = "INSERT INTO InternshipInfo(internship_id,company_id,master,start_date,end_date,excel_id) VALUES(?,?,?,?,?,?)";
+        String query = "INSERT INTO InternshipInfo(internship_id,company_id,master,start_date,end_date) VALUES(?,?,?,?,?)";
         PreparedStatement ps = conn.prepareStatement(query);
         ps.setInt(1, info.getInternshipId());
         ps.setInt(2, info.getCompany().getCompanyId());
         ps.setString(3, info.getMaster());
         ps.setDate(4, info.getDateDebut());
         ps.setDate(5, info.getDateFin());
-        ps.setInt(6, info.getExcel().getExcelId());
         ps.executeUpdate();
     }
 }

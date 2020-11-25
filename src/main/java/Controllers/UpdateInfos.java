@@ -52,7 +52,7 @@ public class UpdateInfos extends HttpServlet {
             excel.setFaite(getValue(request.getParameter(UP_FAITE)));
             excel.setNoteCom(Integer.parseInt(request.getParameter(UP_NOTE_COM)));
             excel.setNoteTech(Integer.parseInt(request.getParameter(UP_NOTE_TECH)));
-            excel.setExcelId(Integer.parseInt(request.getParameter(UP_EXCEL_ID)));
+            excel.setInternshipId(Integer.parseInt(request.getParameter(UP_EXCEL_ID)));
             
             InternDAOImpl internDao = new InternDAOImpl();
             internDao.updateExcel(excel);

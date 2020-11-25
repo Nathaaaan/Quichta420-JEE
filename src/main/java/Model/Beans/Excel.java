@@ -7,7 +7,7 @@ package Model.Beans;
  */
 public class Excel {
     
-    private int excelId;
+    private int internshipId;
     private boolean cdc;
     private boolean ficheVisite;
     private boolean ficheEvalEntr;
@@ -23,12 +23,12 @@ public class Excel {
     public Excel(){}
     
     
-    public int getExcelId() {
-        return excelId;
+    public int getInternshipId() {
+        return internshipId;
     }
 
-    public void setExcelId(int excelId) {
-        this.excelId = excelId;
+    public void setInternshipId(int internshipId) {
+        this.internshipId = internshipId;
     }
 
     

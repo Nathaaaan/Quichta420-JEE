@@ -25,31 +25,31 @@ INSERT INTO INTERN(first_name,last_name,SchoolGroup_name) VALUES('Jul','LeS','L3
 
 
 INSERT INTO ASSIGN(tutor_id,intern_id,internShip_Year) VALUES(1,1,2020);
-INSERT INTO ASSIGN(tutor_id,intern_id,internShip_Year) VALUES(1,2,2020);
+INSERT INTO ASSIGN(tutor_id,intern_id,internShip_Year) VALUES(1,2,2019);
 INSERT INTO ASSIGN(tutor_id,intern_id,internShip_Year) VALUES(1,3,2020);
 INSERT INTO ASSIGN(tutor_id,intern_id,internShip_Year) VALUES(1,4,2020);
 INSERT INTO ASSIGN(tutor_id,intern_id,internShip_Year) VALUES(1,5,2020);
 INSERT INTO ASSIGN(tutor_id,intern_id,internShip_Year) VALUES(2,6,2020);
-INSERT INTO ASSIGN(tutor_id,intern_id,internShip_Year) VALUES(2,7,2020);
+INSERT INTO ASSIGN(tutor_id,intern_id,internShip_Year) VALUES(2,7,2019);
 INSERT INTO ASSIGN(tutor_id,intern_id,internShip_Year) VALUES(2,8,2020);
 
 
-INSERT INTO EXCEL(cdc,fiche_visite,fiche_eval_entr,sondage_web,rapport_rendu,sout,planif,faite)
- VALUES('false','false','false','false','false','false','false','false');
-INSERT INTO EXCEL(cdc,fiche_visite,fiche_eval_entr,sondage_web,rapport_rendu,sout,planif,faite)
- VALUES('false','false','false','false','false','false','false','false');
-INSERT INTO EXCEL(cdc,fiche_visite,fiche_eval_entr,sondage_web,rapport_rendu,sout,planif,faite)
- VALUES('false','false','false','false','false','false','false','false');
-INSERT INTO EXCEL(cdc,fiche_visite,fiche_eval_entr,sondage_web,rapport_rendu,sout,planif,faite)
- VALUES('false','false','false','false','false','false','false','false');
-INSERT INTO EXCEL(cdc,fiche_visite,fiche_eval_entr,sondage_web,rapport_rendu,sout,planif,faite)
- VALUES('false','false','false','false','false','false','false','false');
-INSERT INTO EXCEL(cdc,fiche_visite,fiche_eval_entr,sondage_web,rapport_rendu,sout,planif,faite)
- VALUES('false','false','false','false','false','false','false','false');
-INSERT INTO EXCEL(cdc,fiche_visite,fiche_eval_entr,sondage_web,rapport_rendu,sout,planif,faite)
- VALUES('false','false','false','false','false','false','false','false');
-INSERT INTO EXCEL(cdc,fiche_visite,fiche_eval_entr,sondage_web,rapport_rendu,sout,planif,faite)
- VALUES('false','false','false','false','false','false','false','false');
+INSERT INTO EXCEL(internship_id,cdc,fiche_visite,fiche_eval_entr,sondage_web,rapport_rendu,sout,planif,faite)
+ VALUES(1,'false','false','false','false','false','false','false','false');
+INSERT INTO EXCEL(internship_id,cdc,fiche_visite,fiche_eval_entr,sondage_web,rapport_rendu,sout,planif,faite)
+ VALUES(2,'false','false','false','false','false','false','false','false');
+INSERT INTO EXCEL(internship_id,cdc,fiche_visite,fiche_eval_entr,sondage_web,rapport_rendu,sout,planif,faite)
+ VALUES(3,'false','false','false','false','false','false','false','false');
+INSERT INTO EXCEL(internship_id,cdc,fiche_visite,fiche_eval_entr,sondage_web,rapport_rendu,sout,planif,faite)
+ VALUES(4,'false','false','false','false','false','false','false','false');
+ INSERT INTO EXCEL(internship_id,cdc,fiche_visite,fiche_eval_entr,sondage_web,rapport_rendu,sout,planif,faite)
+ VALUES(5,'false','false','false','false','false','false','false','false');
+INSERT INTO EXCEL(internship_id,cdc,fiche_visite,fiche_eval_entr,sondage_web,rapport_rendu,sout,planif,faite)
+ VALUES(6,'false','false','false','false','false','false','false','false');
+ INSERT INTO EXCEL(internship_id,cdc,fiche_visite,fiche_eval_entr,sondage_web,rapport_rendu,sout,planif,faite)
+ VALUES(7,'false','false','false','false','false','false','false','false');
+INSERT INTO EXCEL(internship_id,cdc,fiche_visite,fiche_eval_entr,sondage_web,rapport_rendu,sout,planif,faite)
+ VALUES(8,'false','false','false','false','false','false','false','false');
 
 
 INSERT INTO COMPANY(company_name,company_adress) VALUES('Google','1 avenue de la rue');
@@ -59,19 +59,19 @@ INSERT INTO COMPANY(company_name,company_adress) VALUES('Facebook','1 avenue du 
 INSERT INTO COMPANY(company_name,company_adress) VALUES('Quichta420','420 rue de la quichta');
 
 
-INSERT INTO INTERNSHIPINFO(internship_id,excel_id,company_id,master,start_date,end_date,description,meeting_info)
- VALUES (1,1,1,'Maes','2020-05-02','2020-08-20','description','meeting info');
-INSERT INTO INTERNSHIPINFO(internship_id,excel_id,company_id,master,start_date,end_date,description,meeting_info)
- VALUES (2,2,2,'Ninho','2020-04-05','2020-08-20','description','meeting info');
-INSERT INTO INTERNSHIPINFO(internship_id,excel_id,company_id,master,start_date,end_date,description,meeting_info)
- VALUES (3,3,1,'Booba','2020-03-01','2020-08-20','description','meeting info');
-INSERT INTO INTERNSHIPINFO(internship_id,excel_id,company_id,master,start_date,end_date,description,meeting_info)
- VALUES (4,4,3,'Karis','2020-05-02','2020-10-20','description','meeting info');
-INSERT INTO INTERNSHIPINFO(internship_id,excel_id,company_id,master,start_date,end_date,description,meeting_info)
- VALUES (5,5,1,'Sadek','2020-05-02','2020-08-05','description','meeting info');
-INSERT INTO INTERNSHIPINFO(internship_id,excel_id,company_id,master,start_date,end_date,description,meeting_info)
- VALUES (6,6,3,'PLK','2020-05-02','2020-08-20','description','meeting info');
-INSERT INTO INTERNSHIPINFO(internship_id,excel_id,company_id,master,start_date,end_date,description,meeting_info)
- VALUES (7,7,2,'Bosh','2020-05-02','2020-08-20','description','meeting info');
-INSERT INTO INTERNSHIPINFO(internship_id,excel_id,company_id,master,start_date,end_date,description,meeting_info)
- VALUES (8,8,1,'Oboy','2020-05-02','2020-08-20','description','meeting info');
+INSERT INTO INTERNSHIPINFO(internship_id,company_id,master,start_date,end_date,description,meeting_info)
+ VALUES (1,1,'Maes','2020-05-02','2020-08-20','description','meeting info');
+INSERT INTO INTERNSHIPINFO(internship_id,company_id,master,start_date,end_date,description,meeting_info)
+ VALUES (2,2,'Ninho','2020-04-05','2020-08-20','description','meeting info');
+INSERT INTO INTERNSHIPINFO(internship_id,company_id,master,start_date,end_date,description,meeting_info)
+ VALUES (3,1,'Booba','2020-03-01','2020-08-20','description','meeting info');
+INSERT INTO INTERNSHIPINFO(internship_id,company_id,master,start_date,end_date,description,meeting_info)
+ VALUES (4,3,'Karis','2020-05-02','2020-10-20','description','meeting info');
+INSERT INTO INTERNSHIPINFO(internship_id,company_id,master,start_date,end_date,description,meeting_info)
+ VALUES (5,1,'Sadek','2020-05-02','2020-08-05','description','meeting info');
+INSERT INTO INTERNSHIPINFO(internship_id,company_id,master,start_date,end_date,description,meeting_info)
+ VALUES (6,3,'PLK','2020-05-02','2020-08-20','description','meeting info');
+INSERT INTO INTERNSHIPINFO(internship_id,company_id,master,start_date,end_date,description,meeting_info)
+ VALUES (7,2,'Bosh','2020-05-02','2020-08-20','description','meeting info');
+INSERT INTO INTERNSHIPINFO(internship_id,company_id,master,start_date,end_date,description,meeting_info)
+ VALUES (8,1,'Oboy','2020-05-02','2020-08-20','description','meeting info');
