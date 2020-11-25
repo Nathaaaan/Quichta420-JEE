@@ -62,8 +62,8 @@ public class InternDAOImpl implements InternDAO {
     
     @Override
     public ResultSet getAllByTutorIdAndYear(int id, String year) throws SQLException{
-    Statement stmt = conn.createStatement();
-    String queryCount = "SELECT INTERN.*, INTERNSHIPINFO.*, EXCEL.*, COMPANY.* "
+        Statement stmt = conn.createStatement();
+        String queryCount = "SELECT INTERN.*, INTERNSHIPINFO.*, EXCEL.*, COMPANY.* "
             + "FROM ASSIGN "
             + "INNER JOIN INTERN ON ASSIGN.INTERN_ID = INTERN.INTERN_ID "
             + "INNER JOIN INTERNSHIPINFO ON ASSIGN.INTERNSHIP_ID = INTERNSHIPINFO.INTERNSHIP_ID "
@@ -102,11 +102,12 @@ public class InternDAOImpl implements InternDAO {
     public void updateInternshipInfo(InternshipInfo info) 
             throws SQLException {
         
-        String updateQuery = "UPDATE InternshipInfo SET description=?, tutor_comment=? WHERE internship_id=?";
+        String updateQuery = "UPDATE InternshipInfo SET description=?, tutor_comment=?, meeting_info=? WHERE internship_id=?";
         PreparedStatement ps = conn.prepareStatement(updateQuery);
         ps.setString(1, info.getDescription());
         ps.setString(2, info.getTutorComment());
-        ps.setInt(3, info.getInternshipId());
+        ps.setString(3, info.getMeetingInfo());
+        ps.setInt(4, info.getInternshipId());
 
         ps.executeUpdate();
     }

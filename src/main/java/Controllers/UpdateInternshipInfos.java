@@ -41,7 +41,9 @@ public class UpdateInternshipInfos extends HttpServlet {
             
             internshipInfo.setDescription(request.getParameter(UP_DESCRIPTION));
             internshipInfo.setTutorComment(request.getParameter(UP_TUTOR_COMMENT));
+            internshipInfo.setMeetingInfo(request.getParameter(UP_MEETING_INFO));
             internshipInfo.setInternshipId(Integer.parseInt(request.getParameter(UP_INTERNSHIP_ID)));
+            
             
             InternDAOImpl internDao = new InternDAOImpl();
             internDao.updateInternshipInfo(internshipInfo);

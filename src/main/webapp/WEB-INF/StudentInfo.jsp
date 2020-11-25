@@ -18,10 +18,15 @@
     </head>
     <body>
         <%@include file="Header.jspf"%>
+                                        <%--
         <%
             InternshipInfo info = (InternshipInfo) request.getAttribute("info");
             Intern intern = (Intern) request.getAttribute("intern");
         %>
+                                        --%>
+        <c:set var="info" value="${requestScope.info}"/>
+        <c:set var="intern" value="${requestScope.intern}"/>
+        
         <form action="UpdateInternshipInfos" method="POST">
             <div class="pageContainer">
                 <div class="page">
@@ -34,26 +39,26 @@
                         <div class="firstTwo">
                             <div class="container">
                                 <div class="bar_title">
-                                    <div>Details du stagiaire : <% out.println(intern.getFirstName()); %></div>
+                                    <div>Details du stagiaire : <c:out value="${intern.lastName} ${intern.firstName}"/></div>
                                 </div>
                                 <div class="containImage"><img class="person" src="images/iconPerson.png"/></div>
                                 <div class="content">
-                                    <div class="line"><div>Identifiant : </div><div><% out.println(intern.getId()); %></div></div>
-                                    <div class="line"><div>Nom : </div><div><% out.println(intern.getLastName()); %></div></div>
-                                    <div class="line"><div>Prenom : </div><div><% out.println(intern.getFirstName()); %></div></div>
-                                    <div class="line"><div>Groupe : </div><div><% out.println(intern.getSchoolGroup()); %></div></div>
+                                    <div class="line"><div>Identifiant : </div><div><c:out value="${intern.id}"/></div></div>
+                                    <div class="line"><div>Nom : </div><div><c:out value="${intern.lastName}"/></div></div>
+                                    <div class="line"><div>Prenom : </div><div><c:out value="${intern.firstName}"/></div></div>
+                                    <div class="line"><div>Groupe : </div><div><c:out value="${intern.schoolGroup}"/></div></div>
                                 </div>
                             </div>
                             <div class="container">
                                 <div class="bar_title">
-                                    <div>Details de l'entreprise : <% out.println(info.getCompany().getCompanyName()); %></div>
+                                    <div>Details de l'entreprise : <c:out value="${info.company.companyName}"/></div>
                                 </div>
                                 <div class="content" id="details">
-                                    <div class="line"><div>Nom : </div><div><% out.println(info.getCompany().getCompanyName()); %></div></div>
-                                    <div class="line"><div>Adresse de l'entreprise : </div><div><% out.println(info.getCompany().getCompanyAddress()); %></div></div>
-                                    <div class="line"><div>Maitre d'apprentissage : </div><div><% out.println(info.getMaster()); %></div></div>
-                                    <div class="line"><div>date de debut : </div><div><% out.println(info.getDateDebut().toString()); %></div></div>
-                                    <div class="line"><div>date de fin : </div><div><% out.println(info.getDateFin().toString()); %></div></div>
+                                    <div class="line"><div>Nom : </div><div><c:out value="${info.company.companyName}"/></div></div>
+                                    <div class="line"><div>Adresse de l'entreprise : </div><div><c:out value="${info.company.companyAddress}"/></div></div>
+                                    <div class="line"><div>Maitre d'apprentissage : </div><div><c:out value="${info.master}"/></div></div>
+                                    <div class="line"><div>Date de début : </div><div><c:out value="${info.dateDebut.toString()}"/></div></div>
+                                    <div class="line"><div>Date de fin : </div><div><c:out value="${info.dateFin.toString()}"/></div></div>
                                 </div>
                             </div>
                         </div>
@@ -63,9 +68,9 @@
                                     <div>Gestion du stage</div>
                                 </div>
                                 <div class="content">
-                                    <div class="line"><div>Description de la mission : </div><textarea name="description"><% out.println(info.getDescription()); %></textarea></div>
-                                    <div class="line"><div>Commentaires : </div><textarea name="tutorComment"><% out.println(info.getTutorComment()); %></textarea></div>
-                                    <div class="line"><div>Remplir la fiche de visite  : </div><textarea name="ficheVisite"></textarea></div>
+                                    <div class="line"><div>Description de la mission : </div><textarea name="description"><c:out value="${info.description}"/></textarea></div>
+                                    <div class="line"><div>Commentaires : </div><textarea name="tutorComment"><c:out value="${info.tutorComment}"/></textarea></div>
+                                    <div class="line"><div>Remplir la fiche de visite  : </div><textarea name="meetingInfo"><c:out value="${info.meetingInfo}"/></textarea></div>
                                 </div>
                             </div>
                         </div>
