@@ -132,12 +132,12 @@ INSERT INTO INTERN(first_name,last_name,SchoolGroup_name) VALUES('Jul','LeS','L3
 
 
 INSERT INTO ASSIGN(tutor_id,intern_id,internShip_Year) VALUES(1,1,2020);
-INSERT INTO ASSIGN(tutor_id,intern_id,internShip_Year) VALUES(1,2,2020);
+INSERT INTO ASSIGN(tutor_id,intern_id,internShip_Year) VALUES(1,2,2019);
 INSERT INTO ASSIGN(tutor_id,intern_id,internShip_Year) VALUES(1,3,2020);
 INSERT INTO ASSIGN(tutor_id,intern_id,internShip_Year) VALUES(1,4,2020);
 INSERT INTO ASSIGN(tutor_id,intern_id,internShip_Year) VALUES(1,5,2020);
 INSERT INTO ASSIGN(tutor_id,intern_id,internShip_Year) VALUES(2,6,2020);
-INSERT INTO ASSIGN(tutor_id,intern_id,internShip_Year) VALUES(2,7,2020);
+INSERT INTO ASSIGN(tutor_id,intern_id,internShip_Year) VALUES(2,7,2019);
 INSERT INTO ASSIGN(tutor_id,intern_id,internShip_Year) VALUES(2,8,2020);
 
 
