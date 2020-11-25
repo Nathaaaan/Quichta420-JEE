@@ -36,7 +36,6 @@ public class UserService {
             TutorUser.setLastName(rs.getString("LAST_NAME"));
             TutorUser.setLogin(rs.getString("LOGIN"));
             TutorUser.setPassword(rs.getString("PASSWORD"));
-            System.out.println("File found: "+TutorUser.getName());
             return TutorUser;
             
         } else {

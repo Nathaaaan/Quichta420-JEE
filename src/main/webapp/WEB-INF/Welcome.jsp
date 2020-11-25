@@ -25,15 +25,15 @@
     <body>
         <!-- This line import header we have to put it in all the jsp page wich have the header instead of copy paste it-->
         <%@include file="Header.jspf"%>
-        
+
         <div class="welcome-container">
-            <h2>Bonjour <% out.println(((Tutor) session.getAttribute("user")).getName()); %> <% out.println(((Tutor) session.getAttribute("user")).getLastName()); %> !</h2>
+            <h2>Bonjour <c:out value="${sessionScope.user.name} ${sessionScope.user.lastName}"/> !</h2>
         </div>
 
         <div class="container-content">
             <div class="container-header">
                 <h2>Liste des étudiants :</h2>
-                
+
                 <div class="search">
                     <form name="SearchForm" action="SearchController" method="POST">
                         <input type="text" placeholder="search box" name="SearchInput"/>
@@ -62,15 +62,79 @@
                         <th class="tdAddr">Adresse</th>
                         <th class="tdNote">Note tech</th>
                         <th class="tdNote">Note com</th>
-                        
-                        <th colspan="3">Actions</th>
-                      
-                        
 
+                        <th colspan="3">Actions</th>
                     </tr>
                     
+                    <c:forEach items="${requestScope.keyExcel}" var="assign" >
+                        <form method="POST" action="UpdateInfos">
+                            <tr>
+                                <td>
+                                    <a class="detailsBtn" href=<c:out value="ViewStudentInfo?internshipId=${assign.internshipInfo.internshipId}"/> >
+                                        <img src="images/iconeDetails.png"/>
+                                    </a>
+                                </td>
 
-                    <%
+                                <td class="tdGr">
+                                    <c:out value="${assign.intern.schoolGroup}"/>
+                                </td>
+                                <td class="tdLa">
+                                    <c:out value="${assign.intern.lastName}"/>
+                                </td>
+                                <td class="tdNa">
+                                    <c:out value="${assign.intern.firstName}"/>
+                                </td>
+
+                                <td class="tdCb">
+                                    <input name="cdc" type="checkbox" <c:out value="${assign.internshipInfo.excel.cdc ? 'checked':''}"/> />
+                                </td>
+                                <td class="tdCb">
+                                    <input name="ficheVisite" type="checkbox" <c:out value="${assign.internshipInfo.excel.ficheVisite ? 'checked':''}"/> />
+                                </td>
+                                <td class="tdCb">
+                                    <input name="ficheEval" type="checkbox" <c:out value="${assign.internshipInfo.excel.ficheEvalEntr ? 'checked':''}"/> />
+                                </td>
+                                <td class="tdCb">
+                                    <input name="sondageWeb" type="checkbox" <c:out value="${assign.internshipInfo.excel.sondageWeb ? 'checked':''}"/> />
+                                </td>
+                                <td class="tdCb">
+                                    <input name="rapportRendu" type="checkbox" <c:out value="${assign.internshipInfo.excel.rapportRendu ? 'checked':''}"/> />
+                                </td>
+                                <td class="tdCb">
+                                    <input name="sout" type="checkbox" <c:out value="${assign.internshipInfo.excel.sout ? 'checked':''}"/> />
+                                </td>
+                                <td class="tdCb">
+                                    <input name="planif" type="checkbox" <c:out value="${assign.internshipInfo.excel.planif ? 'checked':''}"/> />
+                                </td>
+                                <td class="tdCb">
+                                    <input name="faite" type="checkbox" <c:out value="${assign.internshipInfo.excel.faite ? 'checked':''}"/> />
+                                </td>
+
+                                <td class="tdEtr">
+                                    <c:out value="${assign.internshipInfo.company.companyName}"/>
+                                </td>
+                                <td class="tdMdS">
+                                    <c:out value="${assign.internshipInfo.master}"/>
+                                </td>
+                                <td class="tdAddr">
+                                    <c:out value="${assign.internshipInfo.company.companyAddress}"/>
+                                </td>
+
+                                </td>
+                                <td class="tdNote">
+                                    <input name="noteTech" type="text" value=<c:out value="${assign.internshipInfo.excel.noteTech}"/> />
+                                </td>
+                                <td class="tdNote">
+                                    <input name="noteCom" type="text" value=<c:out value="${assign.internshipInfo.excel.noteCom}"/> />
+                                </td>
+
+                                <td> <input type="submit" value="Mis à jour" /> </td>
+                            </tr>
+                            <input type="hidden" value=<c:out value="${assign.internshipInfo.excel.excelId}"/> name="excelId" />
+                        </form>
+                    </c:forEach>
+
+                    <%--
                         ArrayList<Assign> assigns = (ArrayList<Assign>)request.getAttribute("keyExcel");
                         
                         for(Assign assign : assigns){
@@ -86,14 +150,14 @@
                                     out.println("<td class=\"tdGr\">"+intern.getSchoolGroup()+"</td>");
                                     out.println("<td class=\"tdLa\">"+intern.getLastName()+"</td>");
                                     out.println("<td class=\"tdNa\">"+intern.getFirstName()+"</td>");
-                                    out.println("<td class=\"tdCb\"><input name=\""+Constants.UP_CDC+"\" type=\"checkbox\""+Excel.getChecked(excel.isCdc())+"/></td>");
-                                    out.println("<td class=\"tdCb\"><input name=\""+Constants.UP_FICHE_VISITE+"\" type=\"checkbox\""+Excel.getChecked(excel.isFicheVisite())+"/></td>");
-                                    out.println("<td class=\"tdCb\"><input name=\""+Constants.UP_FICHE_EVAL+"\" type=\"checkbox\""+Excel.getChecked(excel.isFicheEvalEntr())+"/></td>");
-                                    out.println("<td class=\"tdCb\"><input name=\""+Constants.UP_SONDAGE_WEB+"\" type=\"checkbox\""+Excel.getChecked(excel.isSondageWeb())+"/></td>");
-                                    out.println("<td class=\"tdCb\"><input name=\""+Constants.UP_RAPPORT_RENDU+"\" type=\"checkbox\""+Excel.getChecked(excel.isRapportRendu())+"/></td>");
-                                    out.println("<td class=\"tdCb\"><input name=\""+Constants.UP_SOUT+"\" type=\"checkbox\""+Excel.getChecked(excel.isSout())+"/></td>");
-                                    out.println("<td class=\"tdCb\"><input name=\""+Constants.UP_PLANIF+"\" type=\"checkbox\""+Excel.getChecked(excel.isPlanif())+"/></td>");
-                                    out.println("<td class=\"tdCb\"><input name=\""+Constants.UP_FAITE+"\" type=\"checkbox\""+Excel.getChecked(excel.isFaite())+"/></td>");
+                                    out.println("<td class=\"tdCb\"><input name=\""+Constants.UP_CDC+"\" type=\"checkbox\""+Excel.getChecked(excel.getCdc())+"/></td>");
+                                    out.println("<td class=\"tdCb\"><input name=\""+Constants.UP_FICHE_VISITE+"\" type=\"checkbox\""+Excel.getChecked(excel.getFicheVisite())+"/></td>");
+                                    out.println("<td class=\"tdCb\"><input name=\""+Constants.UP_FICHE_EVAL+"\" type=\"checkbox\""+Excel.getChecked(excel.getFicheEvalEntr())+"/></td>");
+                                    out.println("<td class=\"tdCb\"><input name=\""+Constants.UP_SONDAGE_WEB+"\" type=\"checkbox\""+Excel.getChecked(excel.getSondageWeb())+"/></td>");
+                                    out.println("<td class=\"tdCb\"><input name=\""+Constants.UP_RAPPORT_RENDU+"\" type=\"checkbox\""+Excel.getChecked(excel.getRapportRendu())+"/></td>");
+                                    out.println("<td class=\"tdCb\"><input name=\""+Constants.UP_SOUT+"\" type=\"checkbox\""+Excel.getChecked(excel.getSout())+"/></td>");
+                                    out.println("<td class=\"tdCb\"><input name=\""+Constants.UP_PLANIF+"\" type=\"checkbox\""+Excel.getChecked(excel.getPlanif())+"/></td>");
+                                    out.println("<td class=\"tdCb\"><input name=\""+Constants.UP_FAITE+"\" type=\"checkbox\""+Excel.getChecked(excel.getFaite())+"/></td>");
                                     out.println("<td class=\"tdEtr\">"+company.getCompanyName()+"</td>");
                                     out.println("<td class=\"tdMdS\">"+info.getMaster()+"</td>");
                                     out.println("<td class=\"tdAddr\">"+company.getCompanyAddress()+"</td>");
@@ -104,7 +168,7 @@
                                   out.println("<input type=\"hidden\" value=\""+excel.getExcelId()+"\" name=\""+Constants.UP_EXCEL_ID+"\" />");
                               out.println("</form>");
                         }
-                    %>
+                    --%>
                 </table>
             </div>
 

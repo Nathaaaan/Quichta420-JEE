@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -5,8 +6,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="style_index.css" rel="stylesheet">
     </head>
-    
-    
+
+
     <body>
         <div class="container">
             <div id="FramePanel"> 
@@ -28,19 +29,21 @@
                                 <input type="password" name="PassForm"/>
                             </div>
                         </div>
+                        
                         <div class="buttonContainer">
-                            <%
-                            if(request.getAttribute("KeyErrMess")!=null){
-                                out.println("<div id=\"errorMsgContainer\">"
-                                +       "<div id=\"errorMsg\">"
-                                +       request.getAttribute("KeyErrMess")
-                                +       "</div>"
-                                +   "</div>");
-                            }
-                            else{
-                                out.println("<div></div>");
-                            }
-                            %>
+                            <c:choose>
+                                <c:when test="${not empty requestScope.KeyErrMess}">
+                                    <div id="errorMsgContainer">
+                                        <div id="errorMsg">
+                                            <c:out value= "${requestScope.KeyErrMess}"/>
+                                        </div>
+                                    </div>
+                                </c:when>
+                                <c:otherwise>
+                                    <div></div>
+                                </c:otherwise>
+                            </c:choose>
+                        
                             <input id="SendButton" type="submit" name="SendButton" value="LOGIN" /> 
                         </div>
                     </form>

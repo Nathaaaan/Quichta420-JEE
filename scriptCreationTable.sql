@@ -142,21 +142,21 @@ INSERT INTO ASSIGN(tutor_id,intern_id,internShip_Year) VALUES(2,8,2020);
 
 
 INSERT INTO EXCEL(cdc,fiche_visite,fiche_eval_entr,sondage_web,rapport_rendu,sout,planif,faite)
- VALUES('false','false','false','false','false','false','false','false');
+ VALUES('true','true','false','false','false','false','false','false');
 INSERT INTO EXCEL(cdc,fiche_visite,fiche_eval_entr,sondage_web,rapport_rendu,sout,planif,faite)
  VALUES('false','false','false','false','false','false','false','false');
 INSERT INTO EXCEL(cdc,fiche_visite,fiche_eval_entr,sondage_web,rapport_rendu,sout,planif,faite)
- VALUES('false','false','false','false','false','false','false','false');
+ VALUES('false','true','false','false','false','false','false','false');
+INSERT INTO EXCEL(cdc,fiche_visite,fiche_eval_entr,sondage_web,rapport_rendu,sout,planif,faite)
+ VALUES('true','false','true','false','false','false','false','false');
 INSERT INTO EXCEL(cdc,fiche_visite,fiche_eval_entr,sondage_web,rapport_rendu,sout,planif,faite)
  VALUES('false','false','false','false','false','false','false','false');
 INSERT INTO EXCEL(cdc,fiche_visite,fiche_eval_entr,sondage_web,rapport_rendu,sout,planif,faite)
- VALUES('false','false','false','false','false','false','false','false');
+ VALUES('false','false','true','false','false','false','false','false');
 INSERT INTO EXCEL(cdc,fiche_visite,fiche_eval_entr,sondage_web,rapport_rendu,sout,planif,faite)
- VALUES('false','false','false','false','false','false','false','false');
+ VALUES('false','false','false','false','false','false','false','true');
 INSERT INTO EXCEL(cdc,fiche_visite,fiche_eval_entr,sondage_web,rapport_rendu,sout,planif,faite)
- VALUES('false','false','false','false','false','false','false','false');
-INSERT INTO EXCEL(cdc,fiche_visite,fiche_eval_entr,sondage_web,rapport_rendu,sout,planif,faite)
- VALUES('false','false','false','false','false','false','false','false');
+ VALUES('false','false','false','false','true','false','false','false');
 
 
 INSERT INTO COMPANY(company_name,company_adress) VALUES('Google','1 avenue de la rue');

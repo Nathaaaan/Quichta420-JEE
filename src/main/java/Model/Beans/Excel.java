@@ -18,10 +18,10 @@ public class Excel {
     private boolean faite;
     private int noteTech;
     private int noteCom;
-
+    
     
     public Excel(){}
-
+    
     
     public int getExcelId() {
         return excelId;
@@ -32,7 +32,7 @@ public class Excel {
     }
 
     
-    public boolean isCdc() {
+    public boolean getCdc() {
         return cdc;
     }
 
@@ -40,7 +40,7 @@ public class Excel {
         this.cdc = cdc;
     }
 
-    public boolean isFicheVisite() {
+    public boolean getFicheVisite() {
         return ficheVisite;
     }
 
@@ -48,7 +48,7 @@ public class Excel {
         this.ficheVisite = ficheVisite;
     }
 
-    public boolean isFicheEvalEntr() {
+    public boolean getFicheEvalEntr() {
         return ficheEvalEntr;
     }
 
@@ -56,7 +56,7 @@ public class Excel {
         this.ficheEvalEntr = ficheEvalEntr;
     }
 
-    public boolean isSondageWeb() {
+    public boolean getSondageWeb() {
         return sondageWeb;
     }
 
@@ -64,7 +64,7 @@ public class Excel {
         this.sondageWeb = sondageWeb;
     }
 
-    public boolean isRapportRendu() {
+    public boolean getRapportRendu() {
         return rapportRendu;
     }
 
@@ -72,7 +72,7 @@ public class Excel {
         this.rapportRendu = rapportRendu;
     }
 
-    public boolean isSout() {
+    public boolean getSout() {
         return sout;
     }
 
@@ -80,7 +80,7 @@ public class Excel {
         this.sout = sout;
     }
 
-    public boolean isPlanif() {
+    public boolean getPlanif() {
         return planif;
     }
 
@@ -88,7 +88,7 @@ public class Excel {
         this.planif = planif;
     }
 
-    public boolean isFaite() {
+    public boolean getFaite() {
         return faite;
     }
 

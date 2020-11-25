@@ -34,6 +34,8 @@ public class ViewStudentInfo extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //On doit recuperer les infos dans la database grace a cet ID
+        System.out.println("Internship ID in ViewStudentInfo: "+request.getParameter("internshipId"));
+        
         int internshipId = Integer.parseInt(request.getParameter("internshipId"));
        
         

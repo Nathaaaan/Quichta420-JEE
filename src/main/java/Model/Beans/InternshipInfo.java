@@ -24,7 +24,7 @@ public class InternshipInfo {
 
 
     public InternshipInfo() {
-        
+        System.out.println("");
     }
 
     public int getInternshipId() {

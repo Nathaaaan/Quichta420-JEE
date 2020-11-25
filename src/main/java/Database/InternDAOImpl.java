@@ -8,8 +8,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * A Data access object used for doing basic CRUD operations on Interns and 
@@ -71,40 +69,37 @@ public class InternDAOImpl implements InternDAO {
     }
     
     @Override
-    public void updateExcel(Excel e) {
-        try {
-            String updateQuery = "UPDATE Excel SET cdc= ?, fiche_visite=?, fiche_eval_entr=?,"
-                    + " sondage_web=?, rapport_rendu=?, sout=?, planif=?, faite=?, note_tech=?,"
-                    + " note_com=? WHERE excel_id = ?";
-            PreparedStatement ps = conn.prepareStatement(updateQuery);
-            ps.setBoolean(1, e.isCdc());
-            ps.setBoolean(2, e.isFicheVisite());
-            ps.setBoolean(3, e.isFicheEvalEntr());
-            ps.setBoolean(4, e.isSondageWeb());
-            ps.setBoolean(5, e.isRapportRendu());
-            ps.setBoolean(6, e.isSout());
-            ps.setBoolean(7, e.isPlanif());
-            ps.setBoolean(8, e.isFaite());
-            ps.setInt(9, e.getNoteTech());
-            ps.setInt(10, e.getNoteCom());
-            ps.setInt(11, e.getExcelId());
-            
-            ps.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(InternDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void updateExcel(Excel e) throws SQLException {
+        
+        String updateQuery = "UPDATE Excel SET cdc= ?, fiche_visite=?, fiche_eval_entr=?,"
+                + " sondage_web=?, rapport_rendu=?, sout=?, planif=?, faite=?, note_tech=?,"
+                + " note_com=? WHERE excel_id = ?";
+        PreparedStatement ps = conn.prepareStatement(updateQuery);
+        ps.setBoolean(1, e.getCdc());
+        ps.setBoolean(2, e.getFicheVisite());
+        ps.setBoolean(3, e.getFicheEvalEntr());
+        ps.setBoolean(4, e.getSondageWeb());
+        ps.setBoolean(5, e.getRapportRendu());
+        ps.setBoolean(6, e.getSout());
+        ps.setBoolean(7, e.getPlanif());
+        ps.setBoolean(8, e.getFaite());
+        ps.setInt(9, e.getNoteTech());
+        ps.setInt(10, e.getNoteCom());
+        ps.setInt(11, e.getExcelId());
+
+        ps.executeUpdate();
     }
     
     @Override
     public void updateInternshipInfo(InternshipInfo info) 
             throws SQLException {
         
-                String updateQuery = "UPDATE InternshipInfo SET description=?, tutor_comment=? WHERE internship_id=?";
-                PreparedStatement ps = conn.prepareStatement(updateQuery);
-                ps.setString(1, info.getDescription());
-                ps.setString(2, info.getTutorComment());
-                ps.setInt(3, info.getInternshipId());
+        String updateQuery = "UPDATE InternshipInfo SET description=?, tutor_comment=? WHERE internship_id=?";
+        PreparedStatement ps = conn.prepareStatement(updateQuery);
+        ps.setString(1, info.getDescription());
+        ps.setString(2, info.getTutorComment());
+        ps.setInt(3, info.getInternshipId());
 
-                ps.executeUpdate();
+        ps.executeUpdate();
     }
 }
