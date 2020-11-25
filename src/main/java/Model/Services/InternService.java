@@ -1,8 +1,12 @@
 package Model.Services;
 
+import Database.InternDAO;
+import Database.InternDAOImpl;
 import Model.Beans.Intern;
+import com.sun.xml.internal.ws.api.message.saaj.SAAJFactory;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  * Provides methods used to do CRUD operations on Intern object
@@ -26,5 +30,16 @@ public class InternService {
         intern.setLastName(rs.getString("LAST_NAME"));
         intern.setSchoolGroup(rs.getString("SCHOOLGROUP_NAME"));
         return intern;
+    }
+    
+    public ArrayList<String> getAllGroups() throws SQLException{
+        ArrayList<String> groups = new ArrayList<String>();
+        InternDAOImpl intern = new InternDAOImpl();
+        
+        ResultSet rs = intern.getAllGroups();
+        while(rs.next()){
+            groups.add(rs.getString("schoolGroup_name"));
+        }
+        return groups;
     }
 }

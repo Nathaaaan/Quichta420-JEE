@@ -47,12 +47,25 @@ and open the template in the editor.
 	margin-top: 2px;
 	font: 13px Arial, Helvetica, sans-serif;
 }
-.form-style-10 label{
+.form-style-10 div{
 	display: block;
 	font: 13px Arial, Helvetica, sans-serif;
 	color: #888;
 	margin-bottom: 15px;
 }
+
+#newCompany{
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#newCompany div:first-child{
+    color:#2a88ad;
+    font-size: 18px;
+}
+
 .form-style-10 input[type="text"],
 .form-style-10 input[type="date"],
 .form-style-10 input[type="datetime"],

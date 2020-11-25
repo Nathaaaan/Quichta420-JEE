@@ -111,4 +111,18 @@ public class InternDAOImpl implements InternDAO {
 
         ps.executeUpdate();
     }
+    
+    public ResultSet getAllCompanies() throws SQLException{
+        Statement st = conn.createStatement();
+        String query = "SELECT * FROM Company";
+        
+        return st.executeQuery(query);
+    }
+    
+    public ResultSet getAllGroups() throws SQLException{
+        Statement st = conn.createStatement();
+        String query = "SELECT * FROM SchoolGroup";
+        
+        return st.executeQuery(query);
+    }
 }
