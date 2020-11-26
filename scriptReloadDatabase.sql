@@ -180,3 +180,14 @@ INSERT INTO INTERNSHIPINFO(internship_id,company_id,master,start_date,end_date,d
  VALUES (7,2,'Bosh','2020-05-02','2020-08-20','description','meeting info');
 INSERT INTO INTERNSHIPINFO(internship_id,company_id,master,start_date,end_date,description,meeting_info)
  VALUES (8,1,'Oboy','2020-05-02','2020-08-20','description','meeting info');
+ 
+
+INSERT INTO KeyWord(key_word) VALUES('cle1');
+INSERT INTO KeyWord(key_word) VALUES('cle2');
+
+
+INSERT INTO IsKeyWord(key_word, internship_id) VALUES('cle1',1);
+INSERT INTO IsKeyWord(key_word, internship_id) VALUES('cle1',2);
+INSERT INTO IsKeyWord(key_word, internship_id) VALUES('cle1',3);
+INSERT INTO IsKeyWord(key_word, internship_id) VALUES('cle2',1);
+INSERT INTO IsKeyWord(key_word, internship_id) VALUES('cle2',4);
