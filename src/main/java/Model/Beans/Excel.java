@@ -111,13 +111,4 @@ public class Excel {
     public void setNoteCom(int noteCom) {
         this.noteCom = noteCom;
     }
-    
-    public static String getChecked(boolean bool){
-        if(bool){
-            return "checked";
-        }
-        else{
-            return "";
-        }
-    }
 }

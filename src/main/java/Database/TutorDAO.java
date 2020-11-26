@@ -1,6 +1,5 @@
 package Database;
 
-import Model.Beans.Tutor;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 

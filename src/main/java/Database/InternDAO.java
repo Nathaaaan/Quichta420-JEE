@@ -22,9 +22,7 @@ public interface InternDAO {
      */
     public ResultSet getAllByTutorId (int id) throws SQLException;
     public ResultSet getAssignByInternshipId(int id) throws SQLException;
-
     public ResultSet getAllByTutorIdAndYear(int id, String year) throws SQLException;
-
     public void updateExcel(Excel e)throws SQLException;
     public void updateInternshipInfo(InternshipInfo info) throws SQLException;
 
