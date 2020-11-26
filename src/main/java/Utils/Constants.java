@@ -34,6 +34,7 @@ public class Constants {
     public static final String STUDENT_PAGE = "/WEB-INF/StudentInfo.jsp";
     public static final String HEADER = "/WEB-INF/Header.jspf";
     public static final String ADD_STUDENT_PAGE = "/WEB-INF/NewStudent.jsp";
+    public static final String KEY_WORDS_PAGE = "/WEB-INF/KeyWords.jsp";
     
     //controllers
     public static final String LOGIN_CONTROLLER = "/LoginController";
@@ -43,4 +44,8 @@ public class Constants {
     
     //database access credentials
     public static final String DB_CRED="/WEB-INF/db.properties";
+    
+    //ManageKeyWords action
+    public static final int ACTION_DELETE = 1;
+    public static final int ACTION_ADD = 2;
 }

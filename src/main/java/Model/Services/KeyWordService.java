@@ -41,4 +41,44 @@ public class KeyWordService {
         
         return keyWords;
     }
+    
+    public ArrayList<String> getAllKeyWordsOf(int id) throws SQLException{
+        ArrayList<String> keyWords = new ArrayList<String>();
+        InternDAOImpl inter = new InternDAOImpl();
+        ResultSet rs = inter.getAllKeyWordsOf(id);
+        
+        while(rs.next()){
+            keyWords.add(rs.getString("key_word"));
+        }
+        
+        return keyWords;
+    }
+    
+    public ArrayList<String> getAllKeyWordsExceptOf(int id) throws SQLException{
+        ArrayList<String> keyWords = new ArrayList<String>();
+        InternDAOImpl inter = new InternDAOImpl();
+        ResultSet rs = inter.getAllKeyWordsExceptOf(id);
+        
+        while(rs.next()){
+            keyWords.add(rs.getString("key_word"));
+        }
+        
+        return keyWords;
+    }
+    
+    public void removeKeyWord(String keyWord, int id) throws SQLException{
+        InternDAOImpl inter = new InternDAOImpl();
+        inter.removeKeyWord(keyWord,id);
+    }
+    
+    public void insertKeyWord(String keyWord, int id) throws SQLException{
+        InternDAOImpl inter = new InternDAOImpl();
+        inter.insertKeyWord(keyWord);
+        addKeyWord(keyWord,id);
+    }
+    
+    public void addKeyWord(String keyWord, int id) throws SQLException{
+        InternDAOImpl inter = new InternDAOImpl();
+        inter.addKeyWord(keyWord,id);
+    }
 }

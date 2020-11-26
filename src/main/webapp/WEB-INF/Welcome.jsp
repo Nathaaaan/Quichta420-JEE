@@ -62,7 +62,7 @@
                         <th class="tdAddr">Adresse</th>
                         <th class="tdNote">Note tech</th>
                         <th class="tdNote">Note com</th>
-
+                        <th class="tdMotCle">Mot clés</th>
                         <th class="tdActions" colspan="3">Actions</th>
                     </tr>
                     
@@ -127,8 +127,12 @@
                                 <td class="tdNote">
                                     <input name="noteCom" type="text" value=<c:out value="${assign.excel.noteCom}"/> />
                                 </td>
-
-                                <td class="tdActions"> <input type="submit" value="Mise à jour" /> </td>
+                                <td class="tdMotCle">
+                                    <a href="ViewKeyWords?internship_id=${assign.excel.internshipId}">Mot clés</a>
+                                </td>
+                                <td class="tdActions">
+                                    <input type="submit" value="Mise à jour" />
+                                </td>
                             </tr>
                             <input type="hidden" value=<c:out value="${assign.excel.internshipId}"/> name="excelId" />
                         </form>

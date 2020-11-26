@@ -142,7 +142,7 @@ body{
 }
 
 .container-list{
-    width: 2800px;
+    width: 2900px;
     margin-left: 30px;
 }
 
@@ -161,4 +161,18 @@ body{
     color:black;
     font-size:16px;
     border-radius: 5px;
+}
+
+.tdMotCle{
+    width: 80px;
+}
+
+.tdMotCle a{
+    text-decoration: none;
+    color: black;
+    background: #e1e1e1;
+    border: 1px solid #adadad;
+    font-size: 14px;
+    padding-left: 10px;
+    padding-right: 10px;
 }

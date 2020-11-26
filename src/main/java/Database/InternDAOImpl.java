@@ -208,4 +208,41 @@ public class InternDAOImpl implements InternDAO {
         
         return ps.executeQuery();
     }
+    
+    public ResultSet getAllKeyWordsOf(int id) throws SQLException{
+        String query = "SELECT key_word FROM IsKeyWord WHERE internship_id = "+id;
+        Statement stmt = conn.createStatement();
+        
+        return stmt.executeQuery(query);
+    }
+    
+    public ResultSet getAllKeyWordsExceptOf(int id) throws SQLException{
+        String query = "SELECT DISTINCT key_word FROM KeyWord WHERE key_word NOT IN (SELECT key_word FROM IsKeyWord WHERE internship_id = ?)";
+        PreparedStatement ps = conn.prepareStatement(query);
+        ps.setInt(1, id);
+        return ps.executeQuery();
+    }
+    
+    public void insertKeyWord(String keyWord) throws SQLException{
+        String query = "INSERT INTO KeyWord(key_word) VALUES(?)";
+        PreparedStatement ps = conn.prepareStatement(query);
+        ps.setString(1, keyWord);
+        ps.executeUpdate();
+    }
+    
+    public void removeKeyWord(String keyWord, int id) throws SQLException{
+        String query = "DELETE FROM IsKeyWord WHERE key_word=? AND internship_id=?";
+        PreparedStatement ps = conn.prepareStatement(query);
+        ps.setString(1, keyWord);
+        ps.setInt(2, id);
+        ps.executeUpdate();
+    }
+    
+    public void addKeyWord(String keyWord, int id) throws SQLException{
+        String query = "INSERT INTO IsKeyWord(key_word,internship_id) VALUES(?,?)";
+        PreparedStatement ps = conn.prepareStatement(query);
+        ps.setString(1, keyWord);
+        ps.setInt(2, id);
+        ps.executeUpdate();
+    }
 }

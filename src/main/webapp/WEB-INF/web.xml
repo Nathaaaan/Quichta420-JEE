@@ -12,6 +12,14 @@
         <servlet-name>UpdateInternshipInfos</servlet-name>
         <servlet-class>Controllers.UpdateInternshipInfos</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewKeyWords</servlet-name>
+        <servlet-class>Controllers.ViewKeyWords</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManageKeyWords</servlet-name>
+        <servlet-class>Controllers.ManageKeyWords</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UpdateInternshipInfos</servlet-name>
         <url-pattern>/UpdateInternshipInfos</url-pattern>
@@ -55,6 +63,14 @@
     <servlet-mapping>
         <servlet-name>NewStudent</servlet-name>
         <url-pattern>/NewStudent</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewKeyWords</servlet-name>
+        <url-pattern>/ViewKeyWords</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManageKeyWords</servlet-name>
+        <url-pattern>/ManageKeyWords</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

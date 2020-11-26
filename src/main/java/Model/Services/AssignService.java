@@ -76,4 +76,11 @@ public class AssignService {
         info.setInternshipId(internshipId);
         internDAOImpl.insertInternshipInfo(info);
     }
+    
+    public Assign getAssignByInternshipId(int id) throws SQLException{
+        InternDAOImpl inter = new InternDAOImpl();
+        ResultSet rs = inter.getAssignByInternshipId(id);
+        rs.next();
+        return createAssignModel(rs);
+    }
 }

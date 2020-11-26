@@ -42,9 +42,7 @@ public class ViewStudentInfo extends HttpServlet {
         try {
             InternDAOImpl internDaoImpl = new InternDAOImpl();
             AssignService assignService = new AssignService();
-            ResultSet rs = internDaoImpl.getAssignByInternshipId(internshipId);
-            rs.next();
-            Assign assign = assignService.createAssignModel(rs);
+            Assign assign = assignService.getAssignByInternshipId(internshipId);
             
             Intern intern = assign.getIntern();
             InternshipInfo info = assign.getInternshipInfo();
