@@ -6,8 +6,10 @@
 package Controllers;
 
 import Model.Beans.Assign;
+import Model.Beans.KeyWord;
 import Model.Beans.Tutor;
 import Model.Services.AssignService;
+import Model.Services.KeyWordService;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -28,9 +30,6 @@ import static Utils.Constants.*;
 @WebServlet(name = "WelcomeController", urlPatterns = {"/WelcomeController"})
 public class WelcomeController extends HttpServlet {
 
-    
-    private ArrayList<Assign> assignList;
-
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -45,15 +44,7 @@ public class WelcomeController extends HttpServlet {
 
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -61,7 +52,8 @@ public class WelcomeController extends HttpServlet {
 
         try {
             Tutor tutor = (Tutor)request.getSession().getAttribute("user");
-            assignList = new AssignService().getAllByTutorId(tutor.getId());
+            
+            ArrayList<Assign> assignList = new AssignService().getAllByTutorId(tutor.getId());
             
             request.setAttribute("keyExcel", assignList);
 
@@ -73,25 +65,85 @@ public class WelcomeController extends HttpServlet {
 
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            //processRequest(request, response);
+            String search = request.getParameter("search");
+            System.out.println(search);
+            Tutor tutor = (Tutor)request.getSession().getAttribute("user");
+            ArrayList<Assign> assignList = new AssignService().getAllByTutorId(tutor.getId());
+            
+            ArrayList<Assign> assignSearch = searchPerform(search.toLowerCase(),assignList);
+            
+            request.setAttribute("keyExcel", assignSearch);
+            request.getRequestDispatcher(WELCOME_PAGE).forward(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(WelcomeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
+    public ArrayList<Assign> searchPerform(String search,ArrayList<Assign> assignList){
+        try {
+            if(search.equals("")){
+                return assignList;
+            }
+            
+            ArrayList<Integer> internshipIds = new ArrayList<Integer>();
+            KeyWordService keyWordService = new KeyWordService();
+            ArrayList<KeyWord> keyWords = keyWordService.getAllKeyWords();
+            
+            for(KeyWord keyWord : keyWords){
+                if(keyWord.getWord().toLowerCase().contains(search) || search.contains(keyWord.getWord().toLowerCase())){
+                    for(int id : keyWord.getInternship_ids()){
+                        internshipIds.add(id);
+                    }
+                }
+            }
+            
+            ArrayList assignSearch = new ArrayList<Assign>();
+            
+            for(Assign assign : assignList){
+                String firstName = assign.getIntern().getFirstName().toLowerCase();
+                String lastName = assign.getIntern().getLastName().toLowerCase();
+                String companyName = assign.getInternshipInfo().getCompany().getCompanyName().toLowerCase();
+                String master = assign.getInternshipInfo().getMaster().toLowerCase();
+                String startYear = ""+(assign.getInternshipInfo().getDateDebut().getYear()+1900);
+                String endYear = ""+(assign.getInternshipInfo().getDateFin().getYear()+1900);
+                
+                if(internshipIds.contains(assign.getInternshipInfo().getInternshipId())){
+                    assignSearch.add(assign);
+                }
+                else if(firstName.contains(search) || search.contains(firstName)){
+                    assignSearch.add(assign);
+                }
+                else if(lastName.contains(search) || search.contains(lastName)){
+                    assignSearch.add(assign);
+                }
+                else if(companyName.contains(search) || search.contains(companyName)){
+                    assignSearch.add(assign);
+                }
+                else if(master.contains(search) || search.contains(master)){
+                    assignSearch.add(assign);
+                }
+                else if(search.contains(startYear)){
+                    assignSearch.add(assign);
+                }
+                else if(search.contains(endYear)){
+                    assignSearch.add(assign);
+                }
+            }
+            
+            return assignSearch;
+        } catch (SQLException ex) {
+            Logger.getLogger(WelcomeController.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
+    
     @Override
     public String getServletInfo() {
         return "Short description";

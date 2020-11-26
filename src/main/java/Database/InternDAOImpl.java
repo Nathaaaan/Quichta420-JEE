@@ -193,4 +193,19 @@ public class InternDAOImpl implements InternDAO {
         ps.setDate(5, info.getDateFin());
         ps.executeUpdate();
     }
+    
+    public ResultSet getAllKeyWords() throws SQLException{
+        String query = "SELECT * FROM KeyWord";
+        Statement st = conn.createStatement();
+        
+        return st.executeQuery(query);
+    }
+    
+    public ResultSet getInternshipIdByKeyWord(String word) throws SQLException{
+        String query = "SELECT internship_id FROM IsKeyWord WHERE key_word=?";
+        PreparedStatement ps = conn.prepareStatement(query);
+        ps.setString(1, word);
+        
+        return ps.executeQuery();
+    }
 }

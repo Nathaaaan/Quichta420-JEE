@@ -122,20 +122,18 @@ body{
     margin-top: 20px;
 }
 
-.search{
+.searchForm{
     display: flex;
     justify-content: center;
-}
-
-.searchForm{
-    display: inherit;
+    align-items: center;
 }
 
 .searchSubmit{
-    margin-top: 3px;
+    border-radius: 5px;
+    padding:8px;
 }
 
-.search input{
+.search input[type="text"]{
     border-radius: 5px;
     width: 50%;
     height: 30px;

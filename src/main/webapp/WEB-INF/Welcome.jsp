@@ -35,8 +35,8 @@
                 <h2>Liste des étudiants :</h2>
 
                 <div class="search">
-                    <form class="searchForm" name="SearchForm" action="SearchController" method="POST">
-                        <input type="text" placeholder="search box" name="SearchInput"/>
+                    <form class="searchForm" name="SearchForm" action="WelcomeController" method="POST">
+                        <input type="text" placeholder="search box" name="search"/>
                         <input class="searchSubmit" type="submit" name="SendButton" value="Search"/>
                     </form>
                 </div>
