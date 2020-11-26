@@ -18,7 +18,7 @@
 
     <nav>
         <ul>
-            <li> <a><c:out value="<${requestScope.user.name}"/></a> </li>
+            <li> <a><c:out value="${sessionScope.user.name}"/></a> </li>
             <li> <a>|</a></li>
             <li> <a href="LogOut">Logout</a></li>
         </ul>
