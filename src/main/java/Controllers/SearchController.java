@@ -98,13 +98,9 @@ public class SearchController extends HttpServlet {
                    Logger.getLogger(SearchController.class.getName()).log(Level.SEVERE, null, ex);
                }
                 
-               
                 //- We can now gather Internship ID of the stuff
                //- We can now select that Internship Info
-               
-               
            }
-       
        }
     }
 

@@ -23,7 +23,7 @@
         <link href="style_welcome.css" rel="stylesheet">
     </head>
     <body>
-        <!-- This line import header we have to put it in all the jsp page wich have the header instead of copy paste it-->
+        <!-- This line import header we have to put it in all the jsp page which have the header instead of copy paste it-->
         <%@include file="Header.jspf"%>
 
         <div class="welcome-container">
@@ -133,42 +133,6 @@
                             <input type="hidden" value=<c:out value="${assign.excel.internshipId}"/> name="excelId" />
                         </form>
                     </c:forEach>
-
-                    <%--
-                        ArrayList<Assign> assigns = (ArrayList<Assign>)request.getAttribute("keyExcel");
-                        
-                        for(Assign assign : assigns){
-                            InternshipInfo info = assign.getInternshipInfo();
-                            Excel excel = info.getExcel();
-                            Intern intern = assign.getIntern();
-                            Company company = info.getCompany();
-                            
-                            out.println("<form method=\"POST\" action=\"UpdateInfos\">");
-                                out.println("<tr>");
-                                    out.println("<td><a class=\"detailsBtn\" href=\"ViewStudentInfo?internshipId="+info.getInternshipId()
-                                    +"\"><img src=\"images/iconeDetails.png\"/></a></td>");
-                                    out.println("<td class=\"tdGr\">"+intern.getSchoolGroup()+"</td>");
-                                    out.println("<td class=\"tdLa\">"+intern.getLastName()+"</td>");
-                                    out.println("<td class=\"tdNa\">"+intern.getFirstName()+"</td>");
-                                    out.println("<td class=\"tdCb\"><input name=\""+Constants.UP_CDC+"\" type=\"checkbox\""+Excel.getChecked(excel.getCdc())+"/></td>");
-                                    out.println("<td class=\"tdCb\"><input name=\""+Constants.UP_FICHE_VISITE+"\" type=\"checkbox\""+Excel.getChecked(excel.getFicheVisite())+"/></td>");
-                                    out.println("<td class=\"tdCb\"><input name=\""+Constants.UP_FICHE_EVAL+"\" type=\"checkbox\""+Excel.getChecked(excel.getFicheEvalEntr())+"/></td>");
-                                    out.println("<td class=\"tdCb\"><input name=\""+Constants.UP_SONDAGE_WEB+"\" type=\"checkbox\""+Excel.getChecked(excel.getSondageWeb())+"/></td>");
-                                    out.println("<td class=\"tdCb\"><input name=\""+Constants.UP_RAPPORT_RENDU+"\" type=\"checkbox\""+Excel.getChecked(excel.getRapportRendu())+"/></td>");
-                                    out.println("<td class=\"tdCb\"><input name=\""+Constants.UP_SOUT+"\" type=\"checkbox\""+Excel.getChecked(excel.getSout())+"/></td>");
-                                    out.println("<td class=\"tdCb\"><input name=\""+Constants.UP_PLANIF+"\" type=\"checkbox\""+Excel.getChecked(excel.getPlanif())+"/></td>");
-                                    out.println("<td class=\"tdCb\"><input name=\""+Constants.UP_FAITE+"\" type=\"checkbox\""+Excel.getChecked(excel.getFaite())+"/></td>");
-                                    out.println("<td class=\"tdEtr\">"+company.getCompanyName()+"</td>");
-                                    out.println("<td class=\"tdMdS\">"+info.getMaster()+"</td>");
-                                    out.println("<td class=\"tdAddr\">"+company.getCompanyAddress()+"</td>");
-                                    out.println("<td class=\"tdNote\"><input type=\"text\" name=\""+Constants.UP_NOTE_TECH+"\" value=\""+excel.getNoteTech()+"\"</td>");
-                                    out.println("<td class=\"tdNote\"><input type=\"text\" name=\""+Constants.UP_NOTE_COM+"\" value=\""+excel.getNoteCom()+"\"</td>");
-                                    out.println("<td> <input type=\"submit\" value=\"Mis à jour\" /> </td>");
-                                  out.println("</tr>");
-                                  out.println("<input type=\"hidden\" value=\""+excel.getExcelId()+"\" name=\""+Constants.UP_EXCEL_ID+"\" />");
-                              out.println("</form>");
-                        }
-                    --%>
                 </table>
             </div>
 

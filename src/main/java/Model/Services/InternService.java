@@ -1,6 +1,6 @@
 package Model.Services;
 
-import Database.InternDAO;
+
 import Database.InternDAOImpl;
 import Model.Beans.Intern;
 import java.sql.ResultSet;
