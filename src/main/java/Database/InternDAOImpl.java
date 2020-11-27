@@ -1,6 +1,7 @@
 package Database;
 
 
+import Entities.AssignEntity;
 import Entities.CompanyEntity;
 import Entities.TutorEntity;
 import Model.Beans.Company;
@@ -31,9 +32,12 @@ import javax.persistence.TypedQuery;
 public class InternDAOImpl implements InternDAO {
     private final Connection conn;
     private Statement stmt;
+    
     private EntityManagerFactory emf;
     private EntityManager em;
     
+    private static final String JQL_SELECT_BY_TUTOR_ID ="SELECT a FROM AssignEntity a WHERE t.tutorEntity.tutorId = :id";
+    private static final String TUTOR_ID_PARAM ="id";
     public InternDAOImpl(){
         conn = DB.getCo();
     }
@@ -46,9 +50,9 @@ public class InternDAOImpl implements InternDAO {
      * @see Model.Services.AssignService
      */
     @Override
-    public ResultSet getAllByTutorId(int id) throws SQLException {
+    public Collection<AssignEntity> getAllByTutorId(int id) {
         //the try catch close will automatically close the connection 
-        stmt = conn.createStatement();
+        /*stmt = conn.createStatement();
         String queryCount = "SELECT INTERN.*, INTERNSHIPINFO.*, EXCEL.*, COMPANY.* "
             + "FROM ASSIGN "
             + "INNER JOIN INTERN ON ASSIGN.INTERN_ID = INTERN.INTERN_ID "
@@ -56,7 +60,17 @@ public class InternDAOImpl implements InternDAO {
             + "INNER JOIN EXCEL ON ASSIGN.INTERNSHIP_ID = EXCEL.INTERNSHIP_ID "
             + "INNER JOIN COMPANY ON INTERNSHIPINFO.COMPANY_ID = COMPANY.COMPANY_ID "
             + "WHERE ASSIGN.TUTOR_ID = "+ id;
-        return stmt.executeQuery(queryCount);
+        return stmt.executeQuery(queryCount);*/
+        try{
+            emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+            em = emf.createEntityManager();
+            TypedQuery<AssignEntity> query = em.createQuery(JQL_SELECT_BY_TUTOR_ID,AssignEntity.class);
+            query.setParameter(TUTOR_ID_PARAM, id);
+            
+            return query.getResultList();
+        }catch (NoResultException e){
+            return null;
+        }
     }
    
     

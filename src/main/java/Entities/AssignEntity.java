@@ -46,10 +46,10 @@ public class AssignEntity implements Serializable {
     private InternshipinfoEntity internshipinfoEntity;
     @JoinColumn(name = "INTERN_ID", referencedColumnName = "INTERN_ID")
     @ManyToOne
-    private InternEntity internId;
+    private InternEntity internEntity;
     @JoinColumn(name = "TUTOR_ID", referencedColumnName = "TUTOR_ID")
     @ManyToOne
-    private TutorEntity tutorId;
+    private TutorEntity tutorEntity;
 
     public AssignEntity() {
     }
@@ -90,20 +90,20 @@ public class AssignEntity implements Serializable {
         this.internshipinfoEntity = internshipinfoEntity;
     }
 
-    public InternEntity getInternId() {
-        return internId;
+    public InternEntity getinternEntity() {
+        return internEntity;
     }
 
-    public void setInternId(InternEntity internId) {
-        this.internId = internId;
+    public void setinternEntity(InternEntity internEntity) {
+        this.internEntity = internEntity;
     }
 
-    public TutorEntity getTutorId() {
-        return tutorId;
+    public TutorEntity getTutorEntity() {
+        return tutorEntity;
     }
 
-    public void setTutorId(TutorEntity tutorId) {
-        this.tutorId = tutorId;
+    public void setTutorEntity(TutorEntity tutorEntity) {
+        this.tutorEntity = tutorEntity;
     }
 
     @Override

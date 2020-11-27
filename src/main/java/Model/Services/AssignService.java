@@ -2,13 +2,14 @@ package Model.Services;
 
 import Database.InternDAO;
 import Database.InternDAOImpl;
+import Entities.AssignEntity;
 import Model.Beans.Assign;
-import Model.Beans.Excel;
 import Model.Beans.InternshipInfo;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javax.ejb.EJB;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * Provides methods used to do CRUD operations on Assign object
@@ -43,9 +44,11 @@ public class AssignService {
      * @throws SQLException 
      */
     public ArrayList<Assign> getAllByTutorId(int tutorId) throws SQLException{
+        
         ArrayList<Assign> assignList=new ArrayList<Assign>();
         InternDAO internDAO = new InternDAOImpl();
-        ResultSet rs = internDAO.getAllByTutorId(tutorId);
+        List<AssignEntity> assignEntityList = internDAO.getAllByTutorId(tutorId);
+        
         int i = 0;
         while(rs.next()){
             assignList.add(createAssignModel(rs));
