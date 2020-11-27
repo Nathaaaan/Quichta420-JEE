@@ -2,6 +2,7 @@ package Model.Services;
 
 
 import Database.InternDAOImpl;
+import Entities.InternEntity;
 import Model.Beans.Intern;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,12 +23,12 @@ public class InternService {
      * @return Intern object (Bean)
      * @throws SQLException 
      */
-    public Intern createInternModel(ResultSet rs) throws SQLException {
+    public Intern createInternModel(InternEntity ie) throws SQLException {
         Intern intern = new Intern();
-        intern.setId(rs.getInt("INTERN_ID"));
-        intern.setFirstName(rs.getString("FIRST_NAME"));
-        intern.setLastName(rs.getString("LAST_NAME"));
-        intern.setSchoolGroup(rs.getString("SCHOOLGROUP_NAME"));
+        intern.setId(ie.getInternId());
+        intern.setFirstName(ie.getFirstName());
+        intern.setLastName(ie.getLastName());
+        intern.setSchoolGroup(ie.getSchoolgroupName());
         return intern;
     }
     

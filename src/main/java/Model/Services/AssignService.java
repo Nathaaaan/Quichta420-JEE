@@ -8,6 +8,7 @@ import Model.Beans.InternshipInfo;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.ejb.EJB;
 
 /**
  * Provides methods used to do CRUD operations on Assign object
@@ -15,6 +16,8 @@ import java.util.ArrayList;
  * @author Andriatiana Victor
  */
 public class AssignService {
+    
+    InternDAOImpl internDAO;
     
     /**
      * Creates an Assign model from a ResultSet Object.

@@ -48,4 +48,7 @@ public class Constants {
     //ManageKeyWords action
     public static final int ACTION_DELETE = 1;
     public static final int ACTION_ADD = 2;
+        
+    //Persistence unit
+    public static final String PERSISTENCE_UNIT="persistence_unit";
 }

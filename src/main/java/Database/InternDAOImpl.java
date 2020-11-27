@@ -1,15 +1,25 @@
 package Database;
 
 
+import Entities.CompanyEntity;
+import Entities.TutorEntity;
 import Model.Beans.Company;
 import Model.Beans.Excel;
 import Model.Beans.Intern;
 import Model.Beans.InternshipInfo;
+import static Utils.Constants.PERSISTENCE_UNIT;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Collection;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  * A Data access object used for doing basic CRUD operations on Interns and 
@@ -21,6 +31,8 @@ import java.sql.Statement;
 public class InternDAOImpl implements InternDAO {
     private final Connection conn;
     private Statement stmt;
+    private EntityManagerFactory emf;
+    private EntityManager em;
     
     public InternDAOImpl(){
         conn = DB.getCo();
@@ -165,10 +177,16 @@ public class InternDAOImpl implements InternDAO {
         return (int) rs.getLong(1);
     }
     
-    public ResultSet getCompanyById(int id) throws SQLException{
-        String query = "SELECT * FROM Company WHERE company_id = "+id;
-        Statement st = conn.createStatement();
-        return st.executeQuery(query);
+    public CompanyEntity getCompanyById(int id) throws SQLException{
+        try{
+            emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+            em = emf.createEntityManager();
+            Query query = em.createNamedQuery("CompanyEntity.findByCompanyId");
+            
+            return (CompanyEntity)query.getSingleResult();
+        }catch (NoResultException e){
+            return null;
+        }
     }
     
     public int insertAssign(int internId, int tutorId) throws SQLException{

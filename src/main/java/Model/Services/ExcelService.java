@@ -1,5 +1,6 @@
 package Model.Services;
 
+import Entities.ExcelEntity;
 import Model.Beans.Excel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,19 +21,19 @@ public class ExcelService {
      * @return Excel object (Bean)
      * @throws SQLException 
      */
-    public Excel createExcelModel (ResultSet rs)throws SQLException{
+    public Excel createExcelModel (ExcelEntity ee)throws SQLException{
         Excel studentInfo = new Excel();
-        studentInfo.setInternshipId(rs.getInt("INTERNSHIP_ID"));
-        studentInfo.setCdc(rs.getBoolean("CDC"));
-        studentInfo.setFicheVisite(rs.getBoolean("FICHE_VISITE"));
-        studentInfo.setFicheEvalEntr(rs.getBoolean("FICHE_EVAL_ENTR"));
-        studentInfo.setSondageWeb(rs.getBoolean("SONDAGE_WEB"));
-        studentInfo.setRapportRendu(rs.getBoolean("RAPPORT_RENDU"));
-        studentInfo.setSout(rs.getBoolean("SOUT"));
-        studentInfo.setPlanif(rs.getBoolean("PLANIF"));
-        studentInfo.setFaite(rs.getBoolean("FAITE"));
-        studentInfo.setNoteTech(rs.getInt("NOTE_TECH"));
-        studentInfo.setNoteCom(rs.getInt("NOTE_COM"));
+        studentInfo.setInternshipId(ee.getInternshipId());
+        studentInfo.setCdc(ee.getCdc());
+        studentInfo.setFicheVisite(ee.getFicheVisite());
+        studentInfo.setFicheEvalEntr(ee.getFicheEvalEntr());
+        studentInfo.setSondageWeb(ee.getSondageWeb());
+        studentInfo.setRapportRendu(ee.getRapportRendu());
+        studentInfo.setSout(ee.getSout());
+        studentInfo.setPlanif(ee.getPlanif());
+        studentInfo.setFaite(ee.getFaite());
+        studentInfo.setNoteTech(ee.getNoteTech());
+        studentInfo.setNoteCom(ee.getNoteCom());
         
         return studentInfo;
     }

@@ -16,7 +16,6 @@ import static Utils.Constants.*;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import sun.security.pkcs11.wrapper.Functions;
 
 /**
  *
@@ -51,20 +50,21 @@ public class LoginController extends HttpServlet {
             throws ServletException, IOException {
         
         try{
-
-            //POST METHOD
+            UserService us = new UserService();
+            
             //Retrieve what the user has entered
             String userLoginInput = request.getParameter(LOGIN_USER);
             String userPasswordInput = request.getParameter(LOGIN_PWD);
             
-            //Now let's check the validity of the credentials on the database
-            if(UserService.isGoodCredentials(userLoginInput, userPasswordInput)){
-                //User is logged
-                request.setAttribute("keyTutorUser", UserService.getByCredentials(userLoginInput, userPasswordInput));
-                request.getSession().setAttribute("user", UserService.getByCredentials(userLoginInput, userPasswordInput));
+            System.out.println("In login, tutor : "+ us.getByCredentials(userLoginInput, userPasswordInput).getName());
+            //If credentials are in database
+            if(us.isGoodCredentials(userLoginInput, userPasswordInput)){
+                
+                request.setAttribute("keyTutorUser", us.getByCredentials(userLoginInput, userPasswordInput));
+                request.getSession().setAttribute("user", us.getByCredentials(userLoginInput, userPasswordInput));
                 //request.getRequestDispatcher(WELCOME_PAGE).forward(request, response);
                 response.sendRedirect("WelcomeController");
-
+                
             } else{
                 //Invalid Login : Redirect to the login page and set KeyErrMess in order to display it
                 request.setAttribute("KeyErrMess", "Invalid Login or Password");

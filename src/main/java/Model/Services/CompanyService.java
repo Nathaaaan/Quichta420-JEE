@@ -5,7 +5,11 @@
  */
 package Model.Services;
 
+import Database.InternDAO;
 import Database.InternDAOImpl;
+import Database.TutorDAO;
+import Database.TutorDAOImpl;
+import Entities.CompanyEntity;
 import Model.Beans.Company;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,16 +21,16 @@ import java.util.ArrayList;
  */
 public class CompanyService {
     
-    public Company createCompany(ResultSet rs) throws SQLException{
+    public Company createCompany(CompanyEntity ce) throws SQLException{
         Company company = new Company();
-        company.setCompanyId(rs.getInt("company_id"));
-        company.setCompanyName(rs.getString("company_name"));
-        company.setCompanyAddress(rs.getString("company_adress"));
+        company.setCompanyId(ce.getCompanyId());
+        company.setCompanyName(ce.getCompanyName());
+        company.setCompanyAddress(ce.getCompanyAdress());
         
         return company;
     }
     
-    public ArrayList<Company> getAllCompany() throws SQLException{
+    /*public ArrayList<Company> getAllCompany() throws SQLException{
         InternDAOImpl intern = new InternDAOImpl();
         ResultSet rs = intern.getAllCompanies();
         
@@ -37,12 +41,16 @@ public class CompanyService {
         }
         
         return companies;
-    }
+    }*/
     
     public Company getCompanyById(int id) throws SQLException{
-        InternDAOImpl intern = new InternDAOImpl();
-        ResultSet rs = intern.getCompanyById(id);
-        rs.next();
-        return createCompany(rs);
+        InternDAO internDAO=new InternDAOImpl();
+        CompanyEntity ce = internDAO.getCompanyById(id);
+        
+        if(ce!= null){
+            return createCompany(ce);
+        }else{
+            return null;
+        }
     }
 }

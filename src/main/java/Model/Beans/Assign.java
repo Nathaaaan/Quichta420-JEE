@@ -2,7 +2,7 @@ package Model.Beans;
 
 
 /**
- *
+ * 
  * @author Gohu
  */
 public class Assign {
@@ -11,7 +11,7 @@ public class Assign {
     private Intern intern;
     private InternshipInfo internshipInfo;
     private Excel excel;
-
+    
     public Excel getExcel() {
         return excel;
     }

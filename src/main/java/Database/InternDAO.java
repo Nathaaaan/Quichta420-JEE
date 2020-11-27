@@ -1,5 +1,6 @@
 package Database;
 
+import Entities.CompanyEntity;
 import Model.Beans.Excel;
 import Model.Beans.InternshipInfo;
 import java.sql.ResultSet;
@@ -25,5 +26,5 @@ public interface InternDAO {
     public ResultSet getAllByTutorIdAndYear(int id, String year) throws SQLException;
     public void updateExcel(Excel e)throws SQLException;
     public void updateInternshipInfo(InternshipInfo info) throws SQLException;
-
+    public CompanyEntity getCompanyById(int id) throws SQLException;
 }

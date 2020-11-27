@@ -1,7 +1,10 @@
 package Database;
 
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -43,4 +46,22 @@ public class DB {
         USER = prop.getProperty("db_user");
         PASS = prop.getProperty("db_pass");
     }
+    
+    public static void HikaruConfig(InputStream properties)throws IOException{
+        
+        Properties props = new Properties();
+        Properties prop = new Properties();
+        InputStream input = properties;
+        prop.load(input);
+        
+        props.setProperty("dataSourceClassName", "org.apache.derby.jdbc.ClientDataSource");
+        props.setProperty("dataSource.user", prop.getProperty("db_user"));
+        props.setProperty("dataSource.password", prop.getProperty("db_pass"));
+        props.setProperty("dataSource.databaseName", "ST2EEDB");
+        props.put("dataSource.logWriter", new PrintWriter(System.out));
+
+        HikariConfig config = new HikariConfig(props);
+        HikariDataSource ds = new HikariDataSource(config);
+    }
+    
 }

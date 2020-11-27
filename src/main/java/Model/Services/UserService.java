@@ -2,10 +2,9 @@ package Model.Services;
 
 import Database.TutorDAO;
 import Database.TutorDAOImpl;
+import Entities.TutorEntity;
 import Model.Beans.Tutor;
 import java.sql.SQLException;
-import java.sql.ResultSet;
-
 /**
  * Provides methods used to do CRUD operations on Tutor object (the user)
  * object to and from the database.
@@ -13,31 +12,29 @@ import java.sql.ResultSet;
  */
 public class UserService {
     
+    
+    TutorDAO tutorDAO;
+    
     /**
      * Provides a Tutor model from the given credentials information if it 
      * exists in the database. The method will return null if not.
      * @param userLoginInput
      * @param userPasswordInput
      * @return Tutor object (Bean)
-     * @throws RuntimeException
-     * @throws SQLException 
      */
-    public static Tutor getByCredentials(String userLoginInput, String userPasswordInput) throws RuntimeException,SQLException{
+    public Tutor getByCredentials(String userLoginInput, String userPasswordInput){
+        tutorDAO=new TutorDAOImpl();
+        TutorEntity tutorEntity = tutorDAO.getByCredentials(userLoginInput, userPasswordInput);
+        System.out.println("tutorEntity :"+ tutorEntity.getFirstName());
         
-        TutorDAO tutorDAO = new TutorDAOImpl();
-        ResultSet rs = tutorDAO.getByCredentials(userLoginInput, userPasswordInput);
-        
-        //Si le nombre de rows est supérieur à 0, alors ça signifie que l'input est bon
-        if (rs.next()) {
-            
+        if (tutorEntity!=null) {
             Tutor TutorUser = new Tutor();
-            TutorUser.setId(rs.getInt("TUTOR_ID"));
-            TutorUser.setName(rs.getString("FIRST_NAME"));
-            TutorUser.setLastName(rs.getString("LAST_NAME"));
-            TutorUser.setLogin(rs.getString("LOGIN"));
-            TutorUser.setPassword(rs.getString("PASSWORD"));
+            TutorUser.setId(tutorEntity.getTutorId());
+            TutorUser.setName(tutorEntity.getFirstName());
+            TutorUser.setLastName(tutorEntity.getLastName());
+            TutorUser.setLogin(tutorEntity.getLogin());
+            TutorUser.setPassword(tutorEntity.getPassword());
             return TutorUser;
-            
         } else {
             return null;
         }
@@ -51,7 +48,7 @@ public class UserService {
      * @throws RuntimeException
      * @throws SQLException 
      */
-    public static boolean isGoodCredentials(String userLoginInput, String userPasswordInput)throws RuntimeException,SQLException{
+    public boolean isGoodCredentials(String userLoginInput, String userPasswordInput)throws RuntimeException,SQLException{
         return getByCredentials(userLoginInput, userPasswordInput)!= null;
     }
 }

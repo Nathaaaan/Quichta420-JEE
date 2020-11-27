@@ -1,10 +1,14 @@
 package Database;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import Entities.TutorEntity;
+import static Utils.Constants.PERSISTENCE_UNIT;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
+import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  * A Data access object used for doing basic CRUD operations on Tutor table from
@@ -13,12 +17,18 @@ import java.sql.Statement;
  * Implementation of the TutorDAO interface.
  * @author Andriatiana Victor
  */
+
 public class TutorDAOImpl implements TutorDAO{
-    private final Connection conn;
-    private Statement stmt;
     
+    //@PersistenceContext( unitName = PERSISTENCE_UNIT )
+    private EntityManagerFactory emf;
+    private EntityManager em;
+    
+    private static final String JQL_SELECT_BY_CREDENTIAL ="SELECT t FROM TutorEntity t WHERE t.login = :login AND t.password = :password";
+    private static final String PARAM_LOGIN ="login";
+    private static final String PARAM_PASSWORD ="password";
     public TutorDAOImpl(){
-        conn = DB.getCo();
+        
     }
     
     /**
@@ -28,19 +38,20 @@ public class TutorDAOImpl implements TutorDAO{
      * @param userPasswordInput
      * @return ResultSet : Tutor table row that has the same username and password as given in the parameters
      * @throws RuntimeException
-     * @throws SQLException 
      */
     @Override
-    public ResultSet getByCredentials(String userLoginInput, String userPasswordInput)throws RuntimeException,SQLException{
+    public TutorEntity getByCredentials(String userLoginInput, String userPasswordInput){
         
-        stmt = conn.createStatement();
-        
-        //SQL Injection protection using prepared statement
-        String queryCount = "SELECT * FROM TUTOR WHERE LOGIN = ? AND PASSWORD = ?";
-        PreparedStatement ps = conn.prepareStatement(queryCount);
-        ps.setString(1,userLoginInput);
-        ps.setString(2, userPasswordInput);
-        
-        return ps.executeQuery();
+        try{
+            emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+            em = emf.createEntityManager();
+            TypedQuery<TutorEntity> query = em.createQuery(JQL_SELECT_BY_CREDENTIAL,TutorEntity.class);
+            query.setParameter(PARAM_LOGIN, userLoginInput);
+            query.setParameter (PARAM_PASSWORD, userPasswordInput);
+            
+            return query.getSingleResult();
+        }catch (NoResultException e){
+            return null;
+        }
     }
 }

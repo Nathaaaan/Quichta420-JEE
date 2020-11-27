@@ -32,6 +32,6 @@ public class KeyWord {
     }
 
     public void setInternship_ids(ArrayList<Integer> internship_ids) {
-        this.internship_ids = internship_ids;
+        this.internship_ids = (ArrayList<Integer>)internship_ids.clone();
     }
 }

@@ -1,7 +1,8 @@
 package Database;
 
+import Entities.TutorEntity;
 import java.sql.SQLException;
-import java.sql.ResultSet;
+import javax.ejb.Local;
 
 /**
  * A Data access object used for doing basic CRUD operations on Tutor table from
@@ -9,6 +10,7 @@ import java.sql.ResultSet;
  * Provides methods for running operations on the database using queries.
  * @author Andriatiana Victor
  */
+
 public interface TutorDAO {
     
     /**
@@ -20,5 +22,5 @@ public interface TutorDAO {
      * @throws RuntimeException
      * @throws SQLException 
      */
-    public ResultSet getByCredentials(String userLoginInput, String userPasswordInput)throws RuntimeException,SQLException;
+    public TutorEntity getByCredentials(String userLoginInput, String userPasswordInput);
 }
