@@ -5,17 +5,15 @@
  */
 package Controllers;
 
-import Database.InternDAOImpl;
+
 import Model.Beans.Excel;
+import Model.Services.ExcelService;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import static Utils.Constants.*;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -53,8 +51,7 @@ public class UpdateInfos extends HttpServlet {
         excel.setNoteTech(Integer.parseInt(request.getParameter(UP_NOTE_TECH)));
         excel.setInternshipId(Integer.parseInt(request.getParameter(UP_EXCEL_ID)));
 
-        InternDAOImpl internDao = new InternDAOImpl();
-        //internDao.updateExcel(excel);
+        ExcelService.updateExcel(excel);
 
         response.sendRedirect("WelcomeController");
     }

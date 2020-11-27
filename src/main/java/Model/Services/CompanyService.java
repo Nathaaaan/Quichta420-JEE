@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
@@ -19,20 +20,6 @@ import javax.persistence.TypedQuery;
  * @author Gohu
  */
 public class CompanyService {
-    
-    /**
-     * Creates an Company model from a CompanyEntity.
-     * @param ce ompanyEntity object
-     * @return Company object (Bean)
-     */
-    /*public static Company createCompany(CompanyEntity ce){
-        Company company = new Company();
-        company.setCompanyId(ce.getCompanyId());
-        company.setCompanyName(ce.getCompanyName());
-        company.setCompanyAddress(ce.getCompanyAdress());
-        
-        return company;
-    }*/
     
     public static ArrayList<Company> getAllCompany(){
         EntityManagerFactory emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
@@ -47,5 +34,14 @@ public class CompanyService {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
         EntityManager em = emf.createEntityManager();
         return em.find(Company.class, id);
+    }
+    
+    public static void insertCompany(Company company){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        trans.begin();
+        em.persist(company);
+        trans.commit();
     }
 }

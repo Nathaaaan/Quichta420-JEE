@@ -1,16 +1,14 @@
 package Controllers;
 
-import Database.InternDAOImpl;
+
 import Model.Beans.InternshipInfo;
+import Model.Services.InternshipInfoService;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import static Utils.Constants.*;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -44,8 +42,7 @@ public class UpdateInternshipInfos extends HttpServlet {
         internshipInfo.setInternshipId(Integer.parseInt(request.getParameter(UP_INTERNSHIP_ID)));
 
 
-        InternDAOImpl internDao = new InternDAOImpl();
-        //internDao.updateInternshipInfo(internshipInfo);
+        InternshipInfoService.updateInternshipInfo(internshipInfo);
 
         response.sendRedirect("WelcomeController");
     }

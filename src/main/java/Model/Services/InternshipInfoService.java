@@ -1,5 +1,11 @@
 package Model.Services;
 
+import Model.Beans.InternshipInfo;
+import static Utils.Constants.PERSISTENCE_UNIT;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 /**
  * Provides methods used to do CRUD operations on InternshipInfo object
  * object to and from the database.
@@ -8,26 +14,14 @@ package Model.Services;
 public class InternshipInfoService {
     
     
-    
-    /**
-     * Creates an InternshipInfo model from a ResultSet Object.
-     * Make sure that the given ResultSet object has all the necessary 
-     * information from the tables of the database.
-     * @param rs ResultSet object
-     * @return InternshipInfo object (Bean)
-     * @throws SQLException 
-     *//*
-    public InternshipInfo createInternshipModel(InternshipinfoEntity infoEntity) throws SQLException{
-        InternshipInfo Internship = new InternshipInfo();
-        Internship.setInternshipId(infoEntity.getInternshipId());
-        Internship.setMaster(infoEntity.getMaster());
-        Internship.setDateDebut((Date) infoEntity.getStartDate());
-        Internship.setDateFin((Date) infoEntity.getEndDate());
-        Internship.setDescription(infoEntity.getDescription());
-        Internship.setMeetingInfo(infoEntity.getMeetingInfo());
-        Internship.setTutorComment(infoEntity.getTutorComment());
-        
-        Internship.setCompany(CompanyService.createCompany(infoEntity.getCompanyId()));
-        return Internship;
-    }*/
+    public static void updateInternshipInfo(InternshipInfo info){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        em.persist(info);
+        em.flush();
+        em.getTransaction().commit();
+        em.close();
+        emf.close();
+    }
 }

@@ -5,7 +5,6 @@
  */
 package Controllers;
 
-import Database.InternDAOImpl;
 import Model.Beans.Assign;
 import Model.Beans.Company;
 import Model.Beans.Intern;
@@ -17,12 +16,8 @@ import Model.Services.CompanyService;
 import Model.Services.InternService;
 import static Utils.Constants.*;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Date;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -50,7 +45,7 @@ public class NewStudent extends HttpServlet {
         ArrayList<String> schoolGroups = internService.getAllGroups();
 
         CompanyService cs = new CompanyService();
-        ArrayList<Company> companies=null;// = cs.getAllCompany();
+        ArrayList<Company> companies= cs.getAllCompany();
 
         request.setAttribute("schoolGroups", schoolGroups);
         request.setAttribute("companies", companies);
@@ -63,14 +58,14 @@ public class NewStudent extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String companyIdStr = request.getParameter("company");
-        InternDAOImpl internDAOImpl = new InternDAOImpl();
 
         int companyId;
         if(companyIdStr.equals("new")){
             Company company = new Company();
             company.setCompanyName(request.getParameter("new_name"));
             company.setCompanyAdress(request.getParameter("new_address"));
-            //companyId = internDAOImpl.insertCompany(company);
+            CompanyService.insertCompany(company);
+            companyId = company.getCompanyId();
         }
         else{
             companyId = Integer.parseInt(companyIdStr);
@@ -85,10 +80,10 @@ public class NewStudent extends HttpServlet {
         tutor.setId(((Tutor)request.getSession().getAttribute("user")).getId());
 
         CompanyService cs = new CompanyService();
-        //Company company = cs.getCompanyById(companyId);
+        Company company = cs.getCompanyById(companyId);
 
         InternshipInfo info = new InternshipInfo();
-        //info.setCompany(company);
+        info.setCompany(company);
         info.setMaster(request.getParameter("master"));
         info.setDateDebut(Date.valueOf(request.getParameter("startDate")));
         info.setDateFin(Date.valueOf(request.getParameter("endDate")));
@@ -99,7 +94,7 @@ public class NewStudent extends HttpServlet {
         assign.setInternshipInfo(info);
 
         AssignService assignService = new AssignService();
-        //assignService.insertAssign(assign);
+        assignService.insertAssign(assign);
 
         response.sendRedirect("WelcomeController");
         

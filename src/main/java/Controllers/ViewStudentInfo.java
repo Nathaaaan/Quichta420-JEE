@@ -1,6 +1,5 @@
 package Controllers;
 
-import Database.InternDAOImpl;
 import Model.Beans.Assign;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -14,10 +13,6 @@ import Model.Beans.Intern;
 import Model.Beans.InternshipInfo;
 import Model.Services.AssignService;
 import static Utils.Constants.*;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *

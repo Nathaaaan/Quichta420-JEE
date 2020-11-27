@@ -39,7 +39,7 @@ public class ManageKeyWords extends HttpServlet {
             int internshipId = Integer.parseInt(request.getParameter("internship_id"));
 
             KeyWordService keyWordService = new KeyWordService();
-            //keyWordService.removeKeyWord(keyWord,internshipId);
+            keyWordService.removeKeyWord(keyWord,internshipId);
 
             response.sendRedirect("ViewKeyWords?internship_id="+internshipId);
         }
@@ -48,7 +48,7 @@ public class ManageKeyWords extends HttpServlet {
             int internshipId = Integer.parseInt(request.getParameter("internship_id"));
 
             KeyWordService keyWordService = new KeyWordService();
-            //keyWordService.addKeyWord(keyWord,internshipId);
+            keyWordService.addKeyWord(keyWord,internshipId);
 
             response.sendRedirect("ViewKeyWords?internship_id="+internshipId);
         }
@@ -61,7 +61,7 @@ public class ManageKeyWords extends HttpServlet {
         int internshipId = Integer.parseInt(request.getParameter("internshipId"));
 
         KeyWordService keyWordService = new KeyWordService();
-        //keyWordService.insertKeyWord(keyWord,internshipId);
+        keyWordService.insertKeyWord(keyWord,internshipId);
 
         response.sendRedirect("ViewKeyWords?internship_id="+internshipId);
     }

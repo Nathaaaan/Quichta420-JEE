@@ -5,7 +5,6 @@ package Controllers;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import Database.DB;
 import Model.Beans.Tutor;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -14,9 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Model.Services.UserService;
 import static Utils.Constants.*;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -32,11 +28,6 @@ public class LoginController extends HttpServlet {
     @Override
     public void init() {
         
-        try{
-            DB.loadCredentials(getServletContext().getResourceAsStream(DB_CRED));
-        }catch(IOException ex){
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     @Override

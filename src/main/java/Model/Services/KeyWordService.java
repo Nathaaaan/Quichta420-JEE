@@ -5,7 +5,7 @@
  */
 package Model.Services;
 
-import Database.InternDAOImpl;
+
 import Model.Beans.InternshipInfo;
 import Model.Beans.KeyWord;
 import static Utils.Constants.PERSISTENCE_UNIT;
@@ -81,20 +81,53 @@ public class KeyWordService {/*
         return words;
     }
     
-    /*
-    public void removeKeyWord(String keyWord, int id) throws SQLException{
-        InternDAOImpl inter = new InternDAOImpl();
-        inter.removeKeyWord(keyWord,id);
+    
+    public static void removeKeyWord(String word, int id) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<KeyWord> query = em.createNamedQuery("KeyWord.findByKeyWord", KeyWord.class);
+        query.setParameter("keyWord", word);
+        KeyWord keyWord = query.getSingleResult();
+        TypedQuery<InternshipInfo> qInfo = em.createNamedQuery("InternshipInfo.findByInternshipId",InternshipInfo.class);
+        qInfo.setParameter("internshipId", id);
+        InternshipInfo info = qInfo.getSingleResult();
+        keyWord.getInternshipInfoCollection().remove(info);
+        em.getTransaction().begin();
+        em.persist(keyWord);
+        em.flush();
+        em.getTransaction().commit();
+        em.close();
+        emf.close();
     }
     
-    public void insertKeyWord(String keyWord, int id) throws SQLException{
-        InternDAOImpl inter = new InternDAOImpl();
-        inter.insertKeyWord(keyWord);
-        addKeyWord(keyWord,id);
+    public static void insertKeyWord(String word, int id){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        KeyWord keyWord = new KeyWord(word);
+        em.persist(keyWord);
+        em.flush();
+        em.getTransaction().commit();
+        em.close();
+        emf.close();
+        addKeyWord(word, id);
     }
     
-    public void addKeyWord(String keyWord, int id) throws SQLException{
-        InternDAOImpl inter = new InternDAOImpl();
-        inter.addKeyWord(keyWord,id);
-    }*/
+    public static void addKeyWord(String word, int id){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<KeyWord> query = em.createNamedQuery("KeyWord.findByKeyWord", KeyWord.class);
+        query.setParameter("keyWord", word);
+        KeyWord keyWord = query.getSingleResult();
+        TypedQuery<InternshipInfo> qInfo = em.createNamedQuery("InternshipInfo.findByInternshipId",InternshipInfo.class);
+        qInfo.setParameter("internshipId", id);
+        InternshipInfo info = qInfo.getSingleResult();
+        keyWord.getInternshipInfoCollection().add(info);
+        em.getTransaction().begin();
+        em.persist(keyWord);
+        em.flush();
+        em.getTransaction().commit();
+        em.close();
+        emf.close();
+    }
 }

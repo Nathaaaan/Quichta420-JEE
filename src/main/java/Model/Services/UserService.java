@@ -1,6 +1,5 @@
 package Model.Services;
 
-import Database.TutorDAO;
 import Model.Beans.Tutor;
 import static Utils.Constants.PERSISTENCE_UNIT;
 import javax.persistence.EntityManager;
@@ -14,9 +13,6 @@ import javax.persistence.TypedQuery;
  * @author Andriatiana Victor
  */
 public class UserService {
-    
-    
-    TutorDAO tutorDAO;
     
     /**
      * Provides a Tutor model from the given credentials information if it 
