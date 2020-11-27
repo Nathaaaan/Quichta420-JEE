@@ -35,23 +35,19 @@ public class UpdateInternshipInfos extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        try {
-            InternshipInfo internshipInfo = new InternshipInfo();
-            
-            internshipInfo.setDescription(request.getParameter(UP_DESCRIPTION));
-            internshipInfo.setTutorComment(request.getParameter(UP_TUTOR_COMMENT));
-            internshipInfo.setMeetingInfo(request.getParameter(UP_MEETING_INFO));
-            internshipInfo.setInternshipId(Integer.parseInt(request.getParameter(UP_INTERNSHIP_ID)));
-            
-            
-            InternDAOImpl internDao = new InternDAOImpl();
-            internDao.updateInternshipInfo(internshipInfo);
-            
-            response.sendRedirect("WelcomeController");
-        } catch (SQLException ex) {
-            Logger.getLogger(UpdateInternshipInfos.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
+        InternshipInfo internshipInfo = new InternshipInfo();
+
+        internshipInfo.setDescription(request.getParameter(UP_DESCRIPTION));
+        internshipInfo.setTutorComment(request.getParameter(UP_TUTOR_COMMENT));
+        internshipInfo.setMeetingInfo(request.getParameter(UP_MEETING_INFO));
+        internshipInfo.setInternshipId(Integer.parseInt(request.getParameter(UP_INTERNSHIP_ID)));
+
+
+        InternDAOImpl internDao = new InternDAOImpl();
+        //internDao.updateInternshipInfo(internshipInfo);
+
+        response.sendRedirect("WelcomeController");
     }
 
     

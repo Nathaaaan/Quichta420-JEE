@@ -6,66 +6,82 @@
 package Model.Services;
 
 import Database.InternDAOImpl;
+import Model.Beans.InternshipInfo;
 import Model.Beans.KeyWord;
+import static Utils.Constants.PERSISTENCE_UNIT;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 /**
  *
  * @author Gohu
  */
-public class KeyWordService {
+public class KeyWordService {/*
     public KeyWord createKeyWordModel(ResultSet rs) throws SQLException{
         KeyWord keyWord = new KeyWord();
         keyWord.setWord(rs.getString("key_word"));
         keyWord.setInternship_ids(new ArrayList<Integer>());
         
         return keyWord;
+    }*/
+    
+    public static ArrayList<KeyWord> getAllKeyWords(){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<KeyWord> query = em.createNamedQuery("KeyWord.findAll", KeyWord.class);
+        List<KeyWord> res = query.getResultList();
+        return new ArrayList<>(res);
     }
     
-    public ArrayList<KeyWord> getAllKeyWords() throws SQLException{
-        ArrayList<KeyWord> keyWords = new ArrayList<KeyWord>();
-        InternDAOImpl intern = new InternDAOImpl();
-        ResultSet rs = intern.getAllKeyWords();
-        while(rs.next()){
-            keyWords.add(createKeyWordModel(rs));
+    public static ArrayList<String> getAllKeyWordsOf(int id){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<KeyWord> query = em.createNamedQuery("KeyWord.findAll", KeyWord.class);
+        List<KeyWord> res = query.getResultList();
+        ArrayList<String> words = new ArrayList<String>();
+        for(KeyWord k : res){
+            ArrayList<InternshipInfo> infos = new ArrayList<InternshipInfo>(k.getInternshipInfoCollection());
+            for(InternshipInfo info : infos){
+                if(info.getInternshipId() == id){
+                    words.add(k.getWord());
+                }
+            }
         }
+        return words;
+    }
+    
+    public static ArrayList<String> getAllKeyWordsExceptOf(int id){
+        ArrayList<String> words = new ArrayList<String>();
         
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<KeyWord> query = em.createNamedQuery("KeyWord.findAll", KeyWord.class);
+        List<KeyWord> res = query.getResultList();
+        ArrayList<KeyWord> keyWords = new ArrayList<KeyWord>(res);
         for(KeyWord keyWord : keyWords){
-            rs = intern.getInternshipIdByKeyWord(keyWord.getWord());
-            while(rs.next()){
-                keyWord.getInternship_ids().add(rs.getInt("internship_id"));
+            ArrayList<InternshipInfo> infos = new ArrayList<InternshipInfo>(keyWord.getInternshipInfoCollection());
+            boolean is = false;
+            for(InternshipInfo info : infos){
+                if(info.getInternshipId() == id){
+                    is = true;
+                    break;
+                }
+            }
+            if(!is){
+                words.add(keyWord.getWord());
             }
         }
         
-        return keyWords;
+        return words;
     }
     
-    public ArrayList<String> getAllKeyWordsOf(int id) throws SQLException{
-        ArrayList<String> keyWords = new ArrayList<String>();
-        InternDAOImpl inter = new InternDAOImpl();
-        ResultSet rs = inter.getAllKeyWordsOf(id);
-        
-        while(rs.next()){
-            keyWords.add(rs.getString("key_word"));
-        }
-        
-        return keyWords;
-    }
-    
-    public ArrayList<String> getAllKeyWordsExceptOf(int id) throws SQLException{
-        ArrayList<String> keyWords = new ArrayList<String>();
-        InternDAOImpl inter = new InternDAOImpl();
-        ResultSet rs = inter.getAllKeyWordsExceptOf(id);
-        
-        while(rs.next()){
-            keyWords.add(rs.getString("key_word"));
-        }
-        
-        return keyWords;
-    }
-    
+    /*
     public void removeKeyWord(String keyWord, int id) throws SQLException{
         InternDAOImpl inter = new InternDAOImpl();
         inter.removeKeyWord(keyWord,id);
@@ -80,5 +96,5 @@ public class KeyWordService {
     public void addKeyWord(String keyWord, int id) throws SQLException{
         InternDAOImpl inter = new InternDAOImpl();
         inter.addKeyWord(keyWord,id);
-    }
+    }*/
 }

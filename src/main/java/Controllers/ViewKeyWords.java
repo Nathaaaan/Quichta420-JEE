@@ -44,24 +44,19 @@ public class ViewKeyWords extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        try {
-            int internshipId = Integer.parseInt(request.getParameter("internship_id"));
-            KeyWordService keyWordService = new KeyWordService();
-            ArrayList<String> otherkeyWords = keyWordService.getAllKeyWordsExceptOf(internshipId);
-            ArrayList<String> myKeyWords = keyWordService.getAllKeyWordsOf(internshipId);
-            
-            request.setAttribute("otherKey", otherkeyWords);
-            request.setAttribute("myKey", myKeyWords);
-            
-            AssignService assignService = new AssignService();
-            Assign assign = assignService.getAssignByInternshipId(internshipId);
-            request.setAttribute("assign",assign);
-            
-            request.getRequestDispatcher(Constants.KEY_WORDS_PAGE).forward(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(ViewKeyWords.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        int internshipId = Integer.parseInt(request.getParameter("internship_id"));
+        KeyWordService keyWordService = new KeyWordService();
+        ArrayList<String> otherkeyWords = keyWordService.getAllKeyWordsExceptOf(internshipId);
+        ArrayList<String> myKeyWords = keyWordService.getAllKeyWordsOf(internshipId);
+
+        request.setAttribute("otherKey", otherkeyWords);
+        request.setAttribute("myKey", myKeyWords);
+
+        AssignService assignService = new AssignService();
+        Assign assign = assignService.getAssignByInternshipId(internshipId);
+        request.setAttribute("assign",assign);
+
+        request.getRequestDispatcher(Constants.KEY_WORDS_PAGE).forward(request, response);
     }
 
     

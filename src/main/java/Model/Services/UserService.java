@@ -1,10 +1,13 @@
 package Model.Services;
 
 import Database.TutorDAO;
-import Database.TutorDAOImpl;
-import Entities.TutorEntity;
 import Model.Beans.Tutor;
-import java.sql.SQLException;
+import static Utils.Constants.PERSISTENCE_UNIT;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 /**
  * Provides methods used to do CRUD operations on Tutor object (the user)
  * object to and from the database.
@@ -22,33 +25,21 @@ public class UserService {
      * @param userPasswordInput
      * @return Tutor object (Bean)
      */
-    public Tutor getByCredentials(String userLoginInput, String userPasswordInput){
-        tutorDAO=new TutorDAOImpl();
-        TutorEntity tutorEntity = tutorDAO.getByCredentials(userLoginInput, userPasswordInput);
-        System.out.println("tutorEntity :"+ tutorEntity.getFirstName());
-        
-        if (tutorEntity!=null) {
-            Tutor TutorUser = new Tutor();
-            TutorUser.setId(tutorEntity.getTutorId());
-            TutorUser.setName(tutorEntity.getFirstName());
-            TutorUser.setLastName(tutorEntity.getLastName());
-            TutorUser.setLogin(tutorEntity.getLogin());
-            TutorUser.setPassword(tutorEntity.getPassword());
-            return TutorUser;
-        } else {
+    public static Tutor getByCredentials(String userLoginInput, String userPasswordInput){
+        String jql = "SELECT t FROM Tutor t WHERE t.login = :login AND t.password = :password";
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<Tutor> query = em.createQuery(jql, Tutor.class);
+        query.setParameter("login", userLoginInput);
+        query.setParameter("password", userPasswordInput);
+        try{
+            Tutor tutor = query.getSingleResult();
+            return tutor;
+        }
+        catch(NoResultException e){
+            System.out.println("Failed authentification");
             return null;
         }
     }
-    
-    /**
-     * Checks if the given user credentials exists in the database.
-     * @param userLoginInput
-     * @param userPasswordInput
-     * @return Returns true is the user exists in the database. False if not.
-     * @throws RuntimeException
-     * @throws SQLException 
-     */
-    public boolean isGoodCredentials(String userLoginInput, String userPasswordInput)throws RuntimeException,SQLException{
-        return getByCredentials(userLoginInput, userPasswordInput)!= null;
-    }
+
 }

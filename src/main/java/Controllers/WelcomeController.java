@@ -6,6 +6,7 @@
 package Controllers;
 
 import Model.Beans.Assign;
+import Model.Beans.InternshipInfo;
 import Model.Beans.KeyWord;
 import Model.Beans.Tutor;
 import Model.Services.AssignService;
@@ -49,98 +50,83 @@ public class WelcomeController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
+        Tutor tutor = (Tutor)request.getSession().getAttribute("user");
 
-        try {
-            Tutor tutor = (Tutor)request.getSession().getAttribute("user");
-            
-            ArrayList<Assign> assignList = new AssignService().getAllByTutorId(tutor.getId());
-            
-            request.setAttribute("keyExcel", assignList);
+        ArrayList<Assign> assignList = new AssignService().getAllByTutorId(tutor.getId());
 
-            //request.getRequestDispatcher(Wel).forward(request, response);
-            request.getRequestDispatcher(WELCOME_PAGE).forward(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(WelcomeController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        request.setAttribute("keyExcel", assignList);
 
+        //request.getRequestDispatcher(Wel).forward(request, response);
+        request.getRequestDispatcher(WELCOME_PAGE).forward(request, response);
     }
 
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            //processRequest(request, response);
-            String search = request.getParameter("search");
-            System.out.println(search);
-            Tutor tutor = (Tutor)request.getSession().getAttribute("user");
-            ArrayList<Assign> assignList = new AssignService().getAllByTutorId(tutor.getId());
-            
-            ArrayList<Assign> assignSearch = searchPerform(search.toLowerCase(),assignList);
-            
-            request.setAttribute("keyExcel", assignSearch);
-            request.getRequestDispatcher(WELCOME_PAGE).forward(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(WelcomeController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        //processRequest(request, response);
+        String search = request.getParameter("search");
+        System.out.println(search);
+        Tutor tutor = (Tutor)request.getSession().getAttribute("user");
+        ArrayList<Assign> assignList = new AssignService().getAllByTutorId(tutor.getId());
+
+        ArrayList<Assign> assignSearch = searchPerform(search.toLowerCase(),assignList);
+
+        request.setAttribute("keyExcel", assignSearch);
+        request.getRequestDispatcher(WELCOME_PAGE).forward(request, response);
     }
 
     public ArrayList<Assign> searchPerform(String search,ArrayList<Assign> assignList){
-        try {
-            if(search.equals("")){
-                return assignList;
-            }
-            
-            ArrayList<Integer> internshipIds = new ArrayList<Integer>();
-            KeyWordService keyWordService = new KeyWordService();
-            ArrayList<KeyWord> keyWords = keyWordService.getAllKeyWords();
-            
-            for(KeyWord keyWord : keyWords){
-                if(keyWord.getWord().toLowerCase().contains(search) || search.contains(keyWord.getWord().toLowerCase())){
-                    for(int id : keyWord.getInternship_ids()){
-                        internshipIds.add(id);
-                    }
-                }
-            }
-            
-            ArrayList assignSearch = new ArrayList<Assign>();
-            
-            for(Assign assign : assignList){
-                String firstName = assign.getIntern().getFirstName().toLowerCase();
-                String lastName = assign.getIntern().getLastName().toLowerCase();
-                String companyName = assign.getInternshipInfo().getCompany().getCompanyName().toLowerCase();
-                String master = assign.getInternshipInfo().getMaster().toLowerCase();
-                String startYear = ""+(assign.getInternshipInfo().getDateDebut().getYear()+1900);
-                String endYear = ""+(assign.getInternshipInfo().getDateFin().getYear()+1900);
-                
-                if(internshipIds.contains(assign.getInternshipInfo().getInternshipId())){
-                    assignSearch.add(assign);
-                }
-                else if(firstName.contains(search) || search.contains(firstName)){
-                    assignSearch.add(assign);
-                }
-                else if(lastName.contains(search) || search.contains(lastName)){
-                    assignSearch.add(assign);
-                }
-                else if(companyName.contains(search) || search.contains(companyName)){
-                    assignSearch.add(assign);
-                }
-                else if(master.contains(search) || search.contains(master)){
-                    assignSearch.add(assign);
-                }
-                else if(search.contains(startYear)){
-                    assignSearch.add(assign);
-                }
-                else if(search.contains(endYear)){
-                    assignSearch.add(assign);
-                }
-            }
-            
-            return assignSearch;
-        } catch (SQLException ex) {
-            Logger.getLogger(WelcomeController.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
+        if(search.equals("")){
+            return assignList;
         }
+
+        ArrayList<Integer> internshipIds = new ArrayList<Integer>();
+        KeyWordService keyWordService = new KeyWordService();
+        ArrayList<KeyWord> keyWords = keyWordService.getAllKeyWords();
+
+        for(KeyWord keyWord : keyWords){
+            if(keyWord.getWord().toLowerCase().contains(search) || search.contains(keyWord.getWord().toLowerCase())){
+                for(InternshipInfo info : keyWord.getInternshipInfoCollection()){
+                    internshipIds.add(info.getInternshipId());
+                }
+            }
+        }
+
+        ArrayList assignSearch = new ArrayList<Assign>();
+
+        for(Assign assign : assignList){
+            String firstName = assign.getIntern().getFirstName().toLowerCase();
+            String lastName = assign.getIntern().getLastName().toLowerCase();
+            String companyName = assign.getInternshipInfo().getCompany().getCompanyName().toLowerCase();
+            String master = assign.getInternshipInfo().getMaster().toLowerCase();
+            String startYear = ""+(assign.getInternshipInfo().getDateDebut().getYear()+1900);
+            String endYear = ""+(assign.getInternshipInfo().getDateFin().getYear()+1900);
+
+            if(internshipIds.contains(assign.getInternshipInfo().getInternshipId())){
+                assignSearch.add(assign);
+            }
+            else if(firstName.contains(search) || search.contains(firstName)){
+                assignSearch.add(assign);
+            }
+            else if(lastName.contains(search) || search.contains(lastName)){
+                assignSearch.add(assign);
+            }
+            else if(companyName.contains(search) || search.contains(companyName)){
+                assignSearch.add(assign);
+            }
+            else if(master.contains(search) || search.contains(master)){
+                assignSearch.add(assign);
+            }
+            else if(search.contains(startYear)){
+                assignSearch.add(assign);
+            }
+            else if(search.contains(endYear)){
+                assignSearch.add(assign);
+            }
+        }
+
+        return assignSearch;
     }
     
     

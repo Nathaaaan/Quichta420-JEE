@@ -1,8 +1,6 @@
 package Database;
 
-
-import Entities.AssignEntity;
-import Entities.CompanyEntity;
+import Model.Beans.Assign;
 import Model.Beans.Company;
 import Model.Beans.Excel;
 import Model.Beans.Intern;
@@ -35,8 +33,9 @@ public class InternDAOImpl implements InternDAO {
     private EntityManagerFactory emf;
     private EntityManager em;
     
-    private static final String JQL_SELECT_BY_TUTOR_ID ="SELECT a FROM AssignEntity a WHERE t.tutorEntity.tutorId = :id";
+    private static final String JQL_SELECT_BY_TUTOR_ID ="SELECT a FROM Assign a WHERE tutor._id = :id";
     private static final String TUTOR_ID_PARAM ="id";
+    
     public InternDAOImpl(){
         conn = DB.getCo();
     }
@@ -47,23 +46,13 @@ public class InternDAOImpl implements InternDAO {
      * @return Raw ResultSet object.
      * @throws SQLException
      * @see Model.Services.AssignService
-     */
+     *//*
     @Override
-    public List<AssignEntity> getAllByTutorId(int id) {
-        //the try catch close will automatically close the connection 
-        /*stmt = conn.createStatement();
-        String queryCount = "SELECT INTERN.*, INTERNSHIPINFO.*, EXCEL.*, COMPANY.* "
-            + "FROM ASSIGN "
-            + "INNER JOIN INTERN ON ASSIGN.INTERN_ID = INTERN.INTERN_ID "
-            + "INNER JOIN INTERNSHIPINFO ON ASSIGN.INTERNSHIP_ID = INTERNSHIPINFO.INTERNSHIP_ID "
-            + "INNER JOIN EXCEL ON ASSIGN.INTERNSHIP_ID = EXCEL.INTERNSHIP_ID "
-            + "INNER JOIN COMPANY ON INTERNSHIPINFO.COMPANY_ID = COMPANY.COMPANY_ID "
-            + "WHERE ASSIGN.TUTOR_ID = "+ id;
-        return stmt.executeQuery(queryCount);*/
+    public List<Assign> getAllByTutorId(int id) {
         try{
             emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
             em = emf.createEntityManager();
-            TypedQuery<AssignEntity> query = em.createQuery(JQL_SELECT_BY_TUTOR_ID,AssignEntity.class);
+            TypedQuery<Assign> query = em.createQuery(JQL_SELECT_BY_TUTOR_ID,Assign.class);
             query.setParameter(TUTOR_ID_PARAM, id);
             
             //returns list
@@ -89,7 +78,7 @@ public class InternDAOImpl implements InternDAO {
     }
     
     @Override
-    public List<AssignEntity> getAllByTutorIdAndYear(int id, String year){
+    public List<AssignEntity> getAllByTutorIdAndYear(int id, String year){*/
         //Statement stmt = conn.createStatement();
         /*String queryCount = "SELECT INTERN.*, INTERNSHIPINFO.*, EXCEL.*, COMPANY.* "
             + "FROM ASSIGN "
@@ -101,7 +90,7 @@ public class InternDAOImpl implements InternDAO {
             + "AND ASSIGN.INTERNSHIP_YEAR ="+year;
         
         return stmt.executeQuery(queryCount);*/
-        return null;
+/*        return null;
     }
     
     @Override
@@ -276,5 +265,5 @@ public class InternDAOImpl implements InternDAO {
         ps.setString(1, keyWord);
         ps.setInt(2, id);
         ps.executeUpdate();
-    }
+    }*/
 }

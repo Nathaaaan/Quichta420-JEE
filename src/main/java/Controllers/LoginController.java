@@ -6,6 +6,7 @@ package Controllers;
  * and open the template in the editor.
  */
 import Database.DB;
+import Model.Beans.Tutor;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -47,33 +48,25 @@ public class LoginController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
-        try{
-            UserService us = new UserService();
-            
-            //Retrieve what the user has entered
-            String userLoginInput = request.getParameter(LOGIN_USER);
-            String userPasswordInput = request.getParameter(LOGIN_PWD);
-            
-            System.out.println("In login, tutor : "+ us.getByCredentials(userLoginInput, userPasswordInput).getName());
-            //If credentials are in database
-            if(us.isGoodCredentials(userLoginInput, userPasswordInput)){
-                
-                request.setAttribute("keyTutorUser", us.getByCredentials(userLoginInput, userPasswordInput));
-                request.getSession().setAttribute("user", us.getByCredentials(userLoginInput, userPasswordInput));
-                //request.getRequestDispatcher(WELCOME_PAGE).forward(request, response);
-                response.sendRedirect("WelcomeController");
-                
-            } else{
-                //Invalid Login : Redirect to the login page and set KeyErrMess in order to display it
-                request.setAttribute("KeyErrMess", "Invalid Login or Password");
-                request.getRequestDispatcher(LOGIN_PAGE).forward(request, response);
-            }
-        }catch(RuntimeException ex){
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-        }catch(SQLException ex){
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+            throws ServletException, IOException {           
+        //Retrieve what the user has entered
+        String userLoginInput = request.getParameter(LOGIN_USER);
+        String userPasswordInput = request.getParameter(LOGIN_PWD);
+
+        //System.out.println("In login, tutor : "+ us.getByCredentials(userLoginInput, userPasswordInput).getName());
+        Tutor user = UserService.getByCredentials(userLoginInput, userPasswordInput);
+        //If credentials are in database
+        if(user != null){
+
+            request.setAttribute("keyTutorUser", user);
+            request.getSession().setAttribute("user", user);
+            //request.getRequestDispatcher(WELCOME_PAGE).forward(request, response);
+            response.sendRedirect("WelcomeController");
+
+        } else{
+            //Invalid Login : Redirect to the login page and set KeyErrMess in order to display it
+            request.setAttribute("KeyErrMess", "Invalid Login or Password");
+            request.getRequestDispatcher(LOGIN_PAGE).forward(request, response);
         }
     }
 

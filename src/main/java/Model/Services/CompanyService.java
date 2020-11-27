@@ -5,15 +5,14 @@
  */
 package Model.Services;
 
-import Database.InternDAO;
-import Database.InternDAOImpl;
-import Database.TutorDAO;
-import Database.TutorDAOImpl;
-import Entities.CompanyEntity;
 import Model.Beans.Company;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import static Utils.Constants.PERSISTENCE_UNIT;
 import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -26,36 +25,27 @@ public class CompanyService {
      * @param ce ompanyEntity object
      * @return Company object (Bean)
      */
-    public static Company createCompany(CompanyEntity ce){
+    /*public static Company createCompany(CompanyEntity ce){
         Company company = new Company();
         company.setCompanyId(ce.getCompanyId());
         company.setCompanyName(ce.getCompanyName());
         company.setCompanyAddress(ce.getCompanyAdress());
         
         return company;
-    }
-    
-    /*public ArrayList<Company> getAllCompany() throws SQLException{
-        InternDAOImpl intern = new InternDAOImpl();
-        ResultSet rs = intern.getAllCompanies();
-        
-        ArrayList<Company> companies = new ArrayList<Company>();
-        while(rs.next()){
-            Company company = createCompany(rs);
-            companies.add(company);
-        }
-        
-        return companies;
     }*/
     
-    public Company getCompanyById(int id) throws SQLException{
-        InternDAO internDAO=new InternDAOImpl();
-        CompanyEntity ce = internDAO.getCompanyById(id);
-        
-        if(ce!= null){
-            return createCompany(ce);
-        }else{
-            return null;
-        }
+    public static ArrayList<Company> getAllCompany(){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<Company> query = em.createNamedQuery("Company.findAll",Company.class);
+        List<Company> res = query.getResultList();
+        //returns list
+        return new ArrayList<>(res);
+    }
+    
+    public static Company getCompanyById(int id) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+        EntityManager em = emf.createEntityManager();
+        return em.find(Company.class, id);
     }
 }

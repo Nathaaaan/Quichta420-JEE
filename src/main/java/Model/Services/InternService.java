@@ -1,12 +1,14 @@
 package Model.Services;
 
 
-import Database.InternDAOImpl;
-import Entities.InternEntity;
-import Model.Beans.Intern;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import Model.Beans.SchoolGroup;
+import static Utils.Constants.PERSISTENCE_UNIT;
 import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 /**
  * Provides methods used to do CRUD operations on Intern object
@@ -15,31 +17,17 @@ import java.util.ArrayList;
  */
 public class InternService {
     
-    /**
-     * Creates an Intern model from a ResultSet Object.
-     * Make sure that the given ResultSet object has all the necessary 
-     * information from the tables of the database.
-     * @param rs ResultSet Object
-     * @return Intern object (Bean)
-     * @throws SQLException 
-     */
-    public Intern createInternModel(InternEntity ie) throws SQLException {
-        Intern intern = new Intern();
-        intern.setId(ie.getInternId());
-        intern.setFirstName(ie.getFirstName());
-        intern.setLastName(ie.getLastName());
-        intern.setSchoolGroup(ie.getSchoolgroupName().getSchoolgroupName());
-        return intern;
-    }
-    
-    public ArrayList<String> getAllGroups() throws SQLException{
-        ArrayList<String> groups = new ArrayList<String>();
-        InternDAOImpl intern = new InternDAOImpl();
+    public static ArrayList<String> getAllGroups(){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<SchoolGroup> query = em.createNamedQuery("SchoolGroup.findAll",SchoolGroup.class);
+        List<SchoolGroup> res = query.getResultList();
         
-        ResultSet rs = intern.getAllGroups();
-        while(rs.next()){
-            groups.add(rs.getString("schoolGroup_name"));
+        ArrayList<String> groups = new ArrayList<String>();
+        for(SchoolGroup group : res){
+            groups.add(group.getSchoolgroupName());
         }
+        
         return groups;
     }
 }

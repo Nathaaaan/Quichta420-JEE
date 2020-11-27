@@ -1,7 +1,6 @@
 package Database;
 
-import Entities.AssignEntity;
-import Entities.CompanyEntity;
+import Model.Beans.Assign;
 import Model.Beans.Excel;
 import Model.Beans.InternshipInfo;
 import java.sql.ResultSet;
@@ -23,10 +22,10 @@ public interface InternDAO {
      * @throws SQLException
      * @see Model.Services.AssignService Database.InternDAOImpl
      */
-    public List<AssignEntity> getAllByTutorId(int id);
-    public ResultSet getAssignByInternshipId(int id) throws SQLException;
+    //public List<Assign> getAllByTutorId(int id);
+    /*public ResultSet getAssignByInternshipId(int id) throws SQLException;
     public List<AssignEntity> getAllByTutorIdAndYear(int id, String year);
     public void updateExcel(Excel e)throws SQLException;
     public void updateInternshipInfo(InternshipInfo info) throws SQLException;
-    public CompanyEntity getCompanyById(int id) throws SQLException;
+    public CompanyEntity getCompanyById(int id) throws SQLException;*/
 }

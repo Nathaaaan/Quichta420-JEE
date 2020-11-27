@@ -37,23 +37,14 @@ public class ViewStudentInfo extends HttpServlet {
         System.out.println("Internship ID in ViewStudentInfo: "+request.getParameter("internshipId"));
         
         int internshipId = Integer.parseInt(request.getParameter("internshipId"));
-       
-        
-        try {
-            InternDAOImpl internDaoImpl = new InternDAOImpl();
-            AssignService assignService = new AssignService();
-            Assign assign = assignService.getAssignByInternshipId(internshipId);
-            
-            Intern intern = assign.getIntern();
-            InternshipInfo info = assign.getInternshipInfo();
-        
-            request.setAttribute("intern", intern);
-            request.setAttribute("info", info);
-            request.getRequestDispatcher(STUDENT_PAGE).forward(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(ViewStudentInfo.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        Assign assign = AssignService.getAssignByInternshipId(internshipId);
+
+        Intern intern = assign.getIntern();
+        InternshipInfo info = assign.getInternshipInfo();
+
+        request.setAttribute("intern", intern);
+        request.setAttribute("info", info);
+        request.getRequestDispatcher(STUDENT_PAGE).forward(request, response);
     }
 
     @Override

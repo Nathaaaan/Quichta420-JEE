@@ -1,6 +1,5 @@
 package Database;
 
-import Entities.TutorEntity;
 import java.sql.SQLException;
 import javax.ejb.Local;
 
@@ -22,5 +21,5 @@ public interface TutorDAO {
      * @throws RuntimeException
      * @throws SQLException 
      */
-    public TutorEntity getByCredentials(String userLoginInput, String userPasswordInput);
+    //public TutorEntity getByCredentials(String userLoginInput, String userPasswordInput);
 }

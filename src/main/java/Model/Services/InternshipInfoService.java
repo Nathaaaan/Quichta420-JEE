@@ -1,12 +1,5 @@
 package Model.Services;
 
-import Entities.InternshipinfoEntity;
-import Model.Beans.Company;
-import Model.Beans.InternshipInfo;
-import java.sql.Date;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 /**
  * Provides methods used to do CRUD operations on InternshipInfo object
  * object to and from the database.
@@ -23,7 +16,7 @@ public class InternshipInfoService {
      * @param rs ResultSet object
      * @return InternshipInfo object (Bean)
      * @throws SQLException 
-     */
+     *//*
     public InternshipInfo createInternshipModel(InternshipinfoEntity infoEntity) throws SQLException{
         InternshipInfo Internship = new InternshipInfo();
         Internship.setInternshipId(infoEntity.getInternshipId());
@@ -36,5 +29,5 @@ public class InternshipInfoService {
         
         Internship.setCompany(CompanyService.createCompany(infoEntity.getCompanyId()));
         return Internship;
-    }
+    }*/
 }

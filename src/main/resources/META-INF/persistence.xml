@@ -3,22 +3,14 @@
   <!-- Define Persistence Unit -->
   <persistence-unit name="persistence_unit" transaction-type="RESOURCE_LOCAL">
     <!--jta-data-source>java:comp/DefaultDataSource</jta-data-source-->
-    <class>Entities.TutorEntity</class>
-    <class>Entities.Intern</class>
-    <class>Entities.Excel</class>
-    <class>Entities.Internshipinfo</class>
-    <class>Entities.Company</class>
-    <class>Entities.Schoolgroup</class>
-    <class>Entities.AssignEntity</class>
-    <class>Entities.KeywordEntity</class>
-    <class>Entities.Keyword</class>
-    <class>Entities.Tutor</class>
-    <class>Entities.Assign</class>
-    <class>Entities.InternEntity</class>
-    <class>Entities.ExcelEntity</class>
-    <class>Entities.SchoolgroupEntity</class>
-    <class>Entities.InternshipinfoEntity</class>
-    <class>Entities.CompanyEntity</class>
+    <class>Model.Beans.Assign</class>
+    <class>Model.Beans.Company</class>
+    <class>Model.Beans.Excel</class>
+    <class>Model.Beans.Intern</class>
+    <class>Model.Beans.InternshipInfo</class>
+    <class>Model.Beans.KeyWord</class>
+    <class>Model.Beans.SchoolGroup</class>
+    <class>Model.Beans.Tutor</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/ST2EEDB"/>
       <property name="javax.persistence.jdbc.user" value="adm"/>

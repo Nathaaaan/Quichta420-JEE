@@ -35,48 +35,35 @@ public class ManageKeyWords extends HttpServlet {
         
         int action = Integer.parseInt(request.getParameter("action"));
         if(action == Constants.ACTION_DELETE){
-            try {
-                String keyWord = request.getParameter("key_word");
-                int internshipId = Integer.parseInt(request.getParameter("internship_id"));
+            String keyWord = request.getParameter("key_word");
+            int internshipId = Integer.parseInt(request.getParameter("internship_id"));
 
-                KeyWordService keyWordService = new KeyWordService();
-                keyWordService.removeKeyWord(keyWord,internshipId);
+            KeyWordService keyWordService = new KeyWordService();
+            //keyWordService.removeKeyWord(keyWord,internshipId);
 
-                response.sendRedirect("ViewKeyWords?internship_id="+internshipId);
-            } catch (SQLException ex) {
-                Logger.getLogger(ManageKeyWords.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            response.sendRedirect("ViewKeyWords?internship_id="+internshipId);
         }
         else if(action == Constants.ACTION_ADD){
-            try {
-                String keyWord = request.getParameter("key_word");
-                int internshipId = Integer.parseInt(request.getParameter("internship_id"));
+            String keyWord = request.getParameter("key_word");
+            int internshipId = Integer.parseInt(request.getParameter("internship_id"));
 
-                KeyWordService keyWordService = new KeyWordService();
-                keyWordService.addKeyWord(keyWord,internshipId);
+            KeyWordService keyWordService = new KeyWordService();
+            //keyWordService.addKeyWord(keyWord,internshipId);
 
-                response.sendRedirect("ViewKeyWords?internship_id="+internshipId);
-            } catch (SQLException ex) {
-                Logger.getLogger(ManageKeyWords.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            response.sendRedirect("ViewKeyWords?internship_id="+internshipId);
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        try {
-            String keyWord = request.getParameter("newKeyWord");
-            int internshipId = Integer.parseInt(request.getParameter("internshipId"));
-            
-            KeyWordService keyWordService = new KeyWordService();
-            keyWordService.insertKeyWord(keyWord,internshipId);
-            
-            response.sendRedirect("ViewKeyWords?internship_id="+internshipId);
-        } catch (SQLException ex) {
-            Logger.getLogger(ManageKeyWords.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        String keyWord = request.getParameter("newKeyWord");
+        int internshipId = Integer.parseInt(request.getParameter("internshipId"));
+
+        KeyWordService keyWordService = new KeyWordService();
+        //keyWordService.insertKeyWord(keyWord,internshipId);
+
+        response.sendRedirect("ViewKeyWords?internship_id="+internshipId);
     }
 
     

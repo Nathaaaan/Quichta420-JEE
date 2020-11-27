@@ -5,8 +5,6 @@
  */
 package Database;
 
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -17,8 +15,8 @@ import java.util.Properties;
  * @author Andriatiana Victor
  */
 public class DataSource {
-    private static HikariConfig config = new HikariConfig("/WEB-INF/dataSource.properties");
-    private static HikariDataSource ds = new HikariDataSource(config);
+    //private static HikariConfig config = new HikariConfig("/WEB-INF/dataSource.properties");
+    //private static HikariDataSource ds = new HikariDataSource(config);
     
     //private static HikariConfig config = new HikariConfig();
     //private static HikariDataSource ds;
@@ -37,9 +35,9 @@ public class DataSource {
     private DataSource() {
     }
 
-    public static Connection getConnection() throws SQLException {
+    /*public static Connection getConnection() throws SQLException {
         return ds.getConnection();
-    }
+    }*/
     
     /*public static Properties getProperty(){
         Properties prop = new Properties();

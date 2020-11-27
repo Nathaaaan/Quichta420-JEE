@@ -40,27 +40,23 @@ public class UpdateInfos extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         System.out.println(request.getParameter("internshipId"));
-        try {
-            Excel excel = new Excel();
-            excel.setCdc(getValue(request.getParameter(UP_CDC)));
-            excel.setFicheVisite(getValue(request.getParameter(UP_FICHE_VISITE)));
-            excel.setFicheEvalEntr(getValue(request.getParameter(UP_FICHE_EVAL)));
-            excel.setSondageWeb(getValue(request.getParameter(UP_SONDAGE_WEB)));
-            excel.setRapportRendu(getValue(request.getParameter(UP_RAPPORT_RENDU)));
-            excel.setSout(getValue(request.getParameter(UP_SOUT)));
-            excel.setPlanif(getValue(request.getParameter(UP_PLANIF)));
-            excel.setFaite(getValue(request.getParameter(UP_FAITE)));
-            excel.setNoteCom(Integer.parseInt(request.getParameter(UP_NOTE_COM)));
-            excel.setNoteTech(Integer.parseInt(request.getParameter(UP_NOTE_TECH)));
-            excel.setInternshipId(Integer.parseInt(request.getParameter(UP_EXCEL_ID)));
-            
-            InternDAOImpl internDao = new InternDAOImpl();
-            internDao.updateExcel(excel);
-            
-            response.sendRedirect("WelcomeController");
-        } catch (SQLException ex) {
-            Logger.getLogger(UpdateInfos.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Excel excel = new Excel();
+        excel.setCdc(getValue(request.getParameter(UP_CDC)));
+        excel.setFicheVisite(getValue(request.getParameter(UP_FICHE_VISITE)));
+        excel.setFicheEvalEntr(getValue(request.getParameter(UP_FICHE_EVAL)));
+        excel.setSondageWeb(getValue(request.getParameter(UP_SONDAGE_WEB)));
+        excel.setRapportRendu(getValue(request.getParameter(UP_RAPPORT_RENDU)));
+        excel.setSout(getValue(request.getParameter(UP_SOUT)));
+        excel.setPlanif(getValue(request.getParameter(UP_PLANIF)));
+        excel.setFaite(getValue(request.getParameter(UP_FAITE)));
+        excel.setNoteCom(Integer.parseInt(request.getParameter(UP_NOTE_COM)));
+        excel.setNoteTech(Integer.parseInt(request.getParameter(UP_NOTE_TECH)));
+        excel.setInternshipId(Integer.parseInt(request.getParameter(UP_EXCEL_ID)));
+
+        InternDAOImpl internDao = new InternDAOImpl();
+        //internDao.updateExcel(excel);
+
+        response.sendRedirect("WelcomeController");
     }
 
     

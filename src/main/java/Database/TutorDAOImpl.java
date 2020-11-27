@@ -1,6 +1,5 @@
 package Database;
 
-import Entities.TutorEntity;
 import static Utils.Constants.PERSISTENCE_UNIT;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -39,7 +38,7 @@ public class TutorDAOImpl implements TutorDAO{
      * @return ResultSet : Tutor table row that has the same username and password as given in the parameters
      * @throws RuntimeException
      */
-    @Override
+    /*@Override
     public TutorEntity getByCredentials(String userLoginInput, String userPasswordInput){
         
         try{
@@ -53,5 +52,5 @@ public class TutorDAOImpl implements TutorDAO{
         }catch (NoResultException e){
             return null;
         }
-    }
+    }*/
 }

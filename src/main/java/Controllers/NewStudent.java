@@ -10,6 +10,7 @@ import Model.Beans.Assign;
 import Model.Beans.Company;
 import Model.Beans.Intern;
 import Model.Beans.InternshipInfo;
+import Model.Beans.SchoolGroup;
 import Model.Beans.Tutor;
 import Model.Services.AssignService;
 import Model.Services.CompanyService;
@@ -45,70 +46,62 @@ public class NewStudent extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        try {
-            InternService internService = new InternService();
-            ArrayList<String> schoolGroups = internService.getAllGroups();
-            
-            CompanyService cs = new CompanyService();
-            ArrayList<Company> companies=null;// = cs.getAllCompany();
+        InternService internService = new InternService();
+        ArrayList<String> schoolGroups = internService.getAllGroups();
 
-            request.setAttribute("schoolGroups", schoolGroups);
-            request.setAttribute("companies", companies);
+        CompanyService cs = new CompanyService();
+        ArrayList<Company> companies=null;// = cs.getAllCompany();
 
-            request.getRequestDispatcher(ADD_STUDENT_PAGE).forward(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(NewStudent.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        request.setAttribute("schoolGroups", schoolGroups);
+        request.setAttribute("companies", companies);
+
+        request.getRequestDispatcher(ADD_STUDENT_PAGE).forward(request, response);
     }
 
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            String companyIdStr = request.getParameter("company");
-            InternDAOImpl internDAOImpl = new InternDAOImpl();
-        
-            int companyId;
-            if(companyIdStr.equals("new")){
-                Company company = new Company();
-                company.setCompanyName(request.getParameter("new_name"));
-                company.setCompanyAddress(request.getParameter("new_address"));
-                companyId = internDAOImpl.insertCompany(company);
-            }
-            else{
-                companyId = Integer.parseInt(companyIdStr);
-            }
-            
-            Intern intern = new Intern();
-            intern.setFirstName(request.getParameter("firstname"));
-            intern.setLastName(request.getParameter("lastname"));
-            intern.setSchoolGroup(request.getParameter("schoolGroup"));
-            
-            Tutor tutor = new Tutor();
-            tutor.setId(((Tutor)request.getSession().getAttribute("user")).getId());
-            
-            CompanyService cs = new CompanyService();
-            Company company = cs.getCompanyById(companyId);
-            
-            InternshipInfo info = new InternshipInfo();
-            info.setCompany(company);
-            info.setMaster(request.getParameter("master"));
-            info.setDateDebut(Date.valueOf(request.getParameter("startDate")));
-            info.setDateFin(Date.valueOf(request.getParameter("endDate")));
-            
-            Assign assign = new Assign();
-            assign.setIntern(intern);
-            assign.setTutor(tutor);
-            assign.setInternshipInfo(info);
-            
-            AssignService assignService = new AssignService();
-            assignService.insertAssign(assign);
-            
-            response.sendRedirect("WelcomeController");
-        } catch (SQLException ex) {
-            Logger.getLogger(NewStudent.class.getName()).log(Level.SEVERE, null, ex);
+        String companyIdStr = request.getParameter("company");
+        InternDAOImpl internDAOImpl = new InternDAOImpl();
+
+        int companyId;
+        if(companyIdStr.equals("new")){
+            Company company = new Company();
+            company.setCompanyName(request.getParameter("new_name"));
+            company.setCompanyAdress(request.getParameter("new_address"));
+            //companyId = internDAOImpl.insertCompany(company);
         }
+        else{
+            companyId = Integer.parseInt(companyIdStr);
+        }
+
+        Intern intern = new Intern();
+        intern.setFirstName(request.getParameter("firstname"));
+        intern.setLastName(request.getParameter("lastname"));
+        intern.setSchoolGroup(new SchoolGroup(request.getParameter("schoolGroup")));
+
+        Tutor tutor = new Tutor();
+        tutor.setId(((Tutor)request.getSession().getAttribute("user")).getId());
+
+        CompanyService cs = new CompanyService();
+        //Company company = cs.getCompanyById(companyId);
+
+        InternshipInfo info = new InternshipInfo();
+        //info.setCompany(company);
+        info.setMaster(request.getParameter("master"));
+        info.setDateDebut(Date.valueOf(request.getParameter("startDate")));
+        info.setDateFin(Date.valueOf(request.getParameter("endDate")));
+
+        Assign assign = new Assign();
+        assign.setIntern(intern);
+        assign.setTutor(tutor);
+        assign.setInternshipInfo(info);
+
+        AssignService assignService = new AssignService();
+        //assignService.insertAssign(assign);
+
+        response.sendRedirect("WelcomeController");
         
     }
 

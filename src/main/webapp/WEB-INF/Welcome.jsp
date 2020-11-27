@@ -76,7 +76,7 @@
                                 </td>
 
                                 <td class="tdGr">
-                                    <c:out value="${assign.intern.schoolGroup}"/>
+                                    <c:out value="${assign.intern.schoolGroup.schoolgroupName}"/>
                                 </td>
                                 <td class="tdLa">
                                     <c:out value="${assign.intern.lastName}"/>
@@ -117,7 +117,7 @@
                                     <c:out value="${assign.internshipInfo.master}"/>
                                 </td>
                                 <td class="tdAddr">
-                                    <c:out value="${assign.internshipInfo.company.companyAddress}"/>
+                                    <c:out value="${assign.internshipInfo.company.companyAdress}"/>
                                 </td>
 
                                 </td>
