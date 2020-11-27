@@ -1,10 +1,12 @@
 package Database;
 
+import Entities.AssignEntity;
 import Entities.CompanyEntity;
 import Model.Beans.Excel;
 import Model.Beans.InternshipInfo;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * A Data access object used for doing basic CRUD operations on Interns and 
@@ -21,9 +23,9 @@ public interface InternDAO {
      * @throws SQLException
      * @see Model.Services.AssignService Database.InternDAOImpl
      */
-    public ResultSet getAllByTutorId (int id) throws SQLException;
+    public List<AssignEntity> getAllByTutorId(int id);
     public ResultSet getAssignByInternshipId(int id) throws SQLException;
-    public ResultSet getAllByTutorIdAndYear(int id, String year) throws SQLException;
+    public List<AssignEntity> getAllByTutorIdAndYear(int id, String year);
     public void updateExcel(Excel e)throws SQLException;
     public void updateInternshipInfo(InternshipInfo info) throws SQLException;
     public CompanyEntity getCompanyById(int id) throws SQLException;

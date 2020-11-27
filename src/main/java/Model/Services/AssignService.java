@@ -29,11 +29,11 @@ public class AssignService {
      * @throws SQLException
      * @see Database.InternDAOImpl
      */
-    public Assign createAssignModel(ResultSet rs) throws SQLException{
+    public Assign createAssignModel(AssignEntity ae) throws SQLException{
         Assign assign = new Assign();
-        assign.setIntern(new InternService().createInternModel(rs));
-        assign.setInternshipInfo(new InternshipInfoService().createInternshipModel(rs));
-        assign.setExcel(new ExcelService().createExcelModel(rs));
+        assign.setIntern(new InternService().createInternModel(ae.getinternEntity()));
+        assign.setInternshipInfo(new InternshipInfoService().createInternshipModel(ae.getInternshipinfoEntity()));
+        assign.setExcel(new ExcelService().createExcelModel(ae.getExcelEntity()));
         return assign;
     }
     
@@ -49,9 +49,8 @@ public class AssignService {
         InternDAO internDAO = new InternDAOImpl();
         List<AssignEntity> assignEntityList = internDAO.getAllByTutorId(tutorId);
         
-        int i = 0;
-        while(rs.next()){
-            assignList.add(createAssignModel(rs));
+        for(AssignEntity ent : assignEntityList){
+            assignList.add(createAssignModel(ent));
         }
         return assignList;
     }
@@ -60,12 +59,11 @@ public class AssignService {
         ArrayList<Assign> assignList=new ArrayList<Assign>();
         InternDAO internDAO = new InternDAOImpl();
         
-        
-        ResultSet rs = internDAO.getAllByTutorIdAndYear(tutorId, userInput);
+        List<AssignEntity> assignEntityList = internDAO.getAllByTutorIdAndYear(tutorId, userInput);
         int i = 0;
-        while(rs.next()){
+        /*while(rs.next()){
             assignList.add(createAssignModel(rs));
-        }
+        }*/
         return assignList;
     }
     
@@ -87,6 +85,6 @@ public class AssignService {
         InternDAOImpl inter = new InternDAOImpl();
         ResultSet rs = inter.getAssignByInternshipId(id);
         rs.next();
-        return createAssignModel(rs);
+        return null; //createAssignModel(rs);
     }
 }

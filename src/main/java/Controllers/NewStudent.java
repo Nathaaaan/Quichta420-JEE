@@ -50,7 +50,7 @@ public class NewStudent extends HttpServlet {
             ArrayList<String> schoolGroups = internService.getAllGroups();
             
             CompanyService cs = new CompanyService();
-            ArrayList<Company> companies = cs.getAllCompany();
+            ArrayList<Company> companies=null;// = cs.getAllCompany();
 
             request.setAttribute("schoolGroups", schoolGroups);
             request.setAttribute("companies", companies);

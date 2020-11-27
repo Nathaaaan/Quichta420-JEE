@@ -3,7 +3,6 @@ package Database;
 
 import Entities.AssignEntity;
 import Entities.CompanyEntity;
-import Entities.TutorEntity;
 import Model.Beans.Company;
 import Model.Beans.Excel;
 import Model.Beans.Intern;
@@ -14,7 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
@@ -50,7 +49,7 @@ public class InternDAOImpl implements InternDAO {
      * @see Model.Services.AssignService
      */
     @Override
-    public Collection<AssignEntity> getAllByTutorId(int id) {
+    public List<AssignEntity> getAllByTutorId(int id) {
         //the try catch close will automatically close the connection 
         /*stmt = conn.createStatement();
         String queryCount = "SELECT INTERN.*, INTERNSHIPINFO.*, EXCEL.*, COMPANY.* "
@@ -67,6 +66,7 @@ public class InternDAOImpl implements InternDAO {
             TypedQuery<AssignEntity> query = em.createQuery(JQL_SELECT_BY_TUTOR_ID,AssignEntity.class);
             query.setParameter(TUTOR_ID_PARAM, id);
             
+            //returns list
             return query.getResultList();
         }catch (NoResultException e){
             return null;
@@ -89,9 +89,9 @@ public class InternDAOImpl implements InternDAO {
     }
     
     @Override
-    public ResultSet getAllByTutorIdAndYear(int id, String year) throws SQLException{
-        Statement stmt = conn.createStatement();
-        String queryCount = "SELECT INTERN.*, INTERNSHIPINFO.*, EXCEL.*, COMPANY.* "
+    public List<AssignEntity> getAllByTutorIdAndYear(int id, String year){
+        //Statement stmt = conn.createStatement();
+        /*String queryCount = "SELECT INTERN.*, INTERNSHIPINFO.*, EXCEL.*, COMPANY.* "
             + "FROM ASSIGN "
             + "INNER JOIN INTERN ON ASSIGN.INTERN_ID = INTERN.INTERN_ID "
             + "INNER JOIN INTERNSHIPINFO ON ASSIGN.INTERNSHIP_ID = INTERNSHIPINFO.INTERNSHIP_ID "
@@ -100,8 +100,8 @@ public class InternDAOImpl implements InternDAO {
             + "WHERE ASSIGN.TUTOR_ID = "+ id
             + "AND ASSIGN.INTERNSHIP_YEAR ="+year;
         
-        return stmt.executeQuery(queryCount);
-    
+        return stmt.executeQuery(queryCount);*/
+        return null;
     }
     
     @Override

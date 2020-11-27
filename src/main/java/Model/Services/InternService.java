@@ -28,7 +28,7 @@ public class InternService {
         intern.setId(ie.getInternId());
         intern.setFirstName(ie.getFirstName());
         intern.setLastName(ie.getLastName());
-        intern.setSchoolGroup(ie.getSchoolgroupName());
+        intern.setSchoolGroup(ie.getSchoolgroupName().getSchoolgroupName());
         return intern;
     }
     

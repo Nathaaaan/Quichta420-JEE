@@ -21,7 +21,12 @@ import java.util.ArrayList;
  */
 public class CompanyService {
     
-    public Company createCompany(CompanyEntity ce) throws SQLException{
+    /**
+     * Creates an Company model from a CompanyEntity.
+     * @param ce ompanyEntity object
+     * @return Company object (Bean)
+     */
+    public static Company createCompany(CompanyEntity ce){
         Company company = new Company();
         company.setCompanyId(ce.getCompanyId());
         company.setCompanyName(ce.getCompanyName());
