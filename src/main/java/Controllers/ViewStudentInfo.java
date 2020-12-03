@@ -40,7 +40,7 @@ public class ViewStudentInfo extends HttpServlet {
         Assign assign = AssignService.getAssignByInternshipId(internshipId);
 
         Intern intern = assign.getInternId();
-        InternshipInfo info = assign.getInternshipinfo();
+        InternshipInfo info = assign.getInternshipInfo();
 
         request.setAttribute("intern", intern);
         request.setAttribute("info", info);

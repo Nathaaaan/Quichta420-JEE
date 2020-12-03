@@ -82,11 +82,11 @@ public class Assign implements Serializable {
         this.excel = excel;
     }
 
-    public InternshipInfo getInternshipinfo() {
+    public InternshipInfo getInternshipInfo() {
         return internshipinfo;
     }
 
-    public void setInternshipinfo(InternshipInfo internshipinfo) {
+    public void setInternshipInfo(InternshipInfo internshipinfo) {
         this.internshipinfo = internshipinfo;
     }
 

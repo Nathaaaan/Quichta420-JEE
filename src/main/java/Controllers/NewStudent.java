@@ -96,7 +96,7 @@ public class NewStudent extends HttpServlet {
         Assign assign = new Assign();
         assign.setInternId(intern);
         assign.setTutorId(tutor);
-        assign.setInternshipinfo(info);
+        assign.setInternshipInfo(info);
 
         AssignService assignService = new AssignService();
         //assignService.insertAssign(assign);

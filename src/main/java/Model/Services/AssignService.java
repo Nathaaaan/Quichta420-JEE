@@ -24,7 +24,7 @@ public class AssignService {
     public static ArrayList<Assign> getAllByTutorId(int id) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
         EntityManager em = emf.createEntityManager();
-        TypedQuery<Assign> query = em.createQuery("SELECT a FROM Assign a WHERE a.tutor.id = :id",Assign.class);
+        TypedQuery<Assign> query = em.createQuery("SELECT a FROM Assign a WHERE a.tutorId.tutorId = :id",Assign.class);
         query.setParameter("id", id);
         List<Assign> res = query.getResultList();
         //returns list

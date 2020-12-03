@@ -27,8 +27,8 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "KEYWORD")
 @NamedQueries({
-    @NamedQuery(name = "Keyword.findAll", query = "SELECT k FROM Keyword k"),
-    @NamedQuery(name = "Keyword.findByKeyWord", query = "SELECT k FROM Keyword k WHERE k.keyWord = :keyWord")})
+    @NamedQuery(name = "KeyWord.findAll", query = "SELECT k FROM KeyWord k"),
+    @NamedQuery(name = "KeyWord.findByKeyWord", query = "SELECT k FROM KeyWord k WHERE k.keyWord = :keyWord")})
 public class KeyWord implements Serializable {
 
     private static final long serialVersionUID = 1L;

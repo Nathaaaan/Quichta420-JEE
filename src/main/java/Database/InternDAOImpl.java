@@ -46,8 +46,8 @@ public class InternDAOImpl implements InternDAO {
      * @return Raw ResultSet object.
      * @throws SQLException
      * @see Model.Services.AssignService
-     *//*
-    @Override
+     */
+    //@Override
     public List<Assign> getAllByTutorId(int id) {
         try{
             emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
@@ -64,8 +64,8 @@ public class InternDAOImpl implements InternDAO {
    
     
 
-    @Override
-    public ResultSet getAssignByInternshipId(int id) throws SQLException {
+    //@Override
+    /*public ResultSet getAssignByInternshipId(int id) throws SQLException {
         Statement stmt = conn.createStatement();
         String queryCount = "SELECT INTERN.*, INTERNSHIPINFO.*, EXCEL.*, COMPANY.* "
             + "FROM ASSIGN "
@@ -75,9 +75,9 @@ public class InternDAOImpl implements InternDAO {
             + "INNER JOIN COMPANY ON INTERNSHIPINFO.COMPANY_ID = COMPANY.COMPANY_ID "
             + "WHERE ASSIGN.Internship_Id = "+ id;
         return stmt.executeQuery(queryCount);
-    }
+    }*/
     
-    @Override
+    /*@Override
     public List<AssignEntity> getAllByTutorIdAndYear(int id, String year){*/
         //Statement stmt = conn.createStatement();
         /*String queryCount = "SELECT INTERN.*, INTERNSHIPINFO.*, EXCEL.*, COMPANY.* "

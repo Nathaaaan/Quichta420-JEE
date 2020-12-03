@@ -98,12 +98,12 @@ public class WelcomeController extends HttpServlet {
         for(Assign assign : assignList){
             String firstName = assign.getInternId().getFirstName().toLowerCase();
             String lastName = assign.getInternId().getLastName().toLowerCase();
-            String companyName = assign.getInternshipinfo().getCompanyId().getCompanyName().toLowerCase();
-            String master = assign.getInternshipinfo().getMaster().toLowerCase();
-            String startYear = ""+(assign.getInternshipinfo().getStartDate().getYear()+1900);
-            String endYear = ""+(assign.getInternshipinfo().getEndDate().getYear()+1900);
+            String companyName = assign.getInternshipInfo().getCompanyId().getCompanyName().toLowerCase();
+            String master = assign.getInternshipInfo().getMaster().toLowerCase();
+            String startYear = ""+(assign.getInternshipInfo().getStartDate().getYear()+1900);
+            String endYear = ""+(assign.getInternshipInfo().getEndDate().getYear()+1900);
 
-            if(internshipIds.contains(assign.getInternshipinfo().getInternshipId())){
+            if(internshipIds.contains(assign.getInternshipInfo().getInternshipId())){
                 assignSearch.add(assign);
             }
             else if(firstName.contains(search) || search.contains(firstName)){

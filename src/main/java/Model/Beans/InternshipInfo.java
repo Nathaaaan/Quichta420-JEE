@@ -31,14 +31,14 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "INTERNSHIPINFO")
 @NamedQueries({
-    @NamedQuery(name = "Internshipinfo.findAll", query = "SELECT i FROM Internshipinfo i"),
-    @NamedQuery(name = "Internshipinfo.findByInternshipId", query = "SELECT i FROM Internshipinfo i WHERE i.internshipId = :internshipId"),
-    @NamedQuery(name = "Internshipinfo.findByMaster", query = "SELECT i FROM Internshipinfo i WHERE i.master = :master"),
-    @NamedQuery(name = "Internshipinfo.findByStartDate", query = "SELECT i FROM Internshipinfo i WHERE i.startDate = :startDate"),
-    @NamedQuery(name = "Internshipinfo.findByEndDate", query = "SELECT i FROM Internshipinfo i WHERE i.endDate = :endDate"),
-    @NamedQuery(name = "Internshipinfo.findByDescription", query = "SELECT i FROM Internshipinfo i WHERE i.description = :description"),
-    @NamedQuery(name = "Internshipinfo.findByMeetingInfo", query = "SELECT i FROM Internshipinfo i WHERE i.meetingInfo = :meetingInfo"),
-    @NamedQuery(name = "Internshipinfo.findByTutorComment", query = "SELECT i FROM Internshipinfo i WHERE i.tutorComment = :tutorComment")})
+    @NamedQuery(name = "InternshipInfo.findAll", query = "SELECT i FROM InternshipInfo i"),
+    @NamedQuery(name = "InternshipInfo.findByInternshipId", query = "SELECT i FROM InternshipInfo i WHERE i.internshipId = :internshipId"),
+    @NamedQuery(name = "InternshipInfo.findByMaster", query = "SELECT i FROM InternshipInfo i WHERE i.master = :master"),
+    @NamedQuery(name = "InternshipInfo.findByStartDate", query = "SELECT i FROM InternshipInfo i WHERE i.startDate = :startDate"),
+    @NamedQuery(name = "InternshipInfo.findByEndDate", query = "SELECT i FROM InternshipInfo i WHERE i.endDate = :endDate"),
+    @NamedQuery(name = "InternshipInfo.findByDescription", query = "SELECT i FROM InternshipInfo i WHERE i.description = :description"),
+    @NamedQuery(name = "InternshipInfo.findByMeetingInfo", query = "SELECT i FROM InternshipInfo i WHERE i.meetingInfo = :meetingInfo"),
+    @NamedQuery(name = "InternshipInfo.findByTutorComment", query = "SELECT i FROM InternshipInfo i WHERE i.tutorComment = :tutorComment")})
 public class InternshipInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;

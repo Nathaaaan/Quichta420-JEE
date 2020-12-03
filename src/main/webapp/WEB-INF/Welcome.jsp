@@ -27,7 +27,7 @@
         <%@include file="Header.jspf"%>
 
         <div class="welcome-container">
-            <h2>Bonjour <c:out value="${sessionScope.user.name} ${sessionScope.user.lastName}"/> !</h2>
+            <h2>Bonjour <c:out value="${sessionScope.user.firstName} ${sessionScope.user.lastName}"/> !</h2>
         </div>
 
         <div class="container-content">
@@ -76,13 +76,13 @@
                                 </td>
 
                                 <td class="tdGr">
-                                    <c:out value="${assign.intern.schoolGroup.schoolgroupName}"/>
+                                    <c:out value="${assign.internId.schoolgroupName.schoolgroupName}"/>
                                 </td>
                                 <td class="tdLa">
-                                    <c:out value="${assign.intern.lastName}"/>
+                                    <c:out value="${assign.internId.lastName}"/>
                                 </td>
                                 <td class="tdNa">
-                                    <c:out value="${assign.intern.firstName}"/>
+                                    <c:out value="${assign.internId.firstName}"/>
                                 </td>
 
                                 <td class="tdCb">
@@ -111,13 +111,13 @@
                                 </td>
 
                                 <td class="tdEtr">
-                                    <c:out value="${assign.internshipInfo.company.companyName}"/>
+                                    <c:out value="${assign.internshipInfo.companyId.companyName}"/>
                                 </td>
                                 <td class="tdMdS">
                                     <c:out value="${assign.internshipInfo.master}"/>
                                 </td>
                                 <td class="tdAddr">
-                                    <c:out value="${assign.internshipInfo.company.companyAdress}"/>
+                                    <c:out value="${assign.internshipInfo.companyId.companyAdress}"/>
                                 </td>
 
                                 </td>

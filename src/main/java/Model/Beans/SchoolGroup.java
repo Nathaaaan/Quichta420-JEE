@@ -25,8 +25,8 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "SCHOOLGROUP")
 @NamedQueries({
-    @NamedQuery(name = "Schoolgroup.findAll", query = "SELECT s FROM Schoolgroup s"),
-    @NamedQuery(name = "Schoolgroup.findBySchoolgroupName", query = "SELECT s FROM Schoolgroup s WHERE s.schoolgroupName = :schoolgroupName")})
+    @NamedQuery(name = "SchoolGroup.findAll", query = "SELECT s FROM SchoolGroup s"),
+    @NamedQuery(name = "SchoolGroup.findBySchoolgroupName", query = "SELECT s FROM SchoolGroup s WHERE s.schoolgroupName = :schoolgroupName")})
 public class SchoolGroup implements Serializable {
 
     private static final long serialVersionUID = 1L;
