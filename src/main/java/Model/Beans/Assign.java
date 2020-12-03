@@ -19,15 +19,13 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Gohu
+ * @author Andriatiana Victor
  */
 @Entity
 @Table(name = "ASSIGN")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Assign.findAll", query = "SELECT a FROM Assign a"),
     @NamedQuery(name = "Assign.findByInternshipId", query = "SELECT a FROM Assign a WHERE a.internshipId = :internshipId"),
@@ -45,13 +43,13 @@ public class Assign implements Serializable {
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "assign")
     private Excel excel;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "assign")
-    private InternshipInfo internshipInfo;
+    private InternshipInfo internshipinfo;
     @JoinColumn(name = "INTERN_ID", referencedColumnName = "INTERN_ID")
     @ManyToOne
-    private Intern intern;
+    private Intern internId;
     @JoinColumn(name = "TUTOR_ID", referencedColumnName = "TUTOR_ID")
     @ManyToOne
-    private Tutor tutor;
+    private Tutor tutorId;
 
     public Assign() {
     }
@@ -84,28 +82,53 @@ public class Assign implements Serializable {
         this.excel = excel;
     }
 
-    public InternshipInfo getInternshipInfo() {
-        return internshipInfo;
+    public InternshipInfo getInternshipinfo() {
+        return internshipinfo;
     }
 
-    public void setInternshipInfo(InternshipInfo internshipInfo) {
-        this.internshipInfo = internshipInfo;
+    public void setInternshipinfo(InternshipInfo internshipinfo) {
+        this.internshipinfo = internshipinfo;
     }
 
-    public Intern getIntern() {
-        return intern;
+    public Intern getInternId() {
+        return internId;
     }
 
-    public void setIntern(Intern intern) {
-        this.intern = intern;
+    public void setInternId(Intern internId) {
+        this.internId = internId;
     }
 
-    public Tutor getTutor() {
-        return tutor;
+    public Tutor getTutorId() {
+        return tutorId;
     }
 
-    public void setTutor(Tutor tutor) {
-        this.tutor = tutor;
+    public void setTutorId(Tutor tutorId) {
+        this.tutorId = tutorId;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (internshipId != null ? internshipId.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Assign)) {
+            return false;
+        }
+        Assign other = (Assign) object;
+        if ((this.internshipId == null && other.internshipId != null) || (this.internshipId != null && !this.internshipId.equals(other.internshipId))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Model.Beans.Assign[ internshipId=" + internshipId + " ]";
     }
     
 }

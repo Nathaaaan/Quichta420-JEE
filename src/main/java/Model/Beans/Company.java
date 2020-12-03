@@ -18,16 +18,13 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Gohu
+ * @author Andriatiana Victor
  */
 @Entity
 @Table(name = "COMPANY")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Company.findAll", query = "SELECT c FROM Company c"),
     @NamedQuery(name = "Company.findByCompanyId", query = "SELECT c FROM Company c WHERE c.companyId = :companyId"),
@@ -47,10 +44,11 @@ public class Company implements Serializable {
     @Size(max = 80)
     @Column(name = "COMPANY_ADRESS")
     private String companyAdress;
-    @OneToMany(mappedBy = "company")
-    private Collection<InternshipInfo> internshipInfoCollection;
+    @OneToMany(mappedBy = "companyId")
+    private Collection<InternshipInfo> internshipinfoCollection;
 
     public Company() {
+        
     }
 
     public Company(Integer companyId) {
@@ -79,6 +77,39 @@ public class Company implements Serializable {
 
     public void setCompanyAdress(String companyAdress) {
         this.companyAdress = companyAdress;
+    }
+
+    public Collection<InternshipInfo> getInternshipinfoCollection() {
+        return internshipinfoCollection;
+    }
+
+    public void setInternshipinfoCollection(Collection<InternshipInfo> internshipinfoCollection) {
+        this.internshipinfoCollection = internshipinfoCollection;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (companyId != null ? companyId.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Company)) {
+            return false;
+        }
+        Company other = (Company) object;
+        if ((this.companyId == null && other.companyId != null) || (this.companyId != null && !this.companyId.equals(other.companyId))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Model.Beans.Company[ companyId=" + companyId + " ]";
     }
     
 }

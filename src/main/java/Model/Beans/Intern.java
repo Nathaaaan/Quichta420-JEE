@@ -20,16 +20,13 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Gohu
+ * @author Andriatiana Victor
  */
 @Entity
 @Table(name = "INTERN")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Intern.findAll", query = "SELECT i FROM Intern i"),
     @NamedQuery(name = "Intern.findByInternId", query = "SELECT i FROM Intern i WHERE i.internId = :internId"),
@@ -51,10 +48,10 @@ public class Intern implements Serializable {
     private String lastName;
     @JoinColumn(name = "SCHOOLGROUP_NAME", referencedColumnName = "SCHOOLGROUP_NAME")
     @ManyToOne
-    private SchoolGroup schoolGroup;
-    @OneToMany(mappedBy = "intern")
+    private SchoolGroup schoolgroupName;
+    @OneToMany(mappedBy = "internId")
     private Collection<Assign> assignCollection;
-
+    
     public Intern() {
     }
 
@@ -86,21 +83,45 @@ public class Intern implements Serializable {
         this.lastName = lastName;
     }
 
-    public SchoolGroup getSchoolGroup() {
-        return schoolGroup;
+    public SchoolGroup getSchoolgroupName() {
+        return schoolgroupName;
     }
 
-    public void setSchoolGroup(SchoolGroup schoolGroup) {
-        this.schoolGroup = schoolGroup;
+    public void setSchoolgroupName(SchoolGroup schoolgroupName) {
+        this.schoolgroupName = schoolgroupName;
     }
 
-    @XmlTransient
     public Collection<Assign> getAssignCollection() {
         return assignCollection;
     }
 
     public void setAssignCollection(Collection<Assign> assignCollection) {
         this.assignCollection = assignCollection;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (internId != null ? internId.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Intern)) {
+            return false;
+        }
+        Intern other = (Intern) object;
+        if ((this.internId == null && other.internId != null) || (this.internId != null && !this.internId.equals(other.internId))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Model.Beans.Intern[ internId=" + internId + " ]";
     }
     
 }

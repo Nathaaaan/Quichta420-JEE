@@ -18,20 +18,17 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Gohu
+ * @author Andriatiana Victor
  */
 @Entity
 @Table(name = "TUTOR")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Tutor.findAll", query = "SELECT t FROM Tutor t"),
-    @NamedQuery(name = "Tutor.findByTutorId", query = "SELECT t FROM Tutor t WHERE t.id = :tutorId"),
-    @NamedQuery(name = "Tutor.findByFirstName", query = "SELECT t FROM Tutor t WHERE t.name = :firstName"),
+    @NamedQuery(name = "Tutor.findByTutorId", query = "SELECT t FROM Tutor t WHERE t.tutorId = :tutorId"),
+    @NamedQuery(name = "Tutor.findByFirstName", query = "SELECT t FROM Tutor t WHERE t.firstName = :firstName"),
     @NamedQuery(name = "Tutor.findByLastName", query = "SELECT t FROM Tutor t WHERE t.lastName = :lastName"),
     @NamedQuery(name = "Tutor.findByLogin", query = "SELECT t FROM Tutor t WHERE t.login = :login"),
     @NamedQuery(name = "Tutor.findByPassword", query = "SELECT t FROM Tutor t WHERE t.password = :password")})
@@ -42,10 +39,10 @@ public class Tutor implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "TUTOR_ID")
-    private Integer id;
+    private Integer tutorId;
     @Size(max = 40)
     @Column(name = "FIRST_NAME")
-    private String name;
+    private String firstName;
     @Size(max = 40)
     @Column(name = "LAST_NAME")
     private String lastName;
@@ -55,56 +52,87 @@ public class Tutor implements Serializable {
     @Size(max = 40)
     @Column(name = "PASSWORD")
     private String password;
-    @OneToMany(mappedBy = "tutor")
+    @OneToMany(mappedBy = "tutorId")
     private Collection<Assign> assignCollection;
 
     public Tutor() {
     }
 
     public Tutor(Integer tutorId) {
-        this.id = tutorId;
+        this.tutorId = tutorId;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getTutorId() {
+        return tutorId;
     }
 
-    public void setId(Integer _id) {
-        this.id = _id;
+    public void setTutorId(Integer tutorId) {
+        this.tutorId = tutorId;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String _name) {
-        this.name = _name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String _lastName) {
-        this.lastName = _lastName;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getLogin() {
         return login;
     }
 
-    public void setLogin(String _login) {
-        this.login = _login;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String _password) {
-        this.password = _password;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    
+    public Collection<Assign> getAssignCollection() {
+        return assignCollection;
+    }
+
+    public void setAssignCollection(Collection<Assign> assignCollection) {
+        this.assignCollection = assignCollection;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (tutorId != null ? tutorId.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Tutor)) {
+            return false;
+        }
+        Tutor other = (Tutor) object;
+        if ((this.tutorId == null && other.tutorId != null) || (this.tutorId != null && !this.tutorId.equals(other.tutorId))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Model.Beans.Tutor[ tutorId=" + tutorId + " ]";
+    }
     
 }

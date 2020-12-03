@@ -52,7 +52,7 @@ public class WelcomeController extends HttpServlet {
 //        processRequest(request, response);
         Tutor tutor = (Tutor)request.getSession().getAttribute("user");
 
-        ArrayList<Assign> assignList = new AssignService().getAllByTutorId(tutor.getId());
+        ArrayList<Assign> assignList = new AssignService().getAllByTutorId(tutor.getTutorId());
 
         request.setAttribute("keyExcel", assignList);
 
@@ -68,7 +68,7 @@ public class WelcomeController extends HttpServlet {
         String search = request.getParameter("search");
         System.out.println(search);
         Tutor tutor = (Tutor)request.getSession().getAttribute("user");
-        ArrayList<Assign> assignList = new AssignService().getAllByTutorId(tutor.getId());
+        ArrayList<Assign> assignList = new AssignService().getAllByTutorId(tutor.getTutorId());
 
         ArrayList<Assign> assignSearch = searchPerform(search.toLowerCase(),assignList);
 
@@ -86,8 +86,8 @@ public class WelcomeController extends HttpServlet {
         ArrayList<KeyWord> keyWords = keyWordService.getAllKeyWords();
 
         for(KeyWord keyWord : keyWords){
-            if(keyWord.getWord().toLowerCase().contains(search) || search.contains(keyWord.getWord().toLowerCase())){
-                for(InternshipInfo info : keyWord.getInternshipInfoCollection()){
+            if(keyWord.getKeyWord().toLowerCase().contains(search) || search.contains(keyWord.getKeyWord().toLowerCase())){
+                for(InternshipInfo info : keyWord.getInternshipinfoCollection()){
                     internshipIds.add(info.getInternshipId());
                 }
             }
@@ -96,14 +96,14 @@ public class WelcomeController extends HttpServlet {
         ArrayList assignSearch = new ArrayList<Assign>();
 
         for(Assign assign : assignList){
-            String firstName = assign.getIntern().getFirstName().toLowerCase();
-            String lastName = assign.getIntern().getLastName().toLowerCase();
-            String companyName = assign.getInternshipInfo().getCompany().getCompanyName().toLowerCase();
-            String master = assign.getInternshipInfo().getMaster().toLowerCase();
-            String startYear = ""+(assign.getInternshipInfo().getDateDebut().getYear()+1900);
-            String endYear = ""+(assign.getInternshipInfo().getDateFin().getYear()+1900);
+            String firstName = assign.getInternId().getFirstName().toLowerCase();
+            String lastName = assign.getInternId().getLastName().toLowerCase();
+            String companyName = assign.getInternshipinfo().getCompanyId().getCompanyName().toLowerCase();
+            String master = assign.getInternshipinfo().getMaster().toLowerCase();
+            String startYear = ""+(assign.getInternshipinfo().getStartDate().getYear()+1900);
+            String endYear = ""+(assign.getInternshipinfo().getEndDate().getYear()+1900);
 
-            if(internshipIds.contains(assign.getInternshipInfo().getInternshipId())){
+            if(internshipIds.contains(assign.getInternshipinfo().getInternshipId())){
                 assignSearch.add(assign);
             }
             else if(firstName.contains(search) || search.contains(firstName)){

@@ -79,10 +79,10 @@ public class NewStudent extends HttpServlet {
         Intern intern = new Intern();
         intern.setFirstName(request.getParameter("firstname"));
         intern.setLastName(request.getParameter("lastname"));
-        intern.setSchoolGroup(new SchoolGroup(request.getParameter("schoolGroup")));
+        intern.setSchoolgroupName(new SchoolGroup(request.getParameter("schoolGroup")));
 
         Tutor tutor = new Tutor();
-        tutor.setId(((Tutor)request.getSession().getAttribute("user")).getId());
+        tutor.setTutorId(((Tutor)request.getSession().getAttribute("user")).getTutorId());
 
         CompanyService cs = new CompanyService();
         //Company company = cs.getCompanyById(companyId);
@@ -90,13 +90,13 @@ public class NewStudent extends HttpServlet {
         InternshipInfo info = new InternshipInfo();
         //info.setCompany(company);
         info.setMaster(request.getParameter("master"));
-        info.setDateDebut(Date.valueOf(request.getParameter("startDate")));
-        info.setDateFin(Date.valueOf(request.getParameter("endDate")));
+        info.setStartDate(Date.valueOf(request.getParameter("startDate")));
+        info.setEndDate(Date.valueOf(request.getParameter("endDate")));
 
         Assign assign = new Assign();
-        assign.setIntern(intern);
-        assign.setTutor(tutor);
-        assign.setInternshipInfo(info);
+        assign.setInternId(intern);
+        assign.setTutorId(tutor);
+        assign.setInternshipinfo(info);
 
         AssignService assignService = new AssignService();
         //assignService.insertAssign(assign);

@@ -16,15 +16,13 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Gohu
+ * @author Andriatiana Victor
  */
 @Entity
 @Table(name = "EXCEL")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Excel.findAll", query = "SELECT e FROM Excel e"),
     @NamedQuery(name = "Excel.findByInternshipId", query = "SELECT e FROM Excel e WHERE e.internshipId = :internshipId"),
@@ -163,6 +161,39 @@ public class Excel implements Serializable {
 
     public void setNoteCom(Integer noteCom) {
         this.noteCom = noteCom;
+    }
+
+    public Assign getAssign() {
+        return assign;
+    }
+
+    public void setAssign(Assign assign) {
+        this.assign = assign;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (internshipId != null ? internshipId.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Excel)) {
+            return false;
+        }
+        Excel other = (Excel) object;
+        if ((this.internshipId == null && other.internshipId != null) || (this.internshipId != null && !this.internshipId.equals(other.internshipId))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Model.Beans.Excel[ internshipId=" + internshipId + " ]";
     }
     
 }

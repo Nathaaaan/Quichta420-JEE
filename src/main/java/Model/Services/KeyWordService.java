@@ -46,10 +46,10 @@ public class KeyWordService {/*
         List<KeyWord> res = query.getResultList();
         ArrayList<String> words = new ArrayList<String>();
         for(KeyWord k : res){
-            ArrayList<InternshipInfo> infos = new ArrayList<InternshipInfo>(k.getInternshipInfoCollection());
+            ArrayList<InternshipInfo> infos = new ArrayList<InternshipInfo>(k.getInternshipinfoCollection());
             for(InternshipInfo info : infos){
                 if(info.getInternshipId() == id){
-                    words.add(k.getWord());
+                    words.add(k.getKeyWord());
                 }
             }
         }
@@ -65,7 +65,7 @@ public class KeyWordService {/*
         List<KeyWord> res = query.getResultList();
         ArrayList<KeyWord> keyWords = new ArrayList<KeyWord>(res);
         for(KeyWord keyWord : keyWords){
-            ArrayList<InternshipInfo> infos = new ArrayList<InternshipInfo>(keyWord.getInternshipInfoCollection());
+            ArrayList<InternshipInfo> infos = new ArrayList<InternshipInfo>(keyWord.getInternshipinfoCollection());
             boolean is = false;
             for(InternshipInfo info : infos){
                 if(info.getInternshipId() == id){
@@ -74,7 +74,7 @@ public class KeyWordService {/*
                 }
             }
             if(!is){
-                words.add(keyWord.getWord());
+                words.add(keyWord.getKeyWord());
             }
         }
         
