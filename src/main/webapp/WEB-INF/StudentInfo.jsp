@@ -46,19 +46,19 @@
                                     <div class="line"><div>Identifiant : </div><div><c:out value="${intern.internId}"/></div></div>
                                     <div class="line"><div>Nom : </div><div><c:out value="${intern.lastName}"/></div></div>
                                     <div class="line"><div>Prenom : </div><div><c:out value="${intern.firstName}"/></div></div>
-                                    <div class="line"><div>Groupe : </div><div><c:out value="${intern.schoolGroup.schoolgroupName}"/></div></div>
+                                    <div class="line"><div>Groupe : </div><div><c:out value="${intern.schoolgroupName.schoolgroupName}"/></div></div>
                                 </div>
                             </div>
                             <div class="container">
                                 <div class="bar_title">
-                                    <div>Details de l'entreprise : <c:out value="${info.company.companyName}"/></div>
+                                    <div>Details de l'entreprise : <c:out value="${info.companyId.companyName}"/></div>
                                 </div>
                                 <div class="content" id="details">
-                                    <div class="line"><div>Nom : </div><div><c:out value="${info.company.companyName}"/></div></div>
-                                    <div class="line"><div>Adresse de l'entreprise : </div><div><c:out value="${info.company.companyAdress}"/></div></div>
+                                    <div class="line"><div>Nom : </div><div><c:out value="${info.companyId.companyName}"/></div></div>
+                                    <div class="line"><div>Adresse de l'entreprise : </div><div><c:out value="${info.companyId.companyAdress}"/></div></div>
                                     <div class="line"><div>Maitre d'apprentissage : </div><div><c:out value="${info.master}"/></div></div>
-                                    <div class="line"><div>Date de début : </div><div><c:out value="${info.dateDebut.toString()}"/></div></div>
-                                    <div class="line"><div>Date de fin : </div><div><c:out value="${info.dateFin.toString()}"/></div></div>
+                                    <div class="line"><div>Date de début : </div><div><c:out value="${info.startDate.toString()}"/></div></div>
+                                    <div class="line"><div>Date de fin : </div><div><c:out value="${info.endDate.toString()}"/></div></div>
                                 </div>
                             </div>
                         </div>
